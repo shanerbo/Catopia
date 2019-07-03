@@ -25,13 +25,15 @@ The website is a community for cat owners and lovers. Users can share their cats
 - Store page
 ## First iteration:
 - Set up project
-- Design db model
-- Home page
-- Cat profile page
-- Enable photo and activity sharing
+- Design db schema
+- Home page showing all pictures posted
+- Owner profile page showing the cats they own
+- Enable photo posting
 ## Second iteration:
-- Owner profile page
-- Search page with search filters for precise cats
+- Cat profile pages showing all the photos related to them and the owner of them
+- Follower and following system: user now only sees the pictures of their following cats and owners
+- Filter panel on the home page that limits cats to certain breed/fur color/age/gender etc. 
+- Search cats or owners by keyword
 ## Third iteration: (if we have time)
 - Cat supplies store – e-commerce
 - Real-time chat for owners
