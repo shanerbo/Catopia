@@ -3,6 +3,7 @@ The website is a community for cat owners and lovers. Users can share their cats
 ## Main features:
 - Cat profile pages showing adoption status and photos
 - Twitter/Instagram-like photo/activities posting
+- Follower and following system between users 
 - Search engine for cats open for adoption
 > (bonus features)
 - Cat supplies store
