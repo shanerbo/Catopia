@@ -4,13 +4,13 @@ The website is a community for cat owners and lovers. Users can share their cats
 - Cat profile pages showing adoption status and photos
 - Twitter/Instagram-like photo/activities posting
 - Search engine for cats open for adoption
-(bonus features)
+> (bonus features)
 - Cat supplies store
 - Real-time chat
 ## Technologies proposed:
 - Back-end
   - ExpressJS/NodeJS
-  - PostgreSQL
+  - PostgreSQL with Sequelize
   - AWS
 - Front-end
   - Angular
