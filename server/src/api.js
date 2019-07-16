@@ -3,8 +3,11 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (dbHelper) => {
-    router.get('/login', (req, res) => {
-       res.json("hold on");
-    });
-    return router;
+  router.post('/signin', (req, res) => {
+    res.json("signing in");
+  });
+  router.post('/signup', (req, res) => {
+    res.json("signing up");
+  });
+  return router;
 }

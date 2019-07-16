@@ -14,13 +14,13 @@
           </div>
 
           <!-- login form -->
-          <form *ngIf="showLoginForm; else signupForm" class="pt-3" (ngSubmit)="onLoginSubmit()">
+          <form *ngIf="showLoginForm; else signupForm" class="pt-3" (ngSubmit)="onSigninSubmit()">
             <div class="form-group">
-              <input type="text" [(ngModel)]="loginEmail" class="form-control" name="loginEmail" placeholder="Email"
+              <input type="email" [(ngModel)]="signinEmail" class="form-control" name="loginEmail" placeholder="Email"
                 required>
             </div>
             <div class="form-group">
-              <input type="password" [(ngModel)]="loginPassword" class="form-control" name="loginPassword"
+              <input type="password" [(ngModel)]="signinPassword" class="form-control" name="loginPassword"
                 placeholder="Password" autocomplete="false" required>
             </div>
             <button type="submit" class="btn btn-primary">Log In</button>
@@ -30,8 +30,8 @@
           <ng-template #signupForm>
             <form class="pt-3" (ngSubmit)="onSignupSubmit()">
               <div class="form-group">
-                <input type="text" [(ngModel)]="signupEmail" class="form-control" name="signupEmail" placeholder="Email"
-                  required>
+                <input type="email" [(ngModel)]="signupEmail" class="form-control" name="signupEmail"
+                  placeholder="Email" required>
               </div>
               <div class="form-group">
                 <input type="password" [(ngModel)]="signupPassword" class="form-control" name="signupPassword" required
