@@ -8,6 +8,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PhotoCardComponent } from './photo-card/photo-card.component';
 import { LeftPanelComponent } from './left-panel/left-panel.component';
 import { RightPanelComponent } from './right-panel/right-panel.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RightPanelComponent } from './right-panel/right-panel.component';
     NavBarComponent,
     PhotoCardComponent,
     LeftPanelComponent,
-    RightPanelComponent
+    RightPanelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
