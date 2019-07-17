@@ -39,7 +39,7 @@ app.get("*", (req, res, next) => {
 app.use(function (err, req, res, next) {
   console.log("error occured:", err);
   res.status(err.status || 500);
-  res.json(err.errors[0]);
+  res.json(err.errors);
 });
 
 httpServer.listen(process.env.PORT || 3000, () => {
