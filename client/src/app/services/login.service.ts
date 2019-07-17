@@ -1,17 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { isDevMode } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TokenPayload } from '../interfaces/user-info';
+import { Router } from '@angular/router';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  private token: string;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   signup(email: string, password: string) {
-    this.http.post('/api/signup', { email, password })
+    this.http.post('/api/signup', { email: email, password: password })
       .subscribe((resp) => {
         console.log(resp);
       }, (err) => {
@@ -20,11 +32,35 @@ export class LoginService {
 
   }
   signin(email, password) {
-    this.http.post('/api/signin', { email, password })
+    const userinfo: TokenPayload = {
+      email: email,
+      password: password
+    };
+    console.log(userinfo);
+    this.http.post('/api/signin', userinfo, httpOptions)
       .subscribe((resp) => {
         console.log(resp);
       }, (err) => {
         console.log(err);
       });
   }
+
+
+  private saveToken(token: string): void {
+    localStorage.setItem('login-token', token);
+    this.token = token;
+  }
+
+  private getToken(): string {
+    if (!this.token) {
+      this.token = localStorage.getItem('login-token');
+    }
+    return this.token;
+  }
+  signout() {
+    this.token = '';
+    window.localStorage.removeItem('login-token');
+    this.router.navigateByUrl('/');
+  }
+
 }
