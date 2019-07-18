@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   signinPassword: string;
   signupEmail: string;
   signupPassword: string;
+  signupConfirmPassword: string;
   showLoginForm = true;
 
   constructor(private ls: LoginService) {
@@ -24,8 +25,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSignupSubmit() {
-    this.ls.signup(this.signupEmail, this.signupPassword);
-
+    if (this.signupConfirmPassword === this.signupPassword) {
+      this.ls.signup(this.signupEmail, this.signupPassword, this.signupConfirmPassword);
+    }
   }
   switchToLogin() {
     this.showLoginForm = true;

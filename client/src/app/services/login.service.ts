@@ -22,8 +22,9 @@ export class LoginService {
     private router: Router
   ) { }
 
-  signup(email: string, password: string) {
-    this.http.post('/api/signup', { email: email, password: password })
+  signup(email: string, password: string, password_confirm: string) {
+    console.log(password_confirm);
+    this.http.post('/api/signup', { email: email, password: password, password_repeat: password_confirm })
       .subscribe((resp) => {
         console.log(resp);
       }, (err) => {

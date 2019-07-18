@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "./node_modules/.bin/nodemon server.js",
-    "start_all": "concurrently -c \"yellow.bold,green.bold\" -n \"SERVER,CLIENT\" \"nodemon server\" \"cd ../client && ng build --prod --build-optimizer --output-path ../server/build --watch\""
+    "start_all": "concurrently -c \"yellow.bold,green.bold\" -n \"SERVER,CLIENT\" \"nodemon server\" \"cd ../client && ng build --output-path ../server/build --watch\""
   },
   "keywords": [],
   "author": "",
