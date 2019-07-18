@@ -12,6 +12,10 @@ const morgan = require('morgan');
 
 //----------set up DB----------------------
 const dbHelper = require("./models/index");
+//----------upload file--------------------
+const GCPHelper = require("./GCP/google-cloud-storage");
+const storage = GCPHelper;
+storage.uploadImgToGCP('./IMG.jpeg', 'user_prof');
 //----------Create express app-------------
 const app = express();
 const httpServer = http.createServer(app);
