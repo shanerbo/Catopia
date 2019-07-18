@@ -1,4 +1,4 @@
-const User = require('../models/index').User;
+const User = require('../models/index').Users;
 const bcrypt = require('bcrypt');
 const { sanitizeBody, body, validationResult } = require('express-validator');
 
@@ -45,8 +45,8 @@ exports.signup = [
     } else {
       const newUser = {
         email: req.body.email,
-        password: req.body.password,
-
+        pwd: req.body.password,
+        userName: req.body.username
       };
       User.create(newUser)
         .then((result) => {
