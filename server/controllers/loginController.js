@@ -76,14 +76,15 @@ exports.signup = [
       )
         .then((result) => {
           console.log("signup result:", result.dataValues);
-          const token = generateJwt(result.dataValues);
+          let user = result.dataValues;
+          delete user.pwd;
+          const token = generateJwt(user);
           res.json({ token });
         }).catch((err) => {
           console.log(err);
           next(err);
         });
     }
-
   }];
 
 

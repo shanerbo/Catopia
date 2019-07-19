@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
   }
   public ngOnInit() {
-    this.ls.getCurrentUser().subscribe((data: any) => {
+    this.ls.signInCurrentUser().subscribe((data: any) => {
       this.user = data.user;
     });
 

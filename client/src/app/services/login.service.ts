@@ -29,7 +29,8 @@ export class LoginService {
     this.http.post('/api/signup', { email: email, username: username, password: password, password_repeat: password_confirm })
       .subscribe((resp: TokenResponse) => {
         this.saveToken(resp.token);
-        console.log('saved info', this.getUserInfo());
+        this.setUser(this.getUserInfo());
+        console.log('signup success, saved info', this.getUserInfo());
         this.router.navigateByUrl('/');
       }, (err) => {
         console.log(err); // TODO: make this a flash message
@@ -53,7 +54,7 @@ export class LoginService {
       });
   }
 
-  getCurrentUser(): Observable<UserInfo> {
+  signInCurrentUser(): Observable<UserInfo> {
     return Observable.create(observer => {
       const tokenVal = this.getToken();
       if (!tokenVal) { return observer.complete(); }
@@ -65,6 +66,10 @@ export class LoginService {
         observer.complete();
       });
     });
+  }
+
+  setUser(user: UserInfo) {
+    this.currentUser.next(user);
   }
 
   public getUserInfo(): UserInfo {
@@ -82,10 +87,6 @@ export class LoginService {
   private saveToken(token: string): void {
     localStorage.setItem('login-token', token);
     this.token = token;
-  }
-
-  setUser(user: UserInfo) {
-    this.currentUser.next(user);
   }
 
   private getToken(): string {

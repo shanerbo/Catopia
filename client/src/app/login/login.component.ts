@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +17,26 @@ export class LoginComponent implements OnInit {
   signupUsername: string;
   showLoginForm = true;
 
-  constructor(private ls: LoginService) {
+  private userSubscription: Subscription;
+
+  constructor(
+    private ls: LoginService,
+    private router: Router
+  ) {
+
   }
 
   ngOnInit() {
+    this.userSubscription = this.ls.signInCurrentUser().subscribe((user) => {
+      console.log('login-comp, user:', user);
+      if (user) {
+        this.router.navigateByUrl('/');
+      }
+    });
+  }
+
+  OnDestroy() {
+    this.userSubscription.unsubscribe();
   }
 
   onSigninSubmit() {
