@@ -17,11 +17,15 @@ const httpOptions = {
 export class LoginService {
   private token: string;
   public currentUser = new Subject<UserInfo>();
+  public user: UserInfo;
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
+    this.signInCurrentUser().subscribe((user) => {
+      this.user = user;
+    });
   }
 
   signup(email: string, username: string, password: string, password_confirm: string) {
@@ -62,6 +66,7 @@ export class LoginService {
         console.log(data);
         this.saveToken(data.token);
         const userinfo = this.getUserInfo();
+        this.setUser(userinfo);
         observer.next({ user: userinfo });
         observer.complete();
       });
@@ -70,6 +75,7 @@ export class LoginService {
 
   setUser(user: UserInfo) {
     this.currentUser.next(user);
+    this.user = user;
   }
 
   public getUserInfo(): UserInfo {
