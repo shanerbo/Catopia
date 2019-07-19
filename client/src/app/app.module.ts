@@ -14,6 +14,7 @@ import { LeftPanelComponent } from './left-panel/left-panel.component';
 import { RightPanelComponent } from './right-panel/right-panel.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -26,7 +27,8 @@ import { LoginService } from './services/login.service';
     PhotoCardComponent,
     LeftPanelComponent,
     RightPanelComponent,
-    LoginComponent
+    LoginComponent,
+    UserProfileComponent
   ],
   imports: [
     FormsModule,

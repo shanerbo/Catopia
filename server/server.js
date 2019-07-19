@@ -9,12 +9,14 @@ const path = require("path");
 // Dev utilities
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
-//--------- Deps ends ---------------------
-
-//----------Create express app-------------
+//--------- Get db models -----------------
+const models = require('./models/index');
+//--------- Create express app ------------
 const app = express();
 const httpServer = http.createServer(app);
-// middlewares setup
+//--------- middlewares setup -------------
+const passport = require("./lib/passport")(models.Users);
+app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
@@ -22,12 +24,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 if (ENV == "development") {// If in dev mode, enable cors for angular to talk to server
   const cors = require('cors');
 
-  var corsOptions = {
-    origin: 'http://example.com',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
-  };
-
-  app.use(cors(corsOptions));
+  app.use(cors());
 }
 //----------- api setup -------------------
 app.use('/api', require("./src/api"));

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserInfo } from '../interfaces/user-info';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
   loggedin = false;
-  constructor() { }
+  @Input() user: UserInfo = null;
+  constructor(private ls: LoginService) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.ls.signout();
+  }
+
+  userButton() {
+    // TODO: navigate to user profile page
+  }
 }

@@ -1,7 +1,22 @@
-const User = require('../models/index').Users;
-const bcrypt = require('bcrypt');
+const Users = require('../models/index').Users;
+const jwt = require('jsonwebtoken');
 const { sanitizeBody, body, validationResult } = require('express-validator');
+const jwtsecret = process.env.JWTSECRET;
+const passport = require('passport');
 
+function generateJwt(userObj) {
+  var expiry = new Date();
+  expiry.setDate(expiry.getDate() + 7);
+  userObj.exp = parseInt(expiry.getTime() / 1000);
+  delete userObj['pwd'];
+  return jwt.sign(userObj, jwtsecret); // DO NOT KEEP YOUR SECRET IN THE CODE!
+};
+
+function issueJwt(req, res) {
+  console.log("req.user:", req.user);
+  const token = generateJwt(req.user);
+  res.json({ token });
+};
 
 exports.signin = [
   (req, res, next) => {
@@ -16,24 +31,28 @@ exports.signin = [
     // console.log("printing:", req.body);
     if (!errors.isEmpty()) {
       console.error(errors);
-
       res.status(400).json(errors);
     } else {
-
-      res.send("signing in");
-
+      next();
     }
-  }];
+  },
+  passport.authenticate('local', { session: false }),
+  issueJwt
+];
+
+
+exports.auth = [
+  passport.authenticate('jwt', { session: false }), issueJwt
+];
 
 exports.signup = [
 
   // Validate fields.
   body('email', 'Eamil must be valid.').isEmail().isLength({ min: 1 }).trim(),
   body('password', 'Password must longer than 8 characters.').isLength({ min: 6 }).trim(),
-  body('password_repeat', 'Re-entered password must be the same as password').custom((value, { req }) => {
-    console.log(value, "and", req.body.password);
-    if (value !== req.body.password) {
-      return false;
+  body('password_repeat').custom((value, { req }) => {
+    if (value != req.body.password) {
+      throw new Error('Password confirmation does not match password');
     }
     return true;
   }).isLength({ min: 6 }).trim(),
@@ -43,22 +62,30 @@ exports.signup = [
     if (!errors.isEmpty()) {
       res.status(400).json({ error: errors.array() });
     } else {
-      const newUser = {
-        email: req.body.email,
-        pwd: req.body.password,
-        userName: req.body.username
-      };
-      User.create(newUser)
+      Users.createUser(
+        req.body.username,
+        req.body.password,
+        //TODO: add these inputs for signup
+        null,//firstName,
+        null,//lastName,
+        req.body.email,
+        null, //gender,
+        null, //phone,
+        null, //bio,
+        null, //prof_url
+      )
         .then((result) => {
-          // const token = jwt.sign(user.toJSON())
-          // res.json({success: true, token: 'JWT '+token})
-          res.json({ success: true })
-        }).catch((error) => {
-
+          console.log("signup result:", result.dataValues);
+          const token = generateJwt(result.dataValues);
+          res.json({ token });
+        }).catch((err) => {
+          console.log(err);
+          next(err);
         });
-      console.log(req.body);
     }
 
   }];
+
+
 
 
