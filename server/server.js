@@ -11,9 +11,7 @@ const bodyParser = require("body-parser");
 const morgan = require('morgan');
 
 //----------upload file--------------------
-const GCPHelper = require("./lib/google-cloud-storage");
-const storage = GCPHelper;
-storage.uploadImgToGCP('./IMG.jpeg', 'user_prof');
+// const GCPHelper = require("./lib/google-cloud-storage");
 //----------Create express app-------------
 const app = express();
 const httpServer = http.createServer(app);
