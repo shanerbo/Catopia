@@ -1,10 +1,12 @@
 "use strict";
 const express = require('express');
+const loginController = require('../controllers/loginController');
 const router = express.Router();
 
-module.exports = (dbHelper) => {
-    router.get('/login', (req, res) => {
-       res.json("hold on");
-    });
-    return router;
-}
+
+router.post('/signin', loginController.signin);
+router.post('/signup', loginController.signup);
+router.get('/auth', loginController.auth);
+
+
+module.exports = router;
