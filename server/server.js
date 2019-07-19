@@ -1,17 +1,15 @@
+"use strict";
 //--------- Get environment variable ------
 require('dotenv').config({ silent: true });
-const ENV = process.env.ENV || "development";
-
-//--------- deps --------------------------
+const ENV = process.env.NODE_ENV || "development";
+//--------- Deps --------------------------
 const http = require("http");
 const express = require("express");
 const path = require("path");
-// utilities
+// Dev utilities
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
 
-//----------set up DB----------------------
-const dbHelper = require("./models/index");
 //----------upload file--------------------
 const GCPHelper = require("./GCP/google-cloud-storage");
 const storage = GCPHelper;
@@ -19,17 +17,29 @@ storage.uploadImgToGCP('./IMG.jpeg', 'user_prof');
 //----------Create express app-------------
 const app = express();
 const httpServer = http.createServer(app);
-// middlewares setup
+//--------- middlewares setup -------------
+const passport = require("./lib/passport")(models.Users);
+app.use(passport.initialize());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'build')));
+if (ENV == "development") {// If in dev mode, enable cors for angular to talk to server
+  const cors = require('cors');
 
-// api setup
-app.use('/api', require("./src/api")(dbHelper));
-
+  app.use(cors());
+}
+//----------- api setup -------------------
+app.use('/api', require("./src/api"));
 
 app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, 'build/index.html'));
+});
+
+app.use(function (err, req, res, next) {
+  console.log("error occured:", err);
+  res.status(err.status || 500);
+  res.json(err);
 });
 
 httpServer.listen(process.env.PORT || 3000, () => {
