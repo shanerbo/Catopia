@@ -9,9 +9,12 @@ const path = require("path");
 // Dev utilities
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
-//--------- Get db models -----------------
-const models = require('./models/index');
-//--------- Create express app ------------
+
+//----------upload file--------------------
+const GCPHelper = require("./lib/google-cloud-storage");
+const storage = GCPHelper;
+storage.uploadImgToGCP('./IMG.jpeg', 'user_prof');
+//----------Create express app-------------
 const app = express();
 const httpServer = http.createServer(app);
 //--------- middlewares setup -------------
