@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userSubscription = this.ls.signInCurrentUser().subscribe((user) => {
-      console.log('login-comp, user:', user);
+    this.userSubscription = this.ls.currentUser.subscribe((user) => {
       if (user) {
         this.router.navigateByUrl('/');
       }
