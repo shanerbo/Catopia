@@ -21,7 +21,8 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+  }
 
   signup(email: string, username: string, password: string, password_confirm: string) {
     console.log(password_confirm);

@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
     });
 
     this.userSubscription = this.ls.currentUser.subscribe((user) => {
+      console.log(user);
       this.user = user;
     });
   }
