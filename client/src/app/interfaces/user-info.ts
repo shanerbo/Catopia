@@ -1,0 +1,22 @@
+export interface UserInfo {
+  id: string;
+  exp: number;
+  userName: string;
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  gender?: string;
+  phone?: number;
+  bio?: string;
+  prof_url?: string;
+}
+
+export interface TokenResponse {
+  token: string;
+}
+
+export interface TokenPayload {
+  email: string;
+  password: string;
+  username?: string;
+}
