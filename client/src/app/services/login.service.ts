@@ -46,6 +46,7 @@ export class LoginService {
     this.http.post('/api/signin', userinfo, httpOptions)
       .subscribe((resp: TokenResponse) => {
         this.saveToken(resp.token);
+        this.setUser(this.getUserInfo());
         this.router.navigateByUrl('/');
       }, (err) => {
         console.log(err); // TODO: make this a flash message
@@ -83,6 +84,10 @@ export class LoginService {
     this.token = token;
   }
 
+  setUser(user: UserInfo) {
+    this.currentUser.next(user);
+  }
+
   private getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('login-token');
@@ -93,6 +98,7 @@ export class LoginService {
   // this.http.get(`/api/${}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
   signout(): void {
     this.token = '';
+    this.setUser(null);
     window.localStorage.removeItem('login-token');
     this.router.navigateByUrl('/');
   }
