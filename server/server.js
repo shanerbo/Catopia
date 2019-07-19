@@ -9,7 +9,8 @@ const path = require("path");
 // Dev utilities
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
-
+//----------Setup DB-----------------------
+const models = require("./models/index");
 //----------upload file--------------------
 // const GCPHelper = require("./lib/google-cloud-storage");
 //----------Create express app-------------
