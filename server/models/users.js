@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     Users.hasMany(models.Posts);
     Users.hasMany(models.Comments);
     Users.hasMany(models.Cats);
+    Users.hasMany(models.Follows);
   };
 
   Users.findUserByEmail = (email) => {
