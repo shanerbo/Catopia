@@ -22,7 +22,7 @@ module.exports = (Users) => {
       delete user.pwd;
       done(null, user);
     }).catch((error) => {
-      console.log(error);
+      console.error(error);
       done(null, false, { error: "something is wrong" });
     });
   });
@@ -32,14 +32,18 @@ module.exports = (Users) => {
     secretOrKey: jwtSecret
   }, async (payload, done) => {
     console.log("payload", payload);
-    let user = await User.findByPk(payload.id);
-    user = user.dataValues;
-    console.log("user found:", user);
-    if (!user) {
-      return done(null, false);
+    if (!payload.id) {
+      done(null, false);
     }
-    delete user.pwd;
-    done(null, user);
+    let user = await User.findByPk(payload.id);
+    if (user) {
+      user = user.dataValues;
+      delete user.pwd;
+      console.log("user found:", user);
+      done(null, user);
+    } else {
+      done(null, false);
+    }
   });
 
   passport.use(jwtLogin);

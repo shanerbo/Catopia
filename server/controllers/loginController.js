@@ -14,8 +14,12 @@ function generateJwt(userObj) {
 
 function issueJwt(req, res) {
   console.log("req.user:", req.user);
-  const token = generateJwt(req.user);
-  res.json({ token });
+  if (req.user) {
+    const token = generateJwt(req.user);
+    res.json({ token });
+  } else {
+    res.status(401).json({ token: null });
+  }
 };
 
 exports.signin = [
