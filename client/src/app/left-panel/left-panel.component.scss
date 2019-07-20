@@ -1,0 +1,72 @@
+@import "../global.scss";
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar.hidden {
+  min-width: 60px;
+  max-width: 60px;
+  margin-left: 0px !important;
+  padding: 10px;
+}
+
+#sidebar {
+  min-width: 200px;
+  max-width: 200px;
+  position: fixed;
+  margin-left: 0px;
+  min-height: 100vh;
+  background-color: $themeColor;
+  transition: all 0.3s;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 10px;
+}
+
+#sidebar.hidden ul li a span {
+  display: none;
+}
+
+#sidebar.hidden ul li ul {
+  display: none;
+}
+
+#sidebar-btn {
+  float: bottom;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+#sidebar.hidden .dropdown-toggle::after {
+  top: auto;
+  bottom: 10px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+@media (max-width: 575px) {
+  #sidebar.hidden {
+    min-width: 50px;
+    max-width: 50px;
+    text-align: center;
+    margin-left: 0px !important;
+  }
+
+  #sidebar {
+    margin-left: 0px;
+    min-height: 100vh;
+    background-color: $themeColor;
+    transition: all 0.3s;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
