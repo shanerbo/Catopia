@@ -1,0 +1,41 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+  color: #fff;
+  transition: all 0.3s;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#sidebar-btn {
+  float: right;
+}
+
+#sidebar.hidden {
+  margin-left: -200px;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.navbar-nav li:hover {
+  background-color: cornflowerblue;
+}
+
+@media (max-width: 575px) {
+  #sidebar {
+    margin-left: -200px;
+  }
+  #sidebar.hidden {
+    margin-left: 0;
+  }
+}
