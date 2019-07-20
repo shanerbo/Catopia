@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Users.associate = function (models) {
     // associations can be defined here
-    Users.hasMany(models.Posts);
-    Users.hasMany(models.Comments);
-    Users.hasMany(models.Cats);
-    Users.hasMany(models.Follows);
+    Users.hasMany(models.Posts, { foreignKey: "user_id" });
+    Users.hasMany(models.Comments, { foreignKey: "user_id" });
+    Users.hasMany(models.Cats, { foreignKey: "user_id" });
+    Users.hasMany(models.Follows, { foreignKey: "user_id" });
   };
 
   Users.findUserByEmail = (email) => {
