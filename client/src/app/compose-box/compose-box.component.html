@@ -1,7 +1,8 @@
 <div class="form-group">
   <label for="file">Choose File</label>
-  <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+  <input type="file" id="file" (change)="handleFileInput($event.target.files)" multiple>
 
   <label for="description">Say something that goes with the picture(s)</label>
   <input type="text" id="description">
+  <button id="submit-post" (click)="postPhotos()">Post</button>
 </div>
