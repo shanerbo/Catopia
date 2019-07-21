@@ -8,6 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       color: {
         type: Sequelize.STRING
       },
@@ -21,6 +25,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       prof_url: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
