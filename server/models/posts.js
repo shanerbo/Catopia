@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     Posts.hasMany(models.Comments, { foreignKey: "post_id" });
     Posts.belongsTo(models.Users, { foreignKey: "user_id" });
     Posts.hasMany(models.post_cats, { foreignKey: "cat_id" });
+    Posts.hasMany(models.post_media, { foreignKey: "post_id" });
   };
   return Posts;
 };

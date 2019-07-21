@@ -4,10 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     cat_id: DataTypes.INTEGER,
     post_id: DataTypes.INTEGER
   }, {});
-  post_cats.associate = function(models) {
+  post_cats.associate = function (models) {
     // associations can be defined here
-    post_cats.belongsTo(models.Posts);
-    post_cats.hasMany(models.Cats);
+    post_cats.belongsTo(models.Posts, { foreignKey: "post_id" });
+    post_cats.hasMany(models.Cats, { foreignKey: "cat_id" });
   };
   return post_cats;
 };

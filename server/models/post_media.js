@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
     url: DataTypes.STRING,
     post_id: DataTypes.INTEGER
   }, {});
-  post_media.associate = function(models) {
+  post_media.associate = function (models) {
     // associations can be defined here
-    post_media.belongsTo(models.Posts);
+    post_media.belongsTo(models.Posts, { foreignKey: "post_id" });
   };
   return post_media;
 };
