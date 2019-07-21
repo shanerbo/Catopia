@@ -8,28 +8,28 @@ module.exports = {
       [{
         userName: "ErboShan",
         email: "erbos@sfu.ca",
-        pwd: bcrypt.hashSync("p", salt),
+        pwd: bcrypt.hashSync("pppppp", salt),
         createdAt: new Date,
         updatedAt: new Date
       },
       {
         userName: "JiaranYu",
         email: "jiarany@sfu.ca",
-        pwd: bcrypt.hashSync("p", salt),
+        pwd: bcrypt.hashSync("pppppp", salt),
         createdAt: new Date,
         updatedAt: new Date
       },
       {
         userName: "ZhixuanHu",
         email: "ohu@sfu.ca",
-        pwd: bcrypt.hashSync("P", salt),
+        pwd: bcrypt.hashSync("pppppp", salt),
         createdAt: new Date,
         updatedAt: new Date
       },
       {
         userName: "MingChen",
         email: "mca176@sfu.ca",
-        pwd: bcrypt.hashSync("p", salt),
+        pwd: bcrypt.hashSync("pppppp", salt),
         createdAt: new Date,
         updatedAt: new Date
       }
