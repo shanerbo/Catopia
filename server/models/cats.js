@@ -11,8 +11,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Cats.associate = function (models) {
     // associations can be defined here
-    Cats.hasMany(models.Posts);
-    Cats.belongsTo(models.Users);
+    Cats.belongsTo(models.Users, { foreignKey: "user_id" });
   };
+
+  Cats.findUserCats = (user_id) => {
+    return Cats.findAll({ where: { user_id } });
+  }
+
   return Cats;
 };
