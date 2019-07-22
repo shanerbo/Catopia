@@ -2,7 +2,6 @@
   <label for="file">Choose File</label>
   <input type="file" id="file" (change)="handleFileInput($event.target.files)" multiple>
 
-  <label for="description">Say something that goes with the picture(s)</label>
-  <input type="text" id="description">
-  <button id="submit-post" (click)="postPhotos()">Post</button>
+  <input type="text" placeholder="What's up with this photo" [(ngModel)]="description" id="description">
+  <button id="submit-post" (click)="submitForm($event)">Post</button>
 </div>
