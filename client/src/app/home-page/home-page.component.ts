@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
+import { PhotoService } from '../services/photo.service';
+import { Post } from '../interfaces/post';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private ls: LoginService,
+    private ps: PhotoService
+  ) { }
 
   ngOnInit() {
   }
 
+  postPhotos(post: Post) {
+    console.log(post);
+    // this.ps.postPhoto(post)
+  }
 }

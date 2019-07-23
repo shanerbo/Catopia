@@ -14,7 +14,9 @@ import { LeftPanelComponent } from './left-panel/left-panel.component';
 import { RightPanelComponent } from './right-panel/right-panel.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
+import { PhotoService } from './services/photo.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ComposeBoxComponent } from './compose-box/compose-box.component';
 
 
 
@@ -28,7 +30,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     LeftPanelComponent,
     RightPanelComponent,
     LoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ComposeBoxComponent
   ],
   imports: [
     FormsModule,
@@ -37,7 +40,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     HttpClientModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    PhotoService
   ],
   bootstrap: [AppComponent]
 })

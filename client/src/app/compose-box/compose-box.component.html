@@ -1,0 +1,7 @@
+<div class="form-group">
+  <label for="file">Choose File</label>
+  <input type="file" id="file" (change)="handleFileInput($event.target.files)" multiple>
+
+  <input type="text" placeholder="What's up with this photo" [(ngModel)]="description" id="description">
+  <button id="submit-post" (click)="submitForm($event)">Post</button>
+</div>
