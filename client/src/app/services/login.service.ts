@@ -95,7 +95,7 @@ export class LoginService {
     this.token = token;
   }
 
-  public getToken(): string {
+  private getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('login-token');
     }
@@ -103,6 +103,15 @@ export class LoginService {
   }
   // Now sending any api call that requires auth needs to set this header like this
   // this.http.get(`/api/${}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
+
+  public authRequest(method: string, url: string, option: any): Observable<any> {
+    if (!option.headers) {
+      option.headers = {};
+    }
+    option.headers.Authorization = `Bearer ${this.getToken()}`;
+    return this.http.request(method, url, option);
+  }
+
   signout(): void {
     this.token = '';
     this.setUser(null);

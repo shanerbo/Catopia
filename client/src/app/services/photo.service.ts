@@ -14,10 +14,13 @@ export class PhotoService {
     private ls: LoginService
   ) { }
   postPhoto(newPost: Post): Observable<any> {
-    return this.http.post('/photo',
-      {
-        headers: { Authorization: `Bearer ${this.ls.getToken()}` }
-      }
-    );
+    return this.ls.authRequest('post', 'api/photo', {
+      // headers: {
+      //   'content-Type': FileList
+      // },
+      // params: {
+
+      // }
+    });
   }
 }
