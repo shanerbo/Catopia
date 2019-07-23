@@ -1,3 +1,103 @@
-<p>
-  I'm a photo-card
-</p>
+
+<div class="card-body">
+    <div class="row content">
+        <div class="col display">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Carousel indicators -->
+              <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" ></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+              <!-- Wrapper for carousel items -->
+              <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <img  class="d-block w-100 align-middle" src="https://i.redd.it/5h1jyjy5n3n21.jpg" alt="First Slide">
+                  </div>
+                  <div class="carousel-item">
+                      <img  class="d-block w-100 align-middle" src="https://www.ctvnews.ca/polopoly_fs/1.4365547.1554383750!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg" alt="Second Slide">
+                  </div>
+                  <div class="carousel-item">
+                      <img  class="d-block w-100 align-middle" src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/05/ChMkJlbKyK-IMM4RAAOKacoaXYsAALIFgNMO4cAA4qB260.jpg" alt="Third Slide">
+                  </div>
+              </div>
+              <!-- Carousel controls -->
+              <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+              </a>
+          </div>
+      </div>
+    
+      <div class="col information">
+        <div class="row" id="user">
+          <div class="col profile-pic">
+            <div>
+              <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
+            </div>
+        </div>
+          <div class="col user-comment">
+            <div class="row">
+              <div>
+                <a class="username">Jiarany</a>
+              </div>
+              <div >
+                  <p class="date" style="color:rgba(5, 5, 5, 0.432);">August 13, 2019</p>
+              </div>
+            </div>
+            <div >
+              <p class="description">Study in style at a beautiful new bamboo desk.Study in style at a beautiful new bamboo desk.Study in style at a beautiful new bamboo desk.Study in style at a beautiful new bamboo desk. Save 15% on all desks until July 29.</p>
+            </div>
+
+            <div class="overflow-auto">
+              <img src="data:image/jpeg;base64,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" alt="Avatar">
+              <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/why-cats-are-best-pets-1559241235.jpg?crop=0.586xw:0.880xh;0.0684xw,0.0611xh&resize=640:*" alt="Avatar">
+              <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
+            </div>
+          </div>
+        </div>
+        <div class="overflow-auto comment">
+            <div>
+                <a class="username">Jiarany</a>
+                <p class="reply">Study in style at a beautiful new bamboo desk. Save 15% on all desks until July 29.</p>
+            </div>
+            <div>
+                <a class="username">Jiarany</a>
+                <p class="reply">Study in style at a beautiful new bamboo desk. Save 15% on all desks until July 29.</p>
+            </div>
+            <div>
+                <a class="username">Jiarany</a>
+                <p class="reply">Study in style at a beautiful new bamboo desk. Save 15% on all desks until July 29.</p>
+            </div>
+            <div>
+                <a class="username">Jiarany</a>
+                <p class="reply">Study in style at a beautiful new bamboo desk. Save 15% on all desks until July 29.</p>
+            </div>
+            <div>
+                <a class="username">Jiarany</a>
+                <p class="reply">Study in style at a beautiful new bamboo desk. Save 15% on all desks until July 29.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row function-group">
+      <div class="btn-group" role="group">
+          <button class="btn func-btn"><i class="fas fa-share"></i> </button>
+        <button class="btn func-btn"><i class="fas fa-paw"></i> </button>
+        <p class="like-num" style="color:rgba(5, 5, 5, 0.432);">100</p>
+
+      </div>
+    </div>
+    
+
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Add a comment..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append post">
+          <button class="btn post-btn" type="button">Post</button>
+      </div>
+  </div>
+</div>
+
