@@ -17,8 +17,4 @@ export class NavBarComponent implements OnInit {
   logout() {
     this.ls.signout();
   }
-
-  userButton() {
-    // TODO: navigate to user profile page
-  }
 }
