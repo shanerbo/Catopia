@@ -8,6 +8,7 @@ const router = express.Router();
 router.post('/signin', loginController.signin);
 router.post('/signup', loginController.signup);
 router.get('/auth', loginController.auth);
+router.get('/photo/all', postsController.getPosts);
 router.post('/photo', postsController.postPhoto);
 
 
