@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   Cats.associate = function (models) {
     // associations can be defined here
     Cats.belongsTo(models.Users, { foreignKey: "user_id" });
+    Cats.belongsToMany(models.Posts, { through: "post_cats", foreignKey: "cat_id" });
   };
 
   Cats.findUserCats = (user_id) => {

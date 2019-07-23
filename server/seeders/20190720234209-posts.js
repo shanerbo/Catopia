@@ -15,41 +15,49 @@ module.exports = {
       [
         {
           user_id: erbosId,
+          description: "a",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: erbosId,
+          description: "a",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: jiaranId,
+          description: "a",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: jiaranId,
+          description: "a",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: ottoId,
+          description: "a",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: ottoId,
+          description: "a",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: mcaId,
+          description: "a",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: mcaId,
+          description: "a",
           createdAt: new Date(),
           updatedAt: new Date()
         },
