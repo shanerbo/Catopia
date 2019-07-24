@@ -11,7 +11,7 @@ router.post('/signup', loginController.signup);
 router.get('/auth', loginController.auth);
 router.get('/photo/all', postsController.getPosts);//show all post
 router.get('/photo/user/:id', postsController.getUserPosts);// show user's photos
-router.post('/photo', postsController.postPhoto);
+router.post('/photo', postsController.postPhoto);// post a post
 router.post('/user/:id/follow', userController.followOrUnfollow);// follow new user
 router.get('/user/:id', userController.getUserProfile);// get user profile
 router.get('/user/:id/follower', userController.getUserFollower);// get user follower
