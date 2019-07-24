@@ -23,10 +23,6 @@ function issueJwt(req, res) {
 };
 
 exports.signin = [
-  (req, res, next) => {
-    console.log("req body:", req.body);
-    next();
-  },
   // Validate fields.
   body('email', 'Eamil must be valid.').isEmail().isLength({ min: 1 }).trim(),
   body('password', 'Password must longer than 6 characters.').isLength({ min: 6 }).trim(),

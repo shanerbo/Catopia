@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     Posts.belongsTo(models.Users, { foreignKey: "user_id" });
     Posts.hasMany(models.Comments, { foreignKey: "post_id" });
     Posts.belongsToMany(models.Cats, { through: "post_cats", foreignKey: "post_id" });
+    // Posts.belongsToMany(models.Users, { through: 'post_likes', foreignKey: "post_id" });
     Posts.hasMany(models.post_media, { foreignKey: "post_id" });
+    Posts.hasMany(models.post_likes, { foreignKey: "post_id" });
+
   };
   Posts.findUserPosts = (user_id) => {
     return Posts.findAll({ where: { user_id } })
