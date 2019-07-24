@@ -25,7 +25,6 @@ module.exports = {
       TODO: reply
       */
       // Post table
-      addFk('Posts', 'cat_id', 'Cats', queryInterface, Sequelize),
       addFk('Posts', 'user_id', 'Users', queryInterface, Sequelize),
       // post_media table
       addFk('post_media', 'post_id', 'Posts', queryInterface, Sequelize),
@@ -33,7 +32,10 @@ module.exports = {
       addFk('post_cats', 'cat_id', 'Cats', queryInterface, Sequelize),
       addFk('post_cats', 'post_id', 'Posts', queryInterface, Sequelize),
       // Cats table
-      addFk('Cats', 'user_id', 'Users', queryInterface, Sequelize)
+      addFk('Cats', 'user_id', 'Users', queryInterface, Sequelize),
+      // post_likes table
+      addFk('post_likes', 'user_id', 'Users', queryInterface, Sequelize),
+      addFk('post_likes', 'post_id', 'Posts', queryInterface, Sequelize)
     ]);
   },
 
@@ -45,7 +47,6 @@ module.exports = {
       addFk('Comments', 'reply_id', 'Comments', queryInterface, Sequelize),
       TODO: reply
       */
-      queryInterface.removeColumn('Posts', 'cat_id'),
       queryInterface.removeColumn('Posts', 'user_id'),
 
       queryInterface.removeColumn('post_media', 'post_id'),

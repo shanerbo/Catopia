@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Cats = sequelize.define('Cats', {
+    name: DataTypes.STRING,
     color: DataTypes.STRING,
     breed: DataTypes.STRING,
     age: DataTypes.STRING,
@@ -8,10 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     prof_url: DataTypes.STRING,
     user_id: DataTypes.INTEGER
   }, {});
-  Cats.associate = function(models) {
+  Cats.associate = function (models) {
     // associations can be defined here
-    Cats.hasMany(models.Posts);
-    Cats.belongsTo(models.Users);
+    Cats.belongsTo(models.Users, { foreignKey: "user_id" });
+    Cats.belongsToMany(models.Posts, { through: "post_cats", foreignKey: "cat_id" });
   };
+
+  Cats.findUserCats = (user_id) => {
+    return Cats.findAll({ where: { user_id } });
+  }
+
   return Cats;
 };

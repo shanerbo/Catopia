@@ -1,0 +1,14 @@
+<form (ngSubmit)="submitForm($event)">
+  <div class="form-group">
+
+    <label for="file">Choose File</label>
+    <input class="form-control" type="file" (change)="handleFileInput($event.target.files)" name="photos" multiple>
+
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" placeholder="What's up with this photo" name="description"
+      [(ngModel)]="description">
+  </div>
+
+  <button class="btn btn-primary" type="submit" id="submit-post">Post</button>
+</form>
