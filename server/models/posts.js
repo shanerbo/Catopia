@@ -14,5 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   Posts.findUserPosts = (user_id) => {
     return Posts.findAll({ where: { user_id } })
   }
+  Posts.createPost = (user_id, description) => {
+    return Posts.create({ user_id, description });
+  }
   return Posts;
 };

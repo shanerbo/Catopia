@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ComposeBoxComponent implements OnInit {
   @Output() post = new EventEmitter<FormData>();
 
-  public photosToUpload: FileList = null;
+  public photosToUpload: FileList;
   public description = '';
   constructor(
   ) { }
@@ -26,12 +26,14 @@ export class ComposeBoxComponent implements OnInit {
 
   submitForm(event) {
     const formData = new FormData();
-
+    if (!this.photosToUpload) {
+      return;
+    }
     for (let i = 0; i < this.photosToUpload.length; i++) {
       const file = this.photosToUpload[i];
-      formData.append('file', file);
+      formData.append('photo' + i, file);
     }
-
+    formData.append('description', this.description);
     this.post.next(formData);
   }
 }
