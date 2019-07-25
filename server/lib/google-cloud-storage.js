@@ -7,9 +7,9 @@ const storage = new Storage({
   keyFilename: GOOGLE_CLOUD_KEYFILE,
 });
 function getPublicUrl(bucketName, fileName) {
-  return `https://storage.cloud.google.com/${bucketName}/${fileName}`;
+  return `https://storage.googleapis.com/${bucketName}/${fileName}`;
 }
-//https://storage.cloud.google.com/user_prof/IMG.jpeg
+//https://storage.googleapis.com/user_prof/IMG.jpeg
 
 exports.uploadImgToGCP = (req, res, next) => {
   if (!req.files) return next();
@@ -26,10 +26,13 @@ exports.uploadImgToGCP = (req, res, next) => {
       next();
     }
   }
-  console.log("all files:", req.files);
   req.files.forEach((currentFile) => {
-
-    const gcsname = currentFile.originalname;
+    const ext = path.extname(currentFile.originalname).toLowerCase();
+    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+      res.status(415).json({ error: "File type not accepted" });
+    }
+    const gcsname = Date.now() + path.basename(currentFile.originalname, ext) + ext;
+    console.log("uploading " + gcsname + "...");
     const file = bucket.file(gcsname);
 
     const stream = file.createWriteStream({
@@ -43,7 +46,7 @@ exports.uploadImgToGCP = (req, res, next) => {
       next(err);
     });
 
-    stream.on('finish', () => {
+    stream.on('finish', (result) => {
       currentFile.cloudStorageObject = gcsname;
       currentFile.cloudStoragePublicUrl = getPublicUrl(bucketName, gcsname);
       uploadedCount++;

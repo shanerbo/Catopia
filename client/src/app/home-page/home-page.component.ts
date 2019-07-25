@@ -17,12 +17,14 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // TODO: fetch all posts and save the data as Post type
   }
 
   postPhotos(post: FormData) {
     console.log(post);
     this.ps.postPhoto(post).subscribe((result) => {
       console.log('upload ', result);
+      // TODO: re-fetch all posts
     });
   }
 }

@@ -20,10 +20,10 @@ module.exports = (Users) => {
       }
       user = user.dataValues;
       delete user.pwd;
-      done(null, user);
+      return done(null, user);
     }).catch((error) => {
       console.error(error);
-      done(null, false, { error: "something is wrong" });
+      return done(null, false, { error: "something is wrong" });
     });
   });
 
@@ -33,16 +33,23 @@ module.exports = (Users) => {
   }, async (payload, done) => {
     console.log("payload", payload);
     if (!payload.id) {
-      done(null, false);
+      return done(null, false);
+    }
+    const now = new Date().getTime();
+    const expiration = payload.exp * 1000;
+    if (expiration <= now) {
+      console.log(now);
+      console.log(expiration);
+      return done(null, false);
     }
     let user = await User.findByPk(payload.id);
     if (user) {
       user = user.dataValues;
       delete user.pwd;
       console.log("user found:", user);
-      done(null, user);
+      return done(null, user);
     } else {
-      done(null, false);
+      return done(null, false);
     }
   });
 

@@ -6,8 +6,6 @@ const ENV = process.env.NODE_ENV || "development";
 const http = require("http");
 const express = require("express");
 const path = require("path");
-const formidableMiddleware = require('express-formidable');
-// const multer = require('multer');
 // Dev utilities
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
@@ -23,7 +21,6 @@ const passport = require("./lib/passport")(models.Users);
 app.use(passport.initialize());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(formidableMiddleware());
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'build')));
 if (ENV == "development") {// If in dev mode, enable cors for angular to talk to server
