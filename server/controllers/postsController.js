@@ -13,7 +13,8 @@ const postInclude = {
           model: db.Users,
           attributes: [['id', 'commentUserId'], ['userName', 'commentUserName'], ['email', 'commentUserEmail']]
         }
-      ]
+      ],
+      order: [['createdAt', 'DESC']]
     },
     {
       model: db.Cats,
@@ -29,7 +30,8 @@ const postInclude = {
     {
       model: db.post_likes
     }
-  ]
+  ],
+  order: [['createdAt', 'DESC']]
 };
 
 /*
