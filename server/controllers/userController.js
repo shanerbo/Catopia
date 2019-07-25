@@ -2,50 +2,32 @@ const db = require('../models/index');
 const passport = require('passport');
 const { sanitizeBody, body, validationResult } = require('express-validator');
 
-// async function getFollowInfo(req, res, next, followerOrFollowing) {
-// 	const condition = followerOrFollowing === 'following' ? 'follower' : 'following';
-// 	const allFollowInfo = await db.Follows.findAll({
-// 		where: { condition: req.params.id },
-// 		attributes: [followerOrFollowing]
-// 	})
-// 	if (allFollowInfo.length !== 0) {
-// 		res.status(200);
-// 		res.json(allFollowInfo);
-// 	} else {
-// 		res.status(200);
-// 		res.json(followerOrFollowing === 'following' ? "notFollowingAnyone" : "haveNoFollower")
-// 	}
-// }
+async function getFollowInfo(req, res, next, followerOrFollowing) {
+	const condition = followerOrFollowing === 'following' ? 'follower' : 'following';
+	const allFollowInfo = await db.Follows.findAll({
+		where: { [condition]: req.params.id },
+		attributes: [followerOrFollowing]
+	})
+	if (allFollowInfo.length !== 0) {
+		res.status(200);
+		res.json(allFollowInfo);
+	} else {
+		res.status(200);
+		res.json(followerOrFollowing === 'following' ? "notFollowingAnyone" : "haveNoFollower")
+	}
+}
 
 exports.getUserFollowing = [
 	async (req, res, next) => {
-		const allFollowInfo = await db.Follows.findAll({
-			where: { follower: req.params.id },
-			attributes: ['following']
-		})
-		if (allFollowInfo.length !== 0) {
-			res.status(200);
-			res.json(allFollowInfo);
-		} else {
-			res.status(200);
-			res.json("notFollowingAnyone")
-		}
+
+		getFollowInfo(req, res, next, 'following');
 	}
 ]
 
 exports.getUserFollower = [
 	async (req, res, next) => {
-		const allFollowInfo = await db.Follows.findAll({
-			where: { following: req.params.id },
-			attributes: ['follower']
-		})
-		if (allFollowInfo.length !== 0) {
-			res.status(200);
-			res.json(allFollowInfo);
-		} else {
-			res.status(200);
-			res.json("haveNoFollower")
-		}
+		getFollowInfo(req, res, next, 'follower');
+
 	}
 ]
 
