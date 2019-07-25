@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     post_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER
   }, {});
-  Comments.associate = function(models) {
+  Comments.associate = function (models) {
     // associations can be defined here
-    Comments.belongsTo(models.Users);
-    Comments.belongsTo(models.Posts);
+    Comments.belongsTo(models.Users, { foreignKey: 'user_id' });
+    Comments.belongsTo(models.Posts, { foreignKey: 'post_id' });
   };
   return Comments;
 };

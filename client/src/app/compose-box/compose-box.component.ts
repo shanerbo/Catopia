@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Post } from '../interfaces/post';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-compose-box',
@@ -8,25 +9,31 @@ import { Post } from '../interfaces/post';
 })
 
 export class ComposeBoxComponent implements OnInit {
-  @Output() post = new EventEmitter<Post>();
+  @Output() post = new EventEmitter<FormData>();
 
-  public photosToUpload: FileList = null;
+  public photosToUpload: FileList;
   public description = '';
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit() {
   }
+
   handleFileInput(files) {
     console.log(files);
     this.photosToUpload = files;
   }
+
   submitForm(event) {
-    console.log('photos:', this.photosToUpload);
-    console.log('description:', this.description);
-    const newPost = <Post>{
-      photos: this.photosToUpload,
-      description: this.description
-    };
-    this.post.next(newPost);
+    const formData = new FormData();
+    if (!this.photosToUpload) {
+      return;
+    }
+    for (let i = 0; i < this.photosToUpload.length; i++) {
+      const file = this.photosToUpload[i];
+      formData.append('photo' + i, file);
+    }
+    formData.append('description', this.description);
+    this.post.next(formData);
   }
 }
