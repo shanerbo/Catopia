@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { PhotoService } from '../services/photo.service';
 import { Post } from '../interfaces/post';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
@@ -16,10 +17,14 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // TODO: fetch all posts and save the data as Post type
   }
 
-  postPhotos(post: Post) {
+  postPhotos(post: FormData) {
     console.log(post);
-    // this.ps.postPhoto(post)
+    this.ps.postPhoto(post).subscribe((result) => {
+      console.log('upload ', result);
+      // TODO: re-fetch all posts
+    });
   }
 }

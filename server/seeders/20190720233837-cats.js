@@ -16,84 +16,84 @@ module.exports = {
         {
           user_id: erbosId,
           name: 'erboCat1',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%201.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%201.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: erbosId,
           name: 'erboCat2',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%202.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%202.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: erbosId,
           name: 'erboCat3',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%203.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%203.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: jiaranId,
           name: 'jiaranCat1',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%204.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%204.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: jiaranId,
           name: 'jiaranCat2',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%205.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%205.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: jiaranId,
           name: 'jiaranCat3',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%206.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%206.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: ottoId,
           name: 'ottoCat1',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%207.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%207.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: ottoId,
           name: 'ottoCat2',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%208.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%208.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: ottoId,
           name: 'ottoCat3',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%209.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%209.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: mcaId,
           name: 'mcaCat1',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%2010.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2010.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: mcaId,
           name: 'mcaCat2',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%2011.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2011.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           user_id: mcaId,
           name: 'mcaCat3',
-          prof_url: 'https://storage.cloud.google.com/cat_prof/Cat%20-%2012.jpeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2012.jpeg',
           createdAt: new Date(),
           updatedAt: new Date()
         }

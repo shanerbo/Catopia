@@ -32,7 +32,10 @@ module.exports = {
       addFk('post_cats', 'cat_id', 'Cats', queryInterface, Sequelize),
       addFk('post_cats', 'post_id', 'Posts', queryInterface, Sequelize),
       // Cats table
-      addFk('Cats', 'user_id', 'Users', queryInterface, Sequelize)
+      addFk('Cats', 'user_id', 'Users', queryInterface, Sequelize),
+      // post_likes table
+      addFk('post_likes', 'user_id', 'Users', queryInterface, Sequelize),
+      addFk('post_likes', 'post_id', 'Posts', queryInterface, Sequelize)
     ]);
   },
 
