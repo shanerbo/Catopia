@@ -1,13 +1,22 @@
 const db = require('../models/index');
 const passport = require('passport');
 const { sanitizeBody, body, validationResult } = require('express-validator');
-
+const postInclude = {
+	include: [
+		{
+			model: db.Users,
+			attributes: ['id', 'userName', 'prof_url', 'bio']
+		}
+	]
+};
 async function getFollowInfo(req, res, next, followerOrFollowing) {
 	const condition = followerOrFollowing === 'following' ? 'follower' : 'following';
-	const allFollowInfo = await db.Follows.findAll({
-		where: { [condition]: req.params.id },
-		attributes: [followerOrFollowing]
-	})
+	const searchCondition = postInclude;
+	searchCondition.where = {
+		[condition]: req.params.id
+	}
+	searchCondition.attributes = [followerOrFollowing]
+	const allFollowInfo = await db.Follows.findAll(searchCondition)
 	if (allFollowInfo.length !== 0) {
 		res.status(200);
 		res.json(allFollowInfo);
