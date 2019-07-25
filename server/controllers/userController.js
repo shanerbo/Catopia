@@ -16,7 +16,9 @@ async function getFollowInfo(req, res, next, followerOrFollowing) {
 		[condition]: req.params.id
 	}
 	searchCondition.attributes = [followerOrFollowing]
-	const allFollowInfo = await db.Follows.findAll(searchCondition)
+	const allFollowInfo = await db.Follows.getFollow(req.params.id);
+	console.log(allFollowInfo);
+	// const allFollowInfo = await db.Follows.findAll(searchCondition)
 	if (allFollowInfo.length !== 0) {
 		res.status(200);
 		res.json(allFollowInfo);
