@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      follower: {
+      user_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "Users",

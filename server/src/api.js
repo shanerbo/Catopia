@@ -10,7 +10,8 @@ router.post('/signin', loginController.signin);
 router.post('/signup', loginController.signup);
 router.get('/auth', loginController.auth);
 router.get('/photo/all', postsController.getPosts);//show all post
-router.get('/photo/user/:id', postsController.getUserPosts);// show user's photos
+router.get('/photo/user/:id', postsController.getUserPosts);// show certain user's photos
+router.get('/photo/user/:id/following', postsController.getFollowingUsersPosts);// show user's following users' photos
 router.post('/photo', postsController.postPhoto);// post a post
 router.post('/user/:id/follow', userController.followOrUnfollow);// follow new user
 router.get('/user/:id', userController.getUserProfile);// get user profile

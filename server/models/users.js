@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     Users.hasMany(models.post_likes, { foreignKey: "user_id" });
     Users.hasMany(models.Comments, { foreignKey: "user_id" });
     Users.hasMany(models.Cats, { foreignKey: "user_id" });
-    Users.hasMany(models.Follows, { foreignKey: "follower" });
+    Users.hasMany(models.Follows, { foreignKey: "user_id" });
     Users.hasMany(models.Follows, { foreignKey: "following" });
     // Users.belongsToMany(models.Posts, { through: 'post_likes', foreignKey: "user_id" });
   };

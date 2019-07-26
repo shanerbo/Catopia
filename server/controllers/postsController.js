@@ -30,6 +30,10 @@ const postInclude = {
   ]
 };
 
+exports.getFollowingUsersPosts = [
+
+]
+
 /*
 * @param: 
 *   - an array of image files in req.body.photos

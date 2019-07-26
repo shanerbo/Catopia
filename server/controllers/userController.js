@@ -1,36 +1,16 @@
 const db = require('../models/index');
 const passport = require('passport');
 const { sanitizeBody, body, validationResult } = require('express-validator');
-const postInclude = {
-	include: [
-		{
-			model: db.Users,
-			attributes: ['id', 'userName', 'prof_url', 'bio']
-		}
-	]
-};
+
 async function getFollowInfo(req, res, next, followerOrFollowing) {
-	const condition = followerOrFollowing === 'following' ? 'follower' : 'following';
-	const searchCondition = postInclude;
-	searchCondition.where = {
-		[condition]: req.params.id
-	}
-	searchCondition.attributes = [followerOrFollowing]
-	const allFollowInfo = await db.Follows.getFollow(req.params.id);
+	const allFollowInfo = await db.Follows.getFollower(req.params.id, followerOrFollowing);
 	console.log(allFollowInfo);
-	// const allFollowInfo = await db.Follows.findAll(searchCondition)
-	if (allFollowInfo.length !== 0) {
-		res.status(200);
-		res.json(allFollowInfo);
-	} else {
-		res.status(200);
-		res.json(followerOrFollowing === 'following' ? "notFollowingAnyone" : "haveNoFollower")
-	}
+	res.status(200);
+	res.json(allFollowInfo);
 }
 
 exports.getUserFollowing = [
 	async (req, res, next) => {
-
 		getFollowInfo(req, res, next, 'following');
 	}
 ]
@@ -38,7 +18,6 @@ exports.getUserFollowing = [
 exports.getUserFollower = [
 	async (req, res, next) => {
 		getFollowInfo(req, res, next, 'follower');
-
 	}
 ]
 
@@ -57,16 +36,20 @@ exports.getUserProfile = [
 		}
 	}
 ]
+
 exports.followOrUnfollow = [
 	passport.authenticate('jwt', { session: false }),
 	async (req, res, next) => {
 		if (req.user) {
+			if (req.user === req.params.id) {
+				res.json({ error: "Can't follow yourself" });
+			}
 			const exist = await db.Follows.findOne({
-				where: { follower: req.user.id, following: req.params.id }
-			});
+				where: { user_id: req.user.id, following: req.params.id }
+			}).catch();
 			if (!exist) {
 				const entry = {
-					follower: req.user.id,
+					user_id: req.user.id,
 					following: req.params.id,
 				}
 				const create = await db.Follows.create(entry);
