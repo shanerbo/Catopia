@@ -9,7 +9,7 @@ import { LoginService } from '../services/login.service';
 })
 export class NavBarComponent implements OnInit {
   loggedin = false;
-  @Input() user: UserInfo = null;
+  @Input() user: UserInfo;
   constructor(private ls: LoginService) { }
 
   ngOnInit() {
@@ -19,7 +19,4 @@ export class NavBarComponent implements OnInit {
     this.ls.signout();
   }
 
-  userButton() {
-    // TODO: navigate to user profile page
-  }
 }

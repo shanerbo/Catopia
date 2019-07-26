@@ -1,5 +1,6 @@
 export interface UserInfo {
   id: string;
+  iat: number;
   exp: number;
   userName: string;
   firstName?: string;

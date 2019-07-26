@@ -3,5 +3,4 @@
 **/build
 **/dist
 **/.env
-**/fluffy-247100-*.json
-**/.idea
+**/fluffy-*.json

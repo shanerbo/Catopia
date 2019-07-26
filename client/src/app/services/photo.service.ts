@@ -13,14 +13,7 @@ export class PhotoService {
     private http: HttpClient,
     private ls: LoginService
   ) { }
-  postPhoto(newPost: Post): Observable<any> {
-    return this.ls.authRequest('post', 'api/photo', {
-      // headers: {
-      //   'content-Type': FileList
-      // },
-      // params: {
-
-      // }
-    });
+  postPhoto(newPost: FormData): Observable<any> {
+    return this.ls.authRequest('post', 'api/photo', {}, newPost);
   }
 }

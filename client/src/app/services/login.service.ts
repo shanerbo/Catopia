@@ -23,9 +23,14 @@ export class LoginService {
     private http: HttpClient,
     private router: Router
   ) {
-    this.signInCurrentUser().subscribe((user) => {
-      this.user = user;
-    });
+    if (this.getToken()) {
+      this.signInCurrentUser().then((user) => {
+        this.user = user;
+      }).catch((error) => {
+        console.log('auto signin error ', error);
+        this.unsetToken();
+      });
+    }
   }
 
   signup(email: string, username: string, password: string, password_confirm: string) {
@@ -58,19 +63,16 @@ export class LoginService {
       });
   }
 
-  signInCurrentUser(): Observable<UserInfo> {
-    return Observable.create(observer => {
-      const tokenVal = this.getToken();
-      if (!tokenVal) { return observer.complete(); }
-      this.http.get('/api/auth', { headers: { Authorization: `Bearer ${this.getToken()}` } }).subscribe((data: TokenResponse) => {
+  private signInCurrentUser(): Promise<UserInfo> {
+    const tokenVal = this.getToken();
+    return this.http.get('/api/auth', { headers: { Authorization: `Bearer ${tokenVal}` } })
+      .toPromise().then((data: TokenResponse) => {
         console.log(data);
         this.saveToken(data.token);
         const userinfo = this.getUserInfo();
         this.setUser(userinfo);
-        observer.next({ user: userinfo });
-        observer.complete();
+        return userinfo;
       });
-    });
   }
 
   setUser(user: UserInfo) {
@@ -94,6 +96,9 @@ export class LoginService {
     localStorage.setItem('login-token', token);
     this.token = token;
   }
+  private unsetToken(): void {
+    localStorage.removeItem('login-token');
+  }
 
   public getToken(): string {
     if (!this.token) {
@@ -104,11 +109,14 @@ export class LoginService {
   // Now sending any api call that requires auth needs to set this header like this
   // this.http.get(`/api/${}`, { headers: { Authorization: `Bearer ${this.getToken()}` } });
 
-  public authRequest(method: string, url: string, option: any): Observable<any> {
+  public authRequest(method: string, url: string, option: any, formData: FormData): Observable<any> {
     if (!option.headers) {
       option.headers = {};
     }
     option.headers.Authorization = `Bearer ${this.getToken()}`;
+    if (formData) {
+      option.body = formData;
+    }
     return this.http.request(method, url, option);
   }
 

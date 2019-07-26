@@ -24,97 +24,97 @@ module.exports = {
       [
         {
           post_id: erbosPostId1,
-          url: "https://storage.cloud.google.com/user_posts/Erbo1.jpeg",
+          url: "https://storage.googleapis.com/user_posts/Erbo1.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: erbosPostId2,
-          url: "https://storage.cloud.google.com/user_posts/Erbo2.jpeg",
+          url: "https://storage.googleapis.com/user_posts/Erbo2.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: erbosPostId2,
-          url: "https://storage.cloud.google.com/user_posts/Erbo3.jpeg",
+          url: "https://storage.googleapis.com/user_posts/Erbo3.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: erbosPostId2,
-          url: "https://storage.cloud.google.com/user_posts/Erbo4.jpeg",
+          url: "https://storage.googleapis.com/user_posts/Erbo4.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: jiaranPostId1,
-          url: "https://storage.cloud.google.com/user_posts/Jiaran1.jpeg",
+          url: "https://storage.googleapis.com/user_posts/Jiaran1.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: jiaranPostId2,
-          url: "https://storage.cloud.google.com/user_posts/Jiaran2.jpeg",
+          url: "https://storage.googleapis.com/user_posts/Jiaran2.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: jiaranPostId2,
-          url: "https://storage.cloud.google.com/user_posts/Jiaran3.jpeg",
+          url: "https://storage.googleapis.com/user_posts/Jiaran3.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: jiaranPostId2,
-          url: "https://storage.cloud.google.com/user_posts/Jiaran4.jpeg",
+          url: "https://storage.googleapis.com/user_posts/Jiaran4.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: ottoPostId1,
-          url: "https://storage.cloud.google.com/user_posts/otto1.jpeg",
+          url: "https://storage.googleapis.com/user_posts/otto1.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: ottoPostId2,
-          url: "https://storage.cloud.google.com/user_posts/otto2.jpeg",
+          url: "https://storage.googleapis.com/user_posts/otto2.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: ottoPostId2,
-          url: "https://storage.cloud.google.com/user_posts/otto3.jpeg",
+          url: "https://storage.googleapis.com/user_posts/otto3.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: ottoPostId2,
-          url: "https://storage.cloud.google.com/user_posts/otto4.jpeg",
+          url: "https://storage.googleapis.com/user_posts/otto4.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: mcaPostId1,
-          url: "https://storage.cloud.google.com/user_posts/mca1.jpeg",
+          url: "https://storage.googleapis.com/user_posts/mca1.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: mcaPostId2,
-          url: "https://storage.cloud.google.com/user_posts/mca2.jpeg",
+          url: "https://storage.googleapis.com/user_posts/mca2.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: mcaPostId2,
-          url: "https://storage.cloud.google.com/user_posts/mca3.jpeg",
+          url: "https://storage.googleapis.com/user_posts/mca3.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           post_id: mcaPostId2,
-          url: "https://storage.cloud.google.com/user_posts/mca4.jpeg",
+          url: "https://storage.googleapis.com/user_posts/mca4.jpeg",
           createdAt: new Date(),
           updatedAt: new Date()
         },
