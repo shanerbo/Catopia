@@ -26,7 +26,7 @@ exports.getUserProfile = [
 		const userProfile = await db.Users.findOne({
 			where: { id: req.params.id },
 			attributes: ['userName', 'firstName', 'lastName', 'email', 'gender', 'phone', 'bio', 'prof_url', 'createdAt']
-		})
+		}).catch(error => next(error));
 		if (userProfile) {
 			res.status(200);
 			res.json(userProfile);
@@ -46,7 +46,7 @@ exports.followOrUnfollow = [
 			}
 			const exist = await db.Follows.findOne({
 				where: { user_id: req.user.id, following: req.params.id }
-			}).catch();
+			}).catch(error => next(error));
 			if (!exist) {
 				const entry = {
 					user_id: req.user.id,
@@ -55,14 +55,14 @@ exports.followOrUnfollow = [
 				const create = await db.Follows.create(entry);
 				if (create.length !== 0) {
 					res.status(200);
-					res.json("followed");
+					res.json({ result: "followed" });
 				} else {
-					res.json("followFailed");
+					res.json({ result: "followFailed" });
 				}
 			} else {
 				exist.destroy();
 				res.status(200);
-				res.json("unFollowed")
+				res.json({ result: "unFollowed" })
 			}
 		} else {
 			res.json({ error: "Needs login to follow user" });

@@ -23,7 +23,7 @@ module.exports = (Users) => {
       done(null, user);
     }).catch((error) => {
       console.error(error);
-      done(null, false, { error: "something is wrong" });
+      throw new Error("Looks like db is down");
     });
   });
 

@@ -31,7 +31,22 @@ const postInclude = {
 };
 
 exports.getFollowingUsersPosts = [
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    if (!req.user) {
+      res.json({ error: "Please login" });
+    } else {
+      const allFollowingInfo = await db.Follows.getFollower(req.user.id, "following");
+      const allFollowingArray = [];
+      allFollowingInfo.forEach(element => {
+        allFollowingArray.push(element.following + '');
+      });
+      const ret = await db.Posts.getFollowingUserPosts(postInclude, allFollowingArray);
 
+      res.json(ret);
+
+    }
+  }
 ]
 
 /*
