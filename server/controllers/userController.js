@@ -2,50 +2,22 @@ const db = require('../models/index');
 const passport = require('passport');
 const { sanitizeBody, body, validationResult } = require('express-validator');
 
-// async function getFollowInfo(req, res, next, followerOrFollowing) {
-// 	const condition = followerOrFollowing === 'following' ? 'follower' : 'following';
-// 	const allFollowInfo = await db.Follows.findAll({
-// 		where: { condition: req.params.id },
-// 		attributes: [followerOrFollowing]
-// 	})
-// 	if (allFollowInfo.length !== 0) {
-// 		res.status(200);
-// 		res.json(allFollowInfo);
-// 	} else {
-// 		res.status(200);
-// 		res.json(followerOrFollowing === 'following' ? "notFollowingAnyone" : "haveNoFollower")
-// 	}
-// }
+async function getFollowInfo(req, res, next, followerOrFollowing) {
+	const allFollowInfo = await db.Follows.getFollower(req.params.id, followerOrFollowing);
+	console.log(allFollowInfo);
+	res.status(200);
+	res.json(allFollowInfo);
+}
 
 exports.getUserFollowing = [
 	async (req, res, next) => {
-		const allFollowInfo = await db.Follows.findAll({
-			where: { follower: req.params.id },
-			attributes: ['following']
-		})
-		if (allFollowInfo.length !== 0) {
-			res.status(200);
-			res.json(allFollowInfo);
-		} else {
-			res.status(200);
-			res.json("notFollowingAnyone")
-		}
+		getFollowInfo(req, res, next, 'following');
 	}
 ]
 
 exports.getUserFollower = [
 	async (req, res, next) => {
-		const allFollowInfo = await db.Follows.findAll({
-			where: { following: req.params.id },
-			attributes: ['follower']
-		})
-		if (allFollowInfo.length !== 0) {
-			res.status(200);
-			res.json(allFollowInfo);
-		} else {
-			res.status(200);
-			res.json("haveNoFollower")
-		}
+		getFollowInfo(req, res, next, 'follower');
 	}
 ]
 
@@ -54,7 +26,7 @@ exports.getUserProfile = [
 		const userProfile = await db.Users.findOne({
 			where: { id: req.params.id },
 			attributes: ['userName', 'firstName', 'lastName', 'email', 'gender', 'phone', 'bio', 'prof_url', 'createdAt']
-		})
+		}).catch(error => next(error));
 		if (userProfile) {
 			res.status(200);
 			res.json(userProfile);
@@ -64,29 +36,33 @@ exports.getUserProfile = [
 		}
 	}
 ]
+
 exports.followOrUnfollow = [
 	passport.authenticate('jwt', { session: false }),
 	async (req, res, next) => {
 		if (req.user) {
+			if (req.user === req.params.id) {
+				res.json({ error: "Can't follow yourself" });
+			}
 			const exist = await db.Follows.findOne({
-				where: { follower: req.user.id, following: req.params.id }
-			});
+				where: { user_id: req.user.id, following: req.params.id }
+			}).catch(error => next(error));
 			if (!exist) {
 				const entry = {
-					follower: req.user.id,
+					user_id: req.user.id,
 					following: req.params.id,
 				}
 				const create = await db.Follows.create(entry);
 				if (create.length !== 0) {
 					res.status(200);
-					res.json("followed");
+					res.json({ result: "followed" });
 				} else {
-					res.json("followFailed");
+					res.json({ result: "followFailed" });
 				}
 			} else {
 				exist.destroy();
 				res.status(200);
-				res.json("unFollowed")
+				res.json({ result: "unFollowed" })
 			}
 		} else {
 			res.json({ error: "Needs login to follow user" });
