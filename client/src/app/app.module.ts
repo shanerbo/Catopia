@@ -1,8 +1,9 @@
-// External modules
+// External modules 👌
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Our own stuff ❤
 import { HomePageComponent } from './home-page/home-page.component';
@@ -17,9 +18,7 @@ import { LoginService } from './services/login.service';
 import { PhotoService } from './services/photo.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ComposeBoxComponent } from './compose-box/compose-box.component';
-
-
-
+import { FollowModalComponent } from './follow-modal/follow-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +30,15 @@ import { ComposeBoxComponent } from './compose-box/compose-box.component';
     RightPanelComponent,
     LoginComponent,
     UserProfileComponent,
-    ComposeBoxComponent
+    ComposeBoxComponent,
+    FollowModalComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     LoginService,

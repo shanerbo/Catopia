@@ -6,27 +6,21 @@ const passport = require('passport');
 
 function generateJwt(userObj) {
   var expiry = new Date();
-  expiry.setDate(expiry.getDate() + 7);
+  expiry.setDate(expiry.getDate() + 3);
   userObj.exp = parseInt(expiry.getTime() / 1000);
   delete userObj['pwd'];
+  console.log(userObj);
   return jwt.sign(userObj, jwtsecret); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
 
 function issueJwt(req, res) {
-  console.log("req.user:", req.user);
   if (req.user) {
     const token = generateJwt(req.user);
     res.json({ token });
-  } else {
-    res.status(401).json({ token: null });
   }
 };
 
 exports.signin = [
-  (req, res, next) => {
-    console.log("req body:", req.body);
-    next();
-  },
   // Validate fields.
   body('email', 'Eamil must be valid.').isEmail().isLength({ min: 1 }).trim(),
   body('password', 'Password must longer than 6 characters.').isLength({ min: 6 }).trim(),

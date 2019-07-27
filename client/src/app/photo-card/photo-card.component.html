@@ -1,3 +1,68 @@
-<p>
-  I'm a photo-card
-</p>
+<div class="card-body">
+  <div class="row content">
+    <div class="col-12 col-sm-12 col-lg-12 display">
+      <ngb-carousel interval=false>
+        <ng-template ngbSlide *ngFor="let photo of post.post_media">
+          <div class="picsum-img-wrapper">
+            <img [src]="photo.url" alt="{{post.description}}">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </div>
+  <div class="row content">
+    <div class="col-12 col-sm-12 col-lg-12 information">
+      <div class="row" id="user">
+        <div class="col profile-pic">
+          <div>
+            <img src="{{post.User.postOwnerProfUrl}}" alt="Avatar">
+          </div>
+        </div>
+        <div class="col user-comment">
+          <div class="row">
+            <div>
+              <a class="username">{{post.User.postOwnerName}}</a>
+            </div>
+            <div>
+              <p class="date" style="color:rgba(5, 5, 5, 0.432);">{{moment(post.createdAt).fromNow()}}</p>
+            </div>
+          </div>
+          <div>
+            <p class="description">{{post.description}}</p>
+          </div>
+
+          <div class="overflow-auto">
+            <a href="/" *ngFor="let cat of post.Cats">
+              <img src="{{cat.prof_url}}" alt="Avatar">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="overflow-auto comment" *ngFor="let comment of post.Comments">
+        <div>
+          <a class="username" href="/user/{{comment.User.commentUserId}}">{{comment.User.commentUserName}}</a>
+          <p class="reply">{{comment.content}}</p>
+          <p class="reply-date">{{moment(comment.createdAt).fromNow()}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row function-group">
+    <div class="btn-group" role="group">
+      <button class="btn func-btn"><i class="fas fa-share"></i> </button>
+      <button class="btn func-btn"><i class="fas fa-paw"></i> </button>
+      <p class="like-num" style="color:rgba(5, 5, 5, 0.432);">{{post.post_likes.length}}</p>
+
+    </div>
+  </div>
+
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Add a comment..." aria-label="Recipient's username"
+      aria-describedby="basic-addon2">
+    <div class="input-group-append post">
+      <button class="btn post-btn" type="button">Post</button>
+    </div>
+  </div>
+</div>
