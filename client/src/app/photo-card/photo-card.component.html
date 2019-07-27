@@ -1,17 +1,18 @@
 <div class="card-body">
   <div class="row content">
-    <div class="col display">
+    <div class="col-12 col-sm-12 col-lg-12 display">
       <div id="myCarousel" class="carousel" interval=false data-ride="carousel">
         <!-- Carousel indicators -->
-        <ol class="carousel-indicators" *ngFor="let p of post.post_media">
-          <li data-target="#myCarousel"></li>
-          <!-- <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li> -->
+        <ol class="carousel-indicators">
+          <!-- <li data-target="#myCarousel" *ngFor="let p of post.post_media; let index = index" data-slide-to="{{index}}">
+          </li> -->
+          <!-- <li data-target="#myCarousel" data-slide-to="1"></li> -->
+          <!-- <li data-target="#myCarousel" data-slide-to="2"></li> -->
         </ol>
         <!-- Wrapper for carousel items -->
-        <div class="carousel-inner" *ngFor="let p of post.post_media">
-          <div class="carousel-item">
-            <img class="d-block w-100 align-middle active" src="{{p.url}}" alt="Cute cat Photo">
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let p of post.post_media ; let isFirst = first" [class.active]="isFirst">
+            <img class="d-block w-100 align-middle" src="{{p.url}}" alt="Cute cat Photo">
           </div>
         </div>
         <!-- Carousel controls -->
@@ -24,7 +25,7 @@
       </div>
     </div>
 
-    <div class="col information">
+    <div class="col-12 col-sm-12 col-lg-12 information">
       <div class="row" id="user">
         <div class="col profile-pic">
           <div>
@@ -53,7 +54,7 @@
       </div>
       <div class="overflow-auto comment" *ngFor="let comment of post.Comments">
         <div>
-          <a class="username" href="/user/{{comment.User.id}}">{{comment.User.commentUserName}}</a>
+          <a class="username" href="/user/{{comment.User.commentUserId}}">{{comment.User.commentUserName}}</a>
           <p class="reply">{{comment.content}}</p>
           <p class="reply-date">{{moment(comment.createdAt).fromNow()}}</p>
         </div>
