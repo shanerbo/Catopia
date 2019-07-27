@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     };
     return Posts.findAll(include);
   };
+  Posts.getCatPosts = (include) => {
+    return Posts.findAll(include);
+  }
   Posts.createPost = (user_id, description) => {
     return Posts.create({ user_id, description });
   }
