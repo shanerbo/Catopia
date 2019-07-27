@@ -1,4 +1,7 @@
 .right-panel{
+    border-color:#b35f5f3b;
+    border-style:solid;
+    border-width:1px;
     overflow:scroll;
     margin:60px;
     width: 25pc;
@@ -8,6 +11,7 @@
     background-color:#b35f5f3b;
     padding-bottom:0px;
     .title{
+        background-color:white;
         font-size:150%;
         margin:0px;
         padding-top:20px;
