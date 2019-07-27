@@ -10,24 +10,21 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 export class ComposeBoxComponent implements OnInit {
   @Output() post = new EventEmitter<FormData>();
 
-  public photosToUpload: File[];
-  imgSrc: any[] = [];
+  private photosToUpload: File[] = [];
+  public imgSrc: any[] = [];
   public description = "";
-  public notUploaded: boolean = true;
+  private counter: number = 0;
   constructor() {}
 
   ngOnInit() {}
 
   handleFileInput(files) {
-    console.log(files);
-    for (let i in files) {
-      console.log(files[i]);
+    for (let i = 0; i < files.length; i++) {
       this.photosToUpload.push(files[i]);
+      this.counter++;
     }
-    this.photosToUpload = files;
-    this.notUploaded = !this.notUploaded;
 
-    for (let i = 0; i < this.photosToUpload.length; i++) {
+    for (let i = this.counter - files.length; i < this.counter; i++) {
       var reader = new FileReader();
       reader.readAsDataURL(this.photosToUpload[i]);
       reader.onloadend = (event: any) => {
@@ -38,17 +35,20 @@ export class ComposeBoxComponent implements OnInit {
     }
   }
 
-  deleteFileInput() {}
+  deleteFileInput(index) {
+    this.photosToUpload.splice(index, 1);
+    this.imgSrc.splice(index, 1);
+  }
 
   submitForm(event) {
     const formData = new FormData();
     if (!this.photosToUpload) {
       return;
     }
-    for (let i = 0; i < this.photosToUpload.length; i++) {
-      const file = this.photosToUpload[i];
-      formData.append("photo" + i, file);
-    }
+    this.photosToUpload.forEach((photo, i) => {
+      formData.append("photo" + i, photo);
+    });
+
     formData.append("description", this.description);
     this.post.next(formData);
   }

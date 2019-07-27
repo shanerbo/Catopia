@@ -12,9 +12,14 @@ body {
   border-radius: 50%;
 }
 
+.notUploaded {
+  display: none;
+}
+
 .card-body {
   width: 100%;
   height: 90%;
+
   .row {
     padding: 15px;
   }

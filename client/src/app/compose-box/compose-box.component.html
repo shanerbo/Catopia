@@ -30,18 +30,24 @@
       </div>
     </div>
 
-    <!-- <div [ngClass]="{ d-none: notUploaded }" class="card-body"> -->
-    <div class="card-body" *ngIf="notUploaded">
+    <div *ngIf="imgSrc.length != 0" class="card-body">
       <div class="row">
         <div
           *ngFor="let photo of photosToUpload; let index = index"
           class="col upload-img"
         >
-          <div class="row">
-            <img [src]="imgSrc[index]" alt="your image" />
+          <div class="col">
+            <div class="row">
+              <img [src]="imgSrc[index]" alt="your image" />
+            </div>
+            <div class="row">
+              <button class="btn btn-primary" (click)="deleteFileInput(index)">
+                Delete img
+              </button>
+            </div>
           </div>
-          <div class="row"><button>Remove image</button></div>
         </div>
+
         <div class="input-img col-2">
           <input
             class="form-control"
