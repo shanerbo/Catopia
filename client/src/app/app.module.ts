@@ -17,6 +17,7 @@ import { LoginService } from './services/login.service';
 import { PhotoService } from './services/photo.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ComposeBoxComponent } from './compose-box/compose-box.component';
+import { PhotoInputComponent } from './photo-input/photo-input.component';
 
 
 
@@ -31,7 +32,8 @@ import { ComposeBoxComponent } from './compose-box/compose-box.component';
     RightPanelComponent,
     LoginComponent,
     UserProfileComponent,
-    ComposeBoxComponent
+    ComposeBoxComponent,
+    PhotoInputComponent
   ],
   imports: [
     FormsModule,

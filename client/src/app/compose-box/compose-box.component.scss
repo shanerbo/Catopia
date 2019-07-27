@@ -12,23 +12,52 @@ body {
   border-radius: 50%;
 }
 
-.send-post-box {
-  width: 90%;
-}
-
-.card-header {
-  background-color: $themeColor;
-}
-
 .card-body {
   width: 100%;
   height: 90%;
+  .row {
+    padding: 15px;
+  }
+
+  .upload-img img {
+    width: 120px;
+    height: 150px;
+  }
+
+  #photos {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .input-file label i {
+    color: $themeColor;
+    cursor: pointer;
+  }
+
+  .input-img {
+    width: 120px;
+    height: 150px;
+  }
+
+  .input-file-intro label h4 {
+    color: grey;
+    cursor: pointer;
+  }
+
+  .input-file-intro label h4:hover {
+    color: $themeColor;
+  }
+
+  .input-file label i:hover {
+    color: grey;
+  }
+
   .avator {
     position: relative;
     float: left;
-  }
-
-  #description {
-    width: 90%;
   }
 }
