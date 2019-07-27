@@ -76,14 +76,21 @@
             }
             #following-tab{
                 padding-right:10px;
-                font-weight:bold;
                 margin-bottom:0px;
+                font-weight:bold;
             }
             #following-num{
                 margin-bottom:0px;
             }
+            #following-num:hover{
+                text-decoration: underline;
+            }
             #follower-num{
                 margin-bottom:0px;
+                
+            }
+            #follower-num:hover{
+                text-decoration: underline;
             }
            
             #follower-tab{
@@ -104,16 +111,14 @@
     }
     .user-list{
         background-color:#b35f5f3b;
-        overflow-y:scroll;
-        
+        margin-bottom:0px;
         padding-left:40px;
         padding-top:10px;
         width: 100%;
-        height:250px;
+        max-height:250px;
         .user{
             max-width: 100%;
-            margin:5px;
-            margin-bottom:15px;
+            padding-bottom:15px;
             list-style:outside none none;
                 .profile-pic {
                     max-width:15%;

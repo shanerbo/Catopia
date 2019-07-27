@@ -4,6 +4,8 @@
     </div>
     <div class="col-6">
       <app-photo-card></app-photo-card>
+      <app-follow-modal></app-follow-modal>
+    
     </div>
     <div class="col-3">
         <div class="right-panel">
@@ -28,12 +30,12 @@
                   <div class="row Number">
                     <div class="col follow">
                     <div class="row following">
-                      <p id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </p>
-                      <p id="following-num" style="color:rgba(5, 5, 5, 0.432);">100 </p>
+                      <a id="following-tab" data-toggle="modal" data-target="#following" style="color:rgba(5, 5, 5, 0.432);">Following: </a>
+                      <a id="following-num" data-toggle="modal" data-target="#following" style="color:rgba(5, 5, 5, 0.432);">100 </a>
                     </div>
                     <div class="row follower">
-                      <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">Follower: </p>
-                      <p id="follower-num" style="color:rgba(5, 5, 5, 0.432);">1.3k </p>
+                      <p id="follower-tab" data-toggle="modal" data-target="#follower" style="color:rgba(5, 5, 5, 0.432);">Follower: </p>
+                      <p id="follower-num" data-toggle="modal" data-target="#follower" style="color:rgba(5, 5, 5, 0.432);">1.3k </p>
                     </div>
                   </div>
                   </div>                  
@@ -64,28 +66,7 @@
                         <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
                       </div>
                   </li> 
-                  <li class="row user">
-                      <div class="col profile-pic"> 
-                          <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
-                          
-                      </div>
-                      <div class="col user-info" >
-                        <p class="username">Ruby</p>
-                        <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
-                      </div>
-                  </li> 
-                  <li class="row user">
-                      <div class="col profile-pic"> 
-                          <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
-                          
-                      </div>
-                      <div class="col user-info" >
-                        <p class="username">Ruby</p>
-                        <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
-                      </div>
-                  </li> 
-                         
-          
+
               </ol>
           </div>
           
