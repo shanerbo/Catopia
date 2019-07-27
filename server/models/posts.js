@@ -17,6 +17,15 @@ module.exports = (sequelize, DataTypes) => {
   Posts.findUserPosts = (user_id) => {
     return Posts.findAll({ where: { user_id } })
   }
+
+  Posts.getFollowingUserPosts = (include, conditionArray) => {
+    let searchCondition = include;
+    console.log("conditionArray", conditionArray);
+    searchCondition.where = {
+      user_id: conditionArray
+    };
+    return Posts.findAll(include);
+  };
   Posts.createPost = (user_id, description) => {
     return Posts.create({ user_id, description });
   }

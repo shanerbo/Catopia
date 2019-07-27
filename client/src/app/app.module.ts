@@ -19,7 +19,6 @@ import { PhotoService } from './services/photo.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ComposeBoxComponent } from './compose-box/compose-box.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,17 +31,8 @@ import { ComposeBoxComponent } from './compose-box/compose-box.component';
     UserProfileComponent,
     ComposeBoxComponent
   ],
-  imports: [
-    FormsModule,
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule
-  ],
-  providers: [
-    LoginService,
-    PhotoService
-  ],
+  imports: [FormsModule, BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [LoginService, PhotoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
