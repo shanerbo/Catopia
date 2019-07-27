@@ -19,6 +19,7 @@ import { PhotoService } from './services/photo.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ComposeBoxComponent } from './compose-box/compose-box.component';
 import { FollowModalComponent } from './follow-modal/follow-modal.component';
+import { MidPanelComponent } from './mid-panel/mid-panel.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FollowModalComponent } from './follow-modal/follow-modal.component';
     LoginComponent,
     UserProfileComponent,
     ComposeBoxComponent,
-    FollowModalComponent
+    FollowModalComponent,
+    MidPanelComponent
   ],
   imports: [
     FormsModule,
