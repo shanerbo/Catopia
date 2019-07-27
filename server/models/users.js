@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Users.findUserByEmail = (email) => {
     return Users.findOne({ where: { email } });
-  }
+  };
   Users.createUser = (
     userName,
     pwd,
@@ -49,6 +49,12 @@ module.exports = (sequelize, DataTypes) => {
       prof_url
     };
     return Users.create(newUser)
-  }
+  };
+  Users.getRecommendUsers = () => {
+    return Users.findAll({
+      order: [['createdAt', 'DESC']],
+      limit: 25,
+    });
+  };
   return Users;
 };

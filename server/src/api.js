@@ -14,10 +14,10 @@ router.get('/photo/user/:id', postsController.getUserPosts);// show certain user
 router.get('/photo/following', postsController.getFollowingUsersPosts);// show user's following users' photos
 router.get('/photo/cat/:id', postsController.getCatPosts);// show certain cat's posts
 router.post('/photo', postsController.postPhoto);// post a post
+router.get('/user/recommend', userController.getRecommendUsers);// get recommendUsers
 router.post('/user/:id/follow', userController.followOrUnfollow);// follow new user
 router.get('/user/:id', userController.getUserProfile);// get user profile
 router.get('/user/:id/follower', userController.getUserFollower);// get user follower
 router.get('/user/:id/following', userController.getUserFollowing);// get user following
-
 
 module.exports = router;
