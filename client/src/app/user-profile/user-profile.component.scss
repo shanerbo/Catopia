@@ -6,7 +6,7 @@
    
     overflow-wrap: break-word;
     margin:0px;
-    max-width: 20pc;
+    width: 20pc;
     // height:30pc;
     padding:0px;
     position:fixed;
@@ -69,16 +69,31 @@
             
         }
         .Number{
-            padding-top:10px;
-            #cat-num{
+            padding-top:1px;
+            .follow{
+                margin-bottom:0px;
+                
+            }
+            #following-tab{
                 padding-right:10px;
-
+                font-weight:bold;
+                margin-bottom:0px;
+            }
+            #following-num{
+                margin-bottom:0px;
             }
             #follower-num{
+                margin-bottom:0px;
+            }
+           
+            #follower-tab{
                 max-width:100%;
+                font-weight:bold;
+                margin-bottom:0px;
             }
         }
         .bio{
+            padding-top:5px;
             padding-left:40px;
             width:100%;
             margin-bottom:0px;
