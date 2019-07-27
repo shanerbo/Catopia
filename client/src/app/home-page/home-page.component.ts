@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  public posts: Post[];
 
   constructor(
     private ls: LoginService,
@@ -18,6 +19,14 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     // TODO: fetch all posts and save the data as Post type
+    this.fetchAllPhotos();
+  }
+
+  fetchAllPhotos() {
+    this.ps.getAllPosts().then((posts) => {
+      console.log(posts);
+      this.posts = posts;
+    });
   }
 
   postPhotos(post: FormData) {
@@ -25,6 +34,7 @@ export class HomePageComponent implements OnInit {
     this.ps.postPhoto(post).subscribe((result) => {
       console.log('upload ', result);
       // TODO: re-fetch all posts
+      this.fetchAllPhotos();
     });
   }
 }

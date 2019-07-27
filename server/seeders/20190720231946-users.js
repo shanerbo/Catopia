@@ -9,6 +9,7 @@ module.exports = {
         userName: "ErboShan",
         email: "erbos@sfu.ca",
         pwd: bcrypt.hashSync("pppppp", salt),
+        prof_url: "https://storage.googleapis.com/user_posts/1564086103066IMG_5693.JPG.jpg",
         createdAt: new Date,
         updatedAt: new Date
       },
@@ -16,12 +17,14 @@ module.exports = {
         userName: "JiaranYu",
         email: "jiarany@sfu.ca",
         pwd: bcrypt.hashSync("pppppp", salt),
+        prof_url: "https://storage.googleapis.com/user_posts/1564086103066IMG_5693.JPG.jpg",
         createdAt: new Date,
         updatedAt: new Date
       },
       {
         userName: "ZhixuanHu",
         email: "ohu@sfu.ca",
+        prof_url: "https://storage.googleapis.com/user_posts/1564086103066IMG_5693.JPG.jpg",
         pwd: bcrypt.hashSync("pppppp", salt),
         createdAt: new Date,
         updatedAt: new Date
@@ -31,7 +34,8 @@ module.exports = {
         email: "mca176@sfu.ca",
         pwd: bcrypt.hashSync("pppppp", salt),
         createdAt: new Date,
-        updatedAt: new Date
+        updatedAt: new Date,
+        prof_url: "https://storage.googleapis.com/user_posts/1564086103066IMG_5693.JPG.jpg",
       }
       ]);
   },

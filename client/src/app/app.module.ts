@@ -1,8 +1,9 @@
-// External modules
+// External modules 👌
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbCarousel, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Our own stuff ❤
 import { HomePageComponent } from './home-page/home-page.component';
@@ -34,4 +35,4 @@ import { ComposeBoxComponent } from './compose-box/compose-box.component';
   providers: [LoginService, PhotoService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

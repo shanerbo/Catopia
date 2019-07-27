@@ -3,6 +3,7 @@ import { LoginService } from './services/login.service';
 import { UserInfo } from './interfaces/user-info';
 import { Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
 
   public user: UserInfo;
   private userSubscription: Subscription;
+
 
   constructor(
     private ls: LoginService
