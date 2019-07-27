@@ -1,25 +1,25 @@
 <div class="card-body">
   <div class="row content">
     <div class="col-12 col-sm-12 col-lg-12 display">
-      <div id="myCarousel" class="carousel" interval=false data-ride="carousel">
+      <div id="myCarousel" class="carousel" interval=false data-ride="carousel" data-interval=false>
         <!-- Carousel indicators -->
         <ol class="carousel-indicators">
-          <!-- <li data-target="#myCarousel" *ngFor="let p of post.post_media; let index = index" data-slide-to="{{index}}">
-          </li> -->
-          <!-- <li data-target="#myCarousel" data-slide-to="1"></li> -->
-          <!-- <li data-target="#myCarousel" data-slide-to="2"></li> -->
+          <li data-target="#myCarousel" *ngFor="let p of post.post_media; let index = index"
+            attr.data-slide-to="{{index}}">
+          </li>
         </ol>
         <!-- Wrapper for carousel items -->
         <div class="carousel-inner">
-          <div class="carousel-item" *ngFor="let p of post.post_media ; let isFirst = first" [class.active]="isFirst">
+          <div class="carousel-item" *ngFor="let p of post.post_media; let index = index"
+            [class.active]="currentInd==index">
             <img class="d-block w-100 align-middle" src="{{p.url}}" alt="Cute cat Photo">
           </div>
         </div>
         <!-- Carousel controls -->
-        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+        <a class="carousel-control-prev" (click)="prevPhoto()">
           <span class="carousel-control-prev-icon"></span>
         </a>
-        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+        <a class="carousel-control-next" (click)="nextPhoto()">
           <span class="carousel-control-next-icon"></span>
         </a>
       </div>

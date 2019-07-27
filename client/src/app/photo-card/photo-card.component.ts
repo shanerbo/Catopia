@@ -10,11 +10,17 @@ import * as moment from 'moment';
 export class PhotoCardComponent implements OnInit {
   @Input() post: Post;
   public moment = moment;
+  public currentInd = 0;
 
   constructor() { }
 
   ngOnInit() {
     console.log(this.post);
   }
-
+  prevPhoto() {
+    this.currentInd = (this.currentInd - 1) % this.post.post_media.length;
+  }
+  nextPhoto() {
+    this.currentInd = (this.currentInd + 1) % this.post.post_media.length;
+  }
 }
