@@ -14,8 +14,12 @@ function generateJwt(userObj) {
 
 function issueJwt(req, res) {
   console.log("req.user:", req.user);
-  const token = generateJwt(req.user);
-  res.json({ token });
+  if (req.user) {
+    const token = generateJwt(req.user);
+    res.json({ token });
+  } else {
+    res.status(401).json({ token: null });
+  }
 };
 
 exports.signin = [
@@ -25,7 +29,7 @@ exports.signin = [
   },
   // Validate fields.
   body('email', 'Eamil must be valid.').isEmail().isLength({ min: 1 }).trim(),
-  body('password', 'Password must longer than 8 characters.').isLength({ min: 6 }).trim(),
+  body('password', 'Password must longer than 6 characters.').isLength({ min: 6 }).trim(),
   (req, res, next) => {
     const errors = validationResult(req);
     // console.log("printing:", req.body);
@@ -49,7 +53,7 @@ exports.signup = [
 
   // Validate fields.
   body('email', 'Eamil must be valid.').isEmail().isLength({ min: 1 }).trim(),
-  body('password', 'Password must longer than 8 characters.').isLength({ min: 6 }).trim(),
+  body('password', 'Password must longer than 6 characters.').isLength({ min: 6 }).trim(),
   body('password_repeat').custom((value, { req }) => {
     if (value != req.body.password) {
       throw new Error('Password confirmation does not match password');
