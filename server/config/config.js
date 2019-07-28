@@ -19,10 +19,10 @@ module.exports = {
     operatorsAliases: false
   },
   production: {
-    username: "root",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
+    username: process.env.DB_DEPLOY_USERNAME,
+    password: process.env.DB_DEPLOY_PWD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_IPADDRESS,
     dialect: "postgres",
     operatorsAliases: false
   }

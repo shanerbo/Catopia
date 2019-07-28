@@ -1,13 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { IfStmt } from "@angular/compiler";
+import { Component, OnInit, Input } from '@angular/core';
+import { UserInfo } from '../interfaces/user-info';
 
 @Component({
-  selector: "app-right-panel",
-  templateUrl: "./right-panel.component.html",
-  styleUrls: ["./right-panel.component.scss"]
+  selector: 'app-right-panel',
+  templateUrl: './right-panel.component.html',
+  styleUrls: ['./right-panel.component.scss']
 })
 export class RightPanelComponent implements OnInit {
-  constructor() {}
+  @Input() users: UserInfo;
 
-  ngOnInit() {}
+  constructor() { }
+
+  ngOnInit() {
+    console.log(this.users);
+  }
+
 }

@@ -18,6 +18,7 @@ const postInclude = {
     },
     {
       model: db.Cats,
+      attributes: [['id', 'cat_id']],
       require: true,
     },
     {
@@ -33,6 +34,47 @@ const postInclude = {
   ],
   order: [['createdAt', 'DESC']]
 };
+
+function getCatPostsCondition(cat_id) {
+  return {
+    include: [
+      {
+        model: db.Comments,
+        include: [
+          {
+            model: db.Users,
+            attributes: [['id', 'commentUserId'], ['userName', 'commentUserName'], ['email', 'commentUserEmail']]
+          }
+        ]
+      },
+      {
+        model: db.Cats,
+        attributes: [['id', 'cat_id']],
+        where: { id: cat_id },
+        require: true,
+      },
+      {
+        model: db.Users,
+        attributes: [['id', 'postOwnerId'], ['userName', 'postOwnerName'], ['prof_url', 'postOwnerProfUrl']]
+      },
+      {
+        model: db.post_media,
+      },
+      {
+        model: db.post_likes
+      }
+    ]
+  }
+};
+
+exports.getCatPosts = [
+  async (req, res, next) => {
+    const cat_id = req.params.id;
+    const include = getCatPostsCondition(cat_id)
+    const ret = await db.Posts.getCatPosts(include, cat_id);
+    res.json(ret);
+  }
+]
 
 exports.getFollowingUsersPosts = [
   passport.authenticate('jwt', { session: false }),

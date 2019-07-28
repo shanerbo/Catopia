@@ -3,6 +3,8 @@ import { LoginService } from '../services/login.service';
 import { PhotoService } from '../services/photo.service';
 import { Post } from '../interfaces/post';
 import { FormGroup } from '@angular/forms';
+import { UserInfo } from '../interfaces/user-info';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,21 +13,31 @@ import { FormGroup } from '@angular/forms';
 })
 export class HomePageComponent implements OnInit {
   public posts: Post[];
+  public users: UserInfo[];
 
   constructor(
     private ls: LoginService,
-    private ps: PhotoService
+    private ps: PhotoService,
+    private us: UserService,
   ) { }
 
   ngOnInit() {
     // TODO: fetch all posts and save the data as Post type
     this.fetchAllPhotos();
+    this.fetchRecommendUsers();
   }
 
   fetchAllPhotos() {
     this.ps.getAllPosts().then((posts) => {
       console.log(posts);
       this.posts = posts;
+    });
+  }
+
+  fetchRecommendUsers() {
+    this.us.getRecommendUsers().then((users) => {
+      console.log(users);
+      this.users = users;
     });
   }
 
