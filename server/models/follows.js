@@ -2,7 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Follows = sequelize.define('Follows', {
     user_id: DataTypes.INTEGER,
-    following: DataTypes.INTEGER
+    following: DataTypes.INTEGER,
+    mutual: DataTypes.INTEGER
   }, {});
   Follows.associate = function (models) {
     // associations can be defined here
