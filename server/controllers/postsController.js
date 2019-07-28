@@ -18,7 +18,7 @@ const postInclude = {
     },
     {
       model: db.Cats,
-      attributes: [['id', 'cat_id']],
+      attributes: [['id', 'cat_id'], 'prof_url'],
       require: true,
     },
     {
