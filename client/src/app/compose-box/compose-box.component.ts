@@ -11,13 +11,17 @@ export class ComposeBoxComponent implements OnInit {
   @Output() post = new EventEmitter<FormData>();
 
   private photosToUpload: File[] = [];
+  public photoList: FileList;
   public imgSrc: Blob[] = [];
   public description = '';
   constructor() { }
 
   ngOnInit() { }
 
-  handleFileInput(files) {
+  handleFileInput(target) {
+    console.log(this.photoList);
+    const files = target.files;
+    console.log(target);
     for (let i = 0; i < files.length; i++) {
       this.photosToUpload.push(files[i]);
     }
@@ -31,9 +35,11 @@ export class ComposeBoxComponent implements OnInit {
         console.log(this.imgSrc);
       };
     }
+    this.photoList = null;
   }
 
   deleteFileInput(index) {
+    this.photoList = null;
     this.photosToUpload.splice(index, 1);
     this.imgSrc.splice(index, 1);
   }
