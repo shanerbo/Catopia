@@ -89,7 +89,6 @@ exports.followOrUnfollow = [
 			} else {
 				exist.destroy();
 				await db.Follows.update({ "mutual": 0 }, { where: { user_id: req.params.id, following: req.user.id } });
-				await db.Follows.update({ "mutual": 0 }, { where: { user_id: req.user.id, following: req.params.id } });
 				res.status(200);
 				res.json({ result: "unFollowed" })
 			}
