@@ -3,7 +3,9 @@
       <app-left-panel></app-left-panel>
     </div>
     <div class="col-6">
-      <app-photo-card></app-photo-card>
+      <div *ngFor="let post of posts">
+        <app-photo-card [post]="post"></app-photo-card>
+      </div>
       <app-follow-modal></app-follow-modal>
     
     </div>

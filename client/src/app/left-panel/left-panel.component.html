@@ -2,12 +2,12 @@
   <nav id="sidebar" [ngClass]="{ hidden: isCollapsed }">
     <ul class="navbar-nav list-unstyled components">
       <li class="nav-item" [ngClass]="{ hidden: isCollapsed }">
-        <a class="nav-link accentFont" href="#"
+        <a class="nav-link accentFont" [routerLink]="['/']"
           ><i class="fas fa-home fa-2x"></i> <span>Home</span><span class="badge badge-primary badge-pill">14</span></a
         >
       </li>
       <li class="">
-        <a class="nav-link accentFont" href="#">
+        <a class="nav-link accentFont" [routerLink]="['/']">
           <i class="fas fa-heart fa-2x"></i>
           <span>Likes</span>
         </a>

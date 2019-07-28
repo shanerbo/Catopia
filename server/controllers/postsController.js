@@ -94,6 +94,9 @@ exports.getPosts = (req, res, next) => {
 exports.getUserPosts = (req, res, next) => {
   console.log(db.post_likes);
   let searchCondition = postInclude;
+  if(!req.params.id || !Number(req.params.id)){
+    res.status(400).json({error:"id is missing or invalid"});
+  }
   searchCondition.where = {
     "user_id": req.params.id
   };
