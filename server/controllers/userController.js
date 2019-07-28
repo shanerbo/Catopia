@@ -9,12 +9,18 @@ async function getFollowInfo(req, res, next, followerOrFollowing) {
 	res.json(allFollowInfo);
 }
 
-exports.getRecommendUsers = [
-	async (req, res, next) => {
-		const ret = await db.Users.getRecommendUsers();
-		res.json(ret);
-	}
+exports.getFollowerCount = [
+
 ]
+
+exports.
+
+	exports.getRecommendUsers = [
+		async (req, res, next) => {
+			const ret = await db.Users.getRecommendUsers();
+			res.json(ret);
+		}
+	]
 
 exports.getUserFollowing = [
 	async (req, res, next) => {
