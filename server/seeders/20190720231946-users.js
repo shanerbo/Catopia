@@ -10,6 +10,7 @@ module.exports = {
         email: "erbos@sfu.ca",
         pwd: bcrypt.hashSync("pppppp", salt),
         prof_url: "https://storage.googleapis.com/user_posts/1564086103066IMG_5693.JPG.jpg",
+        bio: "I love you",
         createdAt: new Date,
         updatedAt: new Date
       },
@@ -18,6 +19,7 @@ module.exports = {
         email: "jiarany@sfu.ca",
         pwd: bcrypt.hashSync("pppppp", salt),
         prof_url: "https://storage.googleapis.com/user_posts/1564086103066IMG_5693.JPG.jpg",
+        bio: "Once you go black, you never come back",
         createdAt: new Date,
         updatedAt: new Date
       },
@@ -26,6 +28,7 @@ module.exports = {
         email: "ohu@sfu.ca",
         prof_url: "https://storage.googleapis.com/user_posts/1564086103066IMG_5693.JPG.jpg",
         pwd: bcrypt.hashSync("pppppp", salt),
+        bio: "three subject notebook",
         createdAt: new Date,
         updatedAt: new Date
       },
@@ -33,6 +36,7 @@ module.exports = {
         userName: "MingChen",
         email: "mca176@sfu.ca",
         pwd: bcrypt.hashSync("pppppp", salt),
+        bio: "love xiao zhan forever",
         createdAt: new Date,
         updatedAt: new Date,
         prof_url: "https://storage.googleapis.com/user_posts/1564086103066IMG_5693.JPG.jpg",
