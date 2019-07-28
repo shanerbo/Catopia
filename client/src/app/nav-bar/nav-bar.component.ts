@@ -12,11 +12,9 @@ export class NavBarComponent implements OnInit {
   @Input() user: UserInfo;
   constructor(private ls: LoginService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   logout() {
     this.ls.signout();
   }
-
 }

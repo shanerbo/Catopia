@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./left-panel.component.scss']
 })
 export class LeftPanelComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {}
+  isCollapsed = true;
+  toggleSideBar(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
-
+  ngOnInit() {}
 }

@@ -1,0 +1,113 @@
+@import "../global.scss";
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.list-group.list-group-item.filterlist{
+  padding: 0px;
+}
+
+#sidebar.hidden {
+  min-width: 60px;
+  max-width: 60px;
+  margin-left: 0px !important;
+  padding: 0px;
+  text-align: center;
+  .navbar-nav.nav-item:hover{
+    background-color:gray;
+  }
+}
+
+#sidebar {
+  min-width: 200px;
+  max-width: 200px;
+  position: fixed;
+  margin-left: 0px;
+  min-height: 100vh;
+  background-color: $themeColor;
+  transition: all 0.3s;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0px;
+  left: 0;
+  z-index: 9999;
+
+  ul ul li a{
+    padding-left: 50px;
+    font-size: 1em;
+  }
+
+  ul li a{
+    font-size: 1em;
+    padding-left: 10px;
+    padding-right: 10px;
+
+   span{
+     padding-left: 10px;
+     padding-right: 10px;
+   }
+  }
+
+}
+
+#sidebar ul li a:hover {
+  color: $themeColor;
+  background: #fff;
+}
+
+#sidebar ul ul li:hover {
+  color: $themeColor;
+  background: #fff;
+}
+
+#sidebar.hidden ul li a {
+  font-size: 1em;
+  span {
+  display: none;
+  }
+}
+
+#sidebar.hidden ul li ul {
+  display: none;
+}
+
+#sidebar-btn {
+  float: bottom;
+  text-align: center;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+#sidebar.hidden .dropdown-toggle::after {
+  top: auto;
+  bottom: 10px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+@media (max-width: 575px) {
+  #sidebar.hidden {
+    min-width: 50px;
+    max-width: 50px;
+    text-align: center;
+    margin-left: 0px !important;
+  }
+
+  #sidebar {
+    margin-left: 0px;
+    min-height: 100vh;
+    background-color: $themeColor;
+    transition: all 0.3s;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
