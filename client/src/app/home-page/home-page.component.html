@@ -5,7 +5,7 @@
   <div class="col-lg-6 col-sm-12">
     <app-compose-box (post)="postPhotos($event)"></app-compose-box>
     <div *ngFor="let post of posts">
-      <app-photo-card [post]="post"></app-photo-card>
+      <app-photo-card (likePostEvent)="likedPost($event)" [post]="post"></app-photo-card>
     </div>
   </div>
   <div class="col-lg-2 col-sm-0">

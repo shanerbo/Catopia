@@ -31,4 +31,8 @@ export class PhotoService {
       throw error;
     });
   }
+  postLike(id: number): Observable<any> {
+    return this.ls.authRequest('post', '/api/photo/' + id + '/like', {}, null);
+  }
+
 }

@@ -49,4 +49,8 @@ export class HomePageComponent implements OnInit {
       this.fetchAllPhotos();
     });
   }
+
+  likedPost( ) {
+   this.fetchAllPhotos();
+  }
 }
