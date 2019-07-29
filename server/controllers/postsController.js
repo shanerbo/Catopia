@@ -18,7 +18,7 @@ const postInclude = {
     },
     {
       model: db.Cats,
-      attributes: [['id', 'cat_id'], 'prof_url'],
+      attributes: [['id', 'cat_id'], 'prof_url','name'],
       require: true,
     },
     {
@@ -73,7 +73,7 @@ exports.getFollowingUsersPosts = [
 * @param: 
 *   - an array of image files in req.body.photos
 *   - a description
-*        
+*   
 */
 exports.postPhoto = [
   // body(''),
@@ -99,8 +99,27 @@ exports.postPhoto = [
   }
 ];
 
+/*
+* @param: 
+*   - comment content
+*   - 
+*        
+*/
+exports.commentOnPhoto = [
+  sanitizeBody('content').escape(),
+  passport.authenticate('jwt', { session: false }),
+  (req, res, next) => {
+    db.Comments.addComment(req.user.id, req.params.id, req.body.content)
+      .then((comment) => {
+        res.json({ comment: "success" });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
+];
+
 exports.getPosts = (req, res, next) => {
-  console.log(db.post_likes);
   db.Posts.findAll(postInclude).then(result => {
     // console.log("after:", result);
     res.json(result);
@@ -108,7 +127,6 @@ exports.getPosts = (req, res, next) => {
 };
 
 exports.getUserPosts = (req, res, next) => {
-  console.log(db.post_likes);
   let searchCondition = postInclude;
   if (!req.params.id || !Number(req.params.id)) {
     res.status(400).json({ error: "id is missing or invalid" });
@@ -120,4 +138,38 @@ exports.getUserPosts = (req, res, next) => {
     res.json(result);
   });
 };
+
+exports.likeOrUnlike = [
+  passport.authenticate('jwt',{session:false}),
+  async(req,res,next) => {
+    if(req.user){
+      const exist = await db.post_likes.findOne({
+        where: { user_id: req.user.id,
+                 post_id: req.params.id}
+      }).catch(error=>next(error));
+      if(!exist){
+        const entry = {
+          user_id: req.user.id,
+          post_id: req.params.id
+        }
+        const create = await db.post_likes.create(entry);
+        if (create.length !==0 ){
+          res.status(200);
+          res.json({ result: "liked"});
+        }else{
+          res.json({ result: "likeFailed"});
+        }
+      }else{
+        exist.destroy();
+        res.status(200);
+        res.json({ result: "unliked"});
+      }
+    }else{
+      res.json({ error: "Needs login to follow user"});
+    }
+  }
+];
+
+
+
 
