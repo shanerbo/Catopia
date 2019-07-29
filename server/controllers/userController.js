@@ -70,15 +70,15 @@ exports.followOrUnfollow = [
 			}).catch(error => next(error));
 			if (!exist) {
 				const isFollowed = await db.Follows.findOne({ where: { user_id: req.params.id, following: req.user.id } })
-				const mutual = isFollowed ? 1 : 0;
+				// const mutual = isFollowed ? 1 : 0;
 				const entry = {
 					user_id: req.user.id,
 					following: req.params.id,
-					mutual: mutual
+					// mutual: mutual
 				}
-				if (isFollowed) {
-					await db.Follows.update({ "mutual": 1 }, { where: { user_id: req.params.id, following: req.user.id } });
-				}
+				// if (isFollowed) {
+				// 	await db.Follows.update({ "mutual": 1 }, { where: { user_id: req.params.id, following: req.user.id } });
+				// }
 				const create = await db.Follows.create(entry);
 				if (create.length !== 0) {
 					res.status(200);
@@ -88,7 +88,7 @@ exports.followOrUnfollow = [
 				}
 			} else {
 				exist.destroy();
-				await db.Follows.update({ "mutual": 0 }, { where: { user_id: req.params.id, following: req.user.id } });
+				// await db.Follows.update({ "mutual": 0 }, { where: { user_id: req.params.id, following: req.user.id } });
 				res.status(200);
 				res.json({ result: "unFollowed" })
 			}

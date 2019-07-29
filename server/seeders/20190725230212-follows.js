@@ -12,42 +12,36 @@ module.exports = {
       {
         user_id: 1,
         following: 2,
-        mutual: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         user_id: 1,
         following: 3,
-        mutual: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         user_id: 2,
         following: 1,
-        mutual: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         user_id: 3,
         following: 1,
-        mutual: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         user_id: 4,
         following: 1,
-        mutual: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         user_id: 4,
         following: 2,
-        mutual: 0,
         createdAt: new Date(),
         updatedAt: new Date()
       },
