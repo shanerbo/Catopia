@@ -15,14 +15,9 @@ export class AppComponent implements OnInit {
   public user: UserInfo;
   private userSubscription: Subscription;
 
-
-  constructor(
-    private ls: LoginService
-  ) {
-
-  }
+  constructor(private ls: LoginService) {}
   public ngOnInit() {
-    this.userSubscription = this.ls.currentUser.subscribe((user) => {
+    this.userSubscription = this.ls.currentUser.subscribe(user => {
       console.log(user);
       this.user = user;
       if (!user.prof_url) {

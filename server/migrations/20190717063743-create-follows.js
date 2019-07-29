@@ -24,6 +24,10 @@ module.exports = {
         },
         allowNull: false
       },
+      // mutual: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: false
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -18,7 +18,7 @@ const postInclude = {
     },
     {
       model: db.Cats,
-      attributes: [['id', 'cat_id']],
+      attributes: [['id', 'cat_id'], 'prof_url'],
       require: true,
     },
     {
@@ -36,35 +36,9 @@ const postInclude = {
 };
 
 function getCatPostsCondition(cat_id) {
-  return {
-    include: [
-      {
-        model: db.Comments,
-        include: [
-          {
-            model: db.Users,
-            attributes: [['id', 'commentUserId'], ['userName', 'commentUserName'], ['email', 'commentUserEmail']]
-          }
-        ]
-      },
-      {
-        model: db.Cats,
-        attributes: [['id', 'cat_id']],
-        where: { id: cat_id },
-        require: true,
-      },
-      {
-        model: db.Users,
-        attributes: [['id', 'postOwnerId'], ['userName', 'postOwnerName'], ['prof_url', 'postOwnerProfUrl']]
-      },
-      {
-        model: db.post_media,
-      },
-      {
-        model: db.post_likes
-      }
-    ]
-  }
+  let include = postInclude;
+  postInclude.include[1].where = { id: cat_id };
+  return include;
 };
 
 exports.getCatPosts = [
@@ -136,6 +110,9 @@ exports.getPosts = (req, res, next) => {
 exports.getUserPosts = (req, res, next) => {
   console.log(db.post_likes);
   let searchCondition = postInclude;
+  if (!req.params.id || !Number(req.params.id)) {
+    res.status(400).json({ error: "id is missing or invalid" });
+  }
   searchCondition.where = {
     "user_id": req.params.id
   };

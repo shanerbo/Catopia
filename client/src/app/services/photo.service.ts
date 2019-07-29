@@ -23,4 +23,12 @@ export class PhotoService {
       throw error;
     });
   }
+  getUserPosts(id: string): Promise<Post[]> {
+    return this.http.get('api/photo/user/' + id).toPromise().then((posts: Post[]) => {
+      console.log(posts);
+      return posts;
+    }).catch((error) => {
+      throw error;
+    });
+  }
 }
