@@ -21,6 +21,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   private userId: string;
   private currentUserSubscription: Subscription;
   public currentUser: UserInfo;
+  public followingCount: number;
+  public followerCount: number;
 
   constructor(
     private ls: LoginService,
@@ -36,6 +38,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
       this.currentUser = user;
     });
+    this.getFollowingCount();
+    this.getFollowerCount();
   }
 
   ngOnDestroy() {
@@ -59,6 +63,19 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.us.getUserInfo(this.userId).then((user) => {
       console.log(user);
       this.user = user;
+    });
+  }
+  getFollowingCount() {
+    this.us.getFollowingCount(this.userId).then((followingCount) => {
+      console.log(followingCount);
+      this.followingCount = followingCount;
+    });
+  }
+
+  getFollowerCount() {
+    this.us.getFollowingCount(this.userId).then((followerCount) => {
+      console.log(followerCount);
+      this.followerCount = followerCount;
     });
   }
 }

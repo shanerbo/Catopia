@@ -10,6 +10,8 @@ import { UserInfo } from '../interfaces/user-info';
 })
 export class UserService {
   public userId: string;
+  public followingCount: number;
+  public followerCount: number;
 
   constructor(
     private http: HttpClient,
@@ -28,6 +30,22 @@ export class UserService {
   getUserInfo(userId): Promise<UserInfo> {
     return this.http.get('api/user/' + userId).toPromise().then((userInfo: UserInfo) => {
       return userInfo;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+
+  getFollowingCount(userId): Promise<number> {
+    return this.http.get('api/user/' + userId + '/followingcount').toPromise().then((followingCount: number) => {
+      return followingCount;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+
+  getFollowerCount(userId): Promise<number> {
+    return this.http.get('api/user/' + userId + '/followercount').toPromise().then((followerCount: number) => {
+      return followerCount;
     }).catch((error) => {
       throw error;
     });
