@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../interfaces/post';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
+import { Comment } from '../interfaces/post';
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +36,9 @@ export class PhotoService {
     return this.ls.authRequest('post', '/api/photo/' + id + '/like', {}, null);
   }
 
+
+  postComment(comment: Comment): Promise<any> {
+    return this.ls.authRequest('post', `api/photo/${comment.post_id}/comment`, { body: { content: comment.content } }, null)
+      .toPromise();
+  }
 }

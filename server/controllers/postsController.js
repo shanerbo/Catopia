@@ -73,7 +73,7 @@ exports.getFollowingUsersPosts = [
 * @param: 
 *   - an array of image files in req.body.photos
 *   - a description
-*        
+*   
 */
 exports.postPhoto = [
   // body(''),
@@ -96,6 +96,26 @@ exports.postPhoto = [
     if (addedPhotos.length === req.files.length) {
       res.json({ upload: "success" });
     }
+  }
+];
+
+/*
+* @param: 
+*   - comment content
+*   - 
+*        
+*/
+exports.commentOnPhoto = [
+  sanitizeBody('content').escape(),
+  passport.authenticate('jwt', { session: false }),
+  (req, res, next) => {
+    db.Comments.addComment(req.user.id, req.params.id, req.body.content)
+      .then((comment) => {
+        res.json({ comment: "success" });
+      })
+      .catch((error) => {
+        next(error);
+      });
   }
 ];
 

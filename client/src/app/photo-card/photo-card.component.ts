@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Post } from '../interfaces/post';
+import { Post, Comment } from '../interfaces/post';
 import { LoginService } from '../services/login.service';
 import * as moment from 'moment';
 import { PhotoService } from '../services/photo.service';
@@ -13,7 +13,9 @@ import { PhotoService } from '../services/photo.service';
 export class PhotoCardComponent implements OnInit {
   @Output() likePostEvent = new EventEmitter<string>();
   @Input() post: Post;
+  @Output() commentEvent = new EventEmitter<string>();
   public moment = moment;
+  public comment: string;
 
   constructor(
     private ps: PhotoService,
@@ -28,6 +30,15 @@ export class PhotoCardComponent implements OnInit {
     this.ps.postLike(this.post.id).subscribe((result) => {
       console.log(result);
       this.likePostEvent.next('success');
+    });
+  }
+  postComment(event) {
+    this.ps.postComment({
+      content: this.comment,
+      post_id: this.post.id
+    }).then((result) => {
+      console.log(result);
+      this.commentEvent.next('success');
     });
   }
 }
