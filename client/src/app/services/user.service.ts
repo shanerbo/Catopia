@@ -10,8 +10,7 @@ import { UserInfo } from '../interfaces/user-info';
 })
 export class UserService {
   public userId: string;
-  public followingCount: number;
-  public followerCount: number;
+
 
   constructor(
     private http: HttpClient,
@@ -27,7 +26,7 @@ export class UserService {
     });
   }
 
-  getUserInfo(userId): Promise<UserInfo> {
+  getUserInfo(userId: string | number): Promise<UserInfo> {
     return this.http.get('api/user/' + userId).toPromise().then((userInfo: UserInfo) => {
       return userInfo;
     }).catch((error) => {
@@ -35,19 +34,22 @@ export class UserService {
     });
   }
 
-  getFollowingCount(userId): Promise<number> {
-    return this.http.get('api/user/' + userId + '/followingcount').toPromise().then((followingCount: number) => {
-      return followingCount;
+  getFollowerList(userId: string | number): Promise<UserInfo[]> {
+    return this.http.get('api/user/' + userId + '/follower').toPromise().then((followerList: UserInfo[]) => {
+      return followerList;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+  getFollowingList(userId: string | number): Promise<UserInfo[]> {
+    return this.http.get('api/user/' + userId + '/following').toPromise().then((followingList: UserInfo[]) => {
+      return followingList;
     }).catch((error) => {
       throw error;
     });
   }
 
-  getFollowerCount(userId): Promise<number> {
-    return this.http.get('api/user/' + userId + '/followercount').toPromise().then((followerCount: number) => {
-      return followerCount;
-    }).catch((error) => {
-      throw error;
-    });
+  setFollowStatus(userId: string | number): Observable<any> {
+    return this.ls.authRequest('post', 'api/user/' + userId + '/follow', {}, null);
   }
 }

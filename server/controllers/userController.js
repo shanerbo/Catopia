@@ -4,7 +4,7 @@ const { sanitizeBody, body, validationResult } = require('express-validator');
 
 async function getFollowInfo(req, res, next, followerOrFollowing) {
 	const allFollowInfo = await db.Follows.getFollower(req.params.id, followerOrFollowing);
-	console.log(allFollowInfo);
+	console.log("sup", allFollowInfo);
 	res.status(200);
 	res.json(allFollowInfo);
 }
@@ -30,17 +30,15 @@ exports.getRecommendUsers = [
 	}
 ]
 
-exports.getUserFollowing = [
-	async (req, res, next) => {
-		getFollowInfo(req, res, next, 'following');
-	}
-]
+exports.getUserFollowing = async (req, res, next) => {
+	console.log("hello");
+	getFollowInfo(req, res, next, 'following');
+};
 
-exports.getUserFollower = [
-	async (req, res, next) => {
-		getFollowInfo(req, res, next, 'follower');
-	}
-]
+exports.getUserFollower = async (req, res, next) => {
+	console.log("sup");
+	getFollowInfo(req, res, next, 'follower');
+}
 
 exports.getUserProfile = [
 	async (req, res, next) => {

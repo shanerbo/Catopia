@@ -18,12 +18,19 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public posts: Post[];
   public user: UserInfo;
   public whichTab: string;
-  private userId: string;
+  private userId: number;
   private currentUserSubscription: Subscription;
   public currentUser: UserInfo;
   public followingCount: number;
   public followerCount: number;
-
+  public followerList: UserInfo[];
+  public followingList: UserInfo[];
+  private followerIdList: number[];
+  private followingIdList: number[];
+  public isFollowed = false;
+  public beingFollowed = false;
+  public mutualFollowed = false;
+  public followStatus = 'Follow';
   constructor(
     private ls: LoginService,
     private ps: PhotoService,
@@ -31,15 +38,45 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) { }
 
+
   ngOnInit() {
     this.fetchAllPhotos();
-    this.userId = this.route.snapshot.paramMap.get('id');
-    this.fetchUserInfo();
-    this.currentUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
-      this.currentUser = user;
+    this.route.params.subscribe((params) => {
+      this.userId = params['id'];
+      this.fetchUserInfo();
+      this.currentUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
+        this.currentUser = user;
+      });
+      this.fetchData();
     });
-    this.getFollowingCount();
-    this.getFollowerCount();
+  }
+
+  fetchData() {
+    Promise.all([
+      this.getFollowerList(),
+      this.getFollowingList()
+    ])
+      .then((result) => {
+        this.followerList = result[0];
+        this.followingList = result[1];
+
+        this.followerIdList = this.followerList.map((ele) => ele.id);
+        this.followingIdList = this.followingList.map((ele) => ele.id);
+        this.isFollowed = this.followerIdList.includes(this.currentUser.id) ? true : false;
+        this.beingFollowed = this.followingIdList.includes(this.currentUser.id) ? true : false;
+
+        if (this.isFollowed) {
+          this.followStatus = 'Unfollow';
+          if (this.beingFollowed) {
+            this.followStatus = 'Mutual';
+          }
+        } else {
+          console.log('sb');
+          this.followStatus = 'Follow';
+        }
+      });
+    // this.getFollowingCount();
+    // this.getFollowerCount();
   }
 
   ngOnDestroy() {
@@ -55,27 +92,26 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
   fetchAllPhotos() {
     this.ps.getAllPosts().then((posts) => {
-      console.log(posts);
       this.posts = posts;
     });
   }
   fetchUserInfo() {
     this.us.getUserInfo(this.userId).then((user) => {
-      console.log(user);
       this.user = user;
     });
   }
-  getFollowingCount() {
-    this.us.getFollowingCount(this.userId).then((followingCount) => {
-      console.log(followingCount);
-      this.followingCount = followingCount;
-    });
+
+  getFollowerList(): Promise<UserInfo[]> {
+    return this.us.getFollowerList(this.userId);
   }
 
-  getFollowerCount() {
-    this.us.getFollowingCount(this.userId).then((followerCount) => {
-      console.log(followerCount);
-      this.followerCount = followerCount;
+  getFollowingList(): Promise<UserInfo[]> {
+    return this.us.getFollowingList(this.userId);
+  }
+
+  switchFollowStatus() {
+    this.us.setFollowStatus(this.userId).subscribe((result) => {
+      this.fetchData();
     });
   }
 }
