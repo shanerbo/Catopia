@@ -1,28 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { LoginService } from '../services/login.service';
+import { PhotoService } from '../services/photo.service';
+import { UserInfo } from '../interfaces/user-info';
+import { UserService } from '../services/user.service';
+import { Post } from '../interfaces/post';
+import { Subscription } from 'rxjs';
 
 
 @Component({
   selector: 'app-user-profile',
-  template: `
-  <p id="follower-num" data-toggle="modal" data-target="#follower" style="color:rgba(5, 5, 5, 0.432);"
-                  (click)="switchTab()">
-                  <app-follow-modal>
-                  <h5 class="modal-title" id="exampleModalCenterTitle">this is {{whichTab}}</h5>
-                  </app-follow-modal>`
-  ,
-
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit, OnDestroy {
+  public posts: Post[];
+  public user: UserInfo;
   public whichTab: string;
+  private userId: string;
+  private currentUserSubscription: Subscription;
+  public currentUser: UserInfo;
+
+  constructor(
+    private ls: LoginService,
+    private ps: PhotoService,
+    private us: UserService,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    this.fetchAllPhotos();
+    this.userId = this.route.snapshot.paramMap.get('id');
+    this.fetchUserInfo();
+    this.currentUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
+      this.currentUser = user;
+    });
+  }
+
+  ngOnDestroy() {
+    this.currentUserSubscription.unsubscribe();
+  }
+
   switchFollowing() {
     this.whichTab = 'Following';
   }
+
   switchFollower() {
     this.whichTab = 'Follower';
   }
-
-
+  fetchAllPhotos() {
+    this.ps.getAllPosts().then((posts) => {
+      console.log(posts);
+      this.posts = posts;
+    });
+  }
+  fetchUserInfo() {
+    this.us.getUserInfo(this.userId).then((user) => {
+      console.log(user);
+      this.user = user;
+    });
+  }
 }

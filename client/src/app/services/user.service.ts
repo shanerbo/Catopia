@@ -9,14 +9,24 @@ import { UserInfo } from '../interfaces/user-info';
   providedIn: 'root'
 })
 export class UserService {
+  public userId: string;
 
   constructor(
     private http: HttpClient,
     private ls: LoginService
+
   ) { }
 
   getRecommendUsers(): Promise<UserInfo[]> {
     return this.http.get('api/user/recommend').toPromise().then((userInfo: UserInfo[]) => {
+      return userInfo;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+
+  getUserInfo(userId): Promise<UserInfo> {
+    return this.http.get('api/user/' + userId).toPromise().then((userInfo: UserInfo) => {
       return userInfo;
     }).catch((error) => {
       throw error;
