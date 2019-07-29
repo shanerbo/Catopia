@@ -4,7 +4,7 @@ const { sanitizeBody, body, validationResult } = require('express-validator');
 
 async function getFollowInfo(req, res, next, followerOrFollowing) {
 	const allFollowInfo = await db.Follows.getFollower(req.params.id, followerOrFollowing);
-	console.log(allFollowInfo);
+	console.log("sup", allFollowInfo);
 	res.status(200);
 	res.json(allFollowInfo);
 }

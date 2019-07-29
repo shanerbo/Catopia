@@ -9,10 +9,13 @@ import { UserInfo } from '../interfaces/user-info';
   providedIn: 'root'
 })
 export class UserService {
+  public userId: string;
+
 
   constructor(
     private http: HttpClient,
     private ls: LoginService
+
   ) { }
 
   getRecommendUsers(): Promise<UserInfo[]> {
@@ -21,5 +24,32 @@ export class UserService {
     }).catch((error) => {
       throw error;
     });
+  }
+
+  getUserInfo(userId: string | number): Promise<UserInfo> {
+    return this.http.get('api/user/' + userId).toPromise().then((userInfo: UserInfo) => {
+      return userInfo;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+
+  getFollowerList(userId: string | number): Promise<UserInfo[]> {
+    return this.http.get('api/user/' + userId + '/follower').toPromise().then((followerList: UserInfo[]) => {
+      return followerList;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+  getFollowingList(userId: string | number): Promise<UserInfo[]> {
+    return this.http.get('api/user/' + userId + '/following').toPromise().then((followingList: UserInfo[]) => {
+      return followingList;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+
+  setFollowStatus(userId: string | number): Observable<any> {
+    return this.ls.authRequest('post', 'api/user/' + userId + '/follow', {}, null);
   }
 }
