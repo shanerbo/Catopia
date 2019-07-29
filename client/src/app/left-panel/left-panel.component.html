@@ -1,3 +1,51 @@
-<p>
-  left-panel works!
-</p>
+<div class="nav-sidebar-inner-scroll">
+  <nav id="sidebar" [ngClass]="{ hidden: isCollapsed }">
+    <ul class="navbar-nav list-unstyled components">
+      <li class="nav-item" [ngClass]="{ hidden: isCollapsed }">
+        <a class="nav-link accentFont" [routerLink]="['/']"
+          ><i class="fas fa-home fa-2x"></i> <span>Home</span><span class="badge badge-primary badge-pill">14</span></a
+        >
+      </li>
+      <li class="">
+        <a class="nav-link accentFont" [routerLink]="['/']">
+          <i class="fas fa-heart fa-2x"></i>
+          <span>Likes</span>
+        </a>
+      </li>
+      <li class="">
+        <a class="nav-link accentFont" href="#"
+          ><i class="fas fa-sync-alt fa-2x"></i> <span>Newest post</span></a
+        >
+      </li>
+      <li class="filter-list">
+        <a
+          href="#filterSubmenu"
+          data-toggle="collapse"
+          aria-expanded="false"
+          class="nav-link accentFont"
+          ><i class="fas fa-filter fa-2x"></i> <span>Filter</span></a
+        >
+        <ul class="collapse list-unstyled" id="filterSubmenu">
+          <li class="">
+            <a class="accentFont" href="#">Page 1</a>
+          </li>
+          <li class="">
+            <a class="accentFont" href="#">Page 2</a>
+          </li>
+          <li class="">
+            <a  class="accentFont" href="#">Page 3</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div><button
+      id="sidebar-btn"
+      type="button"
+      class="navbar-toggler btn btn-lg btn-block"
+      (click)="toggleSideBar()"
+    >
+      <span><i class="fas fa-chevron-circle-right fa-2x accentFont"></i></span>
+    </button></div>
+    
+  </nav>
+</div>

@@ -19,7 +19,7 @@ router.post('/user/:id/follow', userController.followOrUnfollow);// follow new u
 router.get('/user/:id', userController.getUserProfile);// get user profile
 router.get('/user/:id/follower', userController.getUserFollower);// get user follower
 router.get('/user/:id/following', userController.getUserFollowing);// get user follower
-// router.get('/user/:id/followercount', userController.getFollowerCount) // get user's follower count
-// router.get('/user/:id/followingcount', userController.getFollowingCount);// get user following count
+router.get('/user/:id/followercount', userController.getFollowerCount) // get user's follower count
+router.get('/user/:id/followingcount', userController.getFollowingCount);// get user following
 
 module.exports = router;

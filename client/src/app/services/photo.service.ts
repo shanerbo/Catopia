@@ -16,4 +16,19 @@ export class PhotoService {
   postPhoto(newPost: FormData): Observable<any> {
     return this.ls.authRequest('post', 'api/photo', {}, newPost);
   }
+  getAllPosts(): Promise<Post[]> {
+    return this.http.get('api/photo/all').toPromise().then((posts: Post[]) => {
+      return posts;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+  getUserPosts(id: string): Promise<Post[]> {
+    return this.http.get('api/photo/user/' + id).toPromise().then((posts: Post[]) => {
+      console.log(posts);
+      return posts;
+    }).catch((error) => {
+      throw error;
+    });
+  }
 }

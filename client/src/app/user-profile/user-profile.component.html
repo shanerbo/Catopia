@@ -1,3 +1,83 @@
-<p>
-  user-profile works!
-</p>
+<div class="row">
+    <div class="col-3">
+      <app-left-panel></app-left-panel>
+    </div>
+    <div class="col-6">
+      <div *ngFor="let post of posts">
+        <app-photo-card [post]="post"></app-photo-card>
+      </div>
+      <app-follow-modal [whichTab]="whichTab"></app-follow-modal>
+    
+    </div>
+    <div class="col-3">
+        <div class="right-panel">
+          <div class="row profile">
+            <div class="col pic">
+                <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
+            </div>
+            <div class="col info">
+              <div class="row information">
+              <div class="col basic-info">
+                <div class="row name">
+                    <p>Jiarany</p>
+                </div>
+                <div class="row gender">
+                    <p style="color:rgba(5, 5, 5, 0.432);">Female</p>
+                </div>
+              </div>
+              <div class="row gender">
+                <p style="color:rgba(5, 5, 5, 0.432);">Female</p>
+              </div>
+            </div>
+            <div class="col follow-btn">
+              <button type="button" class="btn btn-light">Follow</button>
+            </div>
+          </div>
+          <div class="row Number">
+            <div class="col follow">
+              <div class="row following">
+                <a id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </a>
+                <a (click)="switchFollowing()" id="following-num" data-toggle="modal" data-target="#following"
+                  style="color:rgba(5, 5, 5, 0.432);">100 </a>
+              </div>
+              <div class="row follower">
+                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">
+                  Follower: </p>
+                <p id="follower-num" data-toggle="modal" data-target="#following" (click)="switchFollower()"
+                  style="color:rgba(5, 5, 5, 0.432);">
+                  1.3k </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row bio">
+          <p style="color:rgba(5, 5, 5, 0.432);">cnmcnmcsdfsdfsdfasdfasfnmcnmcnmcnmcnmcnmcnm</p>
+        </div>
+      </div>
+      <ol class="user-list">
+        <li class="row user">
+          <div class="col profile-pic">
+            <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
+
+          </div>
+          <div class="col user-info">
+            <p class="username">Ruby</p>
+            <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
+          </div>
+        </li>
+        <li class="row user">
+          <div class="col profile-pic">
+            <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
+
+          </div>
+          <div class="col user-info">
+            <p class="username">Ruby</p>
+            <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
+          </div>
+        </li>
+
+      </ol>
+    </div>
+
+  </div>
