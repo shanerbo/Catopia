@@ -11,7 +11,14 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Follows.getFollower = function (user_id, follows) {
-    return follows === "follower" ? sequelize.query(`select "userName", "email", "Users".id, "following", "bio", "prof_url" from "Users" full join "Follows" on "Users".id = "Follows".user_id where  "Follows".following = ?`, { replacements: [user_id], type: sequelize.QueryTypes.SELECT }) : sequelize.query(`select "userName", "email", "Users".id, "following", "bio", "prof_url" from "Users" full join "Follows" on "Users".id = "Follows".following where user_id = ?`, { replacements: [user_id], type: sequelize.QueryTypes.SELECT });
+    return follows === "follower" ?
+      sequelize.query(`select "userName", "email", "user_id", "following", "bio", "prof_url" from "Users" full join "Follows" on "Users".id = "Follows".user_id where  "Follows".following = ?`,
+        { replacements: [user_id], type: sequelize.QueryTypes.SELECT })
+      : sequelize.query(`select "userName", "email", "user_id", "following", "bio", "prof_url" from "Users" full join "Follows" on "Users".id = "Follows".following where user_id = ?`,
+        {
+          replacements: [user_id],
+          type: sequelize.QueryTypes.SELECT
+        });
   }
   return Follows;
 };

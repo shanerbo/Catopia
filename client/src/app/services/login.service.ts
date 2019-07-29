@@ -26,6 +26,7 @@ export class LoginService {
     if (this.getToken()) {
       this.signInCurrentUser().then((user) => {
         this.user = user;
+        this.currentUser.next(user);
       }).catch((error) => {
         console.log('auto signin error ', error);
         this.unsetToken();
