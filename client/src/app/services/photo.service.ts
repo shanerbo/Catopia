@@ -32,6 +32,10 @@ export class PhotoService {
       throw error;
     });
   }
+  postLike(id: number): Observable<any> {
+    return this.ls.authRequest('post', '/api/photo/' + id + '/like', {}, null);
+  }
+
 
   postComment(comment: Comment): Promise<any> {
     return this.ls.authRequest('post', `api/photo/${comment.post_id}/comment`, { body: { content: comment.content } }, null)

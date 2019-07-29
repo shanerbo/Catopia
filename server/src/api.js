@@ -12,6 +12,7 @@ router.get('/auth', loginController.auth);
 router.get('/photo/all', postsController.getPosts);//show all post
 router.get('/photo/user/:id', postsController.getUserPosts);// show certain user's photos
 router.get('/photo/following', postsController.getFollowingUsersPosts);// show user's following users' photos
+router.post('/photo/:id/like',postsController.likeOrUnlike); //show certain photo's like
 router.get('/photo/cat/:id', postsController.getCatPosts);// show certain cat's posts
 router.post('/photo', postsController.postPhoto);// post a post
 router.post('/photo/:id/comment', postsController.commentOnPhoto);// post a post

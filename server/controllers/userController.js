@@ -14,33 +14,33 @@ exports.getFollowerCount = [
 		const allFollowInfo = await db.Follows.getFollower(req.params.id, 'follower');
 		res.json(allFollowInfo.length);
 	}
-]
+];
 
 exports.getFollowingCount = [
 	async (req, res, next) => {
 		const allFollowInfo = await db.Follows.getFollower(req.params.id, 'following');
 		res.json(allFollowInfo.length);
 	}
-]
+];
 
 exports.getRecommendUsers = [
 	async (req, res, next) => {
 		const ret = await db.Users.getRecommendUsers();
 		res.json(ret);
 	}
-]
+];
 
 exports.getUserFollowing = [
 	async (req, res, next) => {
 		getFollowInfo(req, res, next, 'following');
 	}
-]
+];
 
 exports.getUserFollower = [
 	async (req, res, next) => {
 		getFollowInfo(req, res, next, 'follower');
 	}
-]
+];
 
 exports.getUserProfile = [
 	async (req, res, next) => {
@@ -56,7 +56,7 @@ exports.getUserProfile = [
 			res.json('userNotExist');
 		}
 	}
-]
+];
 
 exports.followOrUnfollow = [
 	passport.authenticate('jwt', { session: false }),
@@ -96,4 +96,4 @@ exports.followOrUnfollow = [
 			res.json({ error: "Needs login to follow user" });
 		}
 	}
-]
+];
