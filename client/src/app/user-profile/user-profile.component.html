@@ -3,26 +3,26 @@
     <app-left-panel></app-left-panel>
   </div>
   <div class="col-6">
-    <app-follow-modal [whichTab]="whichTab"></app-follow-modal>
+    <app-follow-modal [whichTab]="whichTab" [userInfo]="userInfo" [loginUserInfo]="currentUserInfo"></app-follow-modal>
   </div>
 
-  <div class="col-3">
+  <div class=" col-3">
     <div class="right-panel">
       <div class="row profile">
         <div class="col pic">
-          <img src="{{user?.prof_url}}" alt="Avatar">
+          <img src="{{userInfo?.prof_url}}" alt="Avatar">
         </div>
         <div class="col info">
           <div class="row information">
             <div class="col basic-info">
               <div class="row name">
-                <p>{{user?.userName}}</p>
+                <p>{{userInfo?.userName}}</p>
               </div>
               <div class="row gender">
-                <p style="color:rgba(5, 5, 5, 0.432);">{{user?.gender}}</p>
+                <p style="color:rgba(5, 5, 5, 0.432);">{{userInfo?.gender}}</p>
               </div>
             </div>
-            <div class="col follow-btn">
+            <div class="col follow-btn" *ngIf="currentUser?.id!=userInfo?.id">
               <button type="button" class="btn btn-light" (click)="switchFollowStatus()">{{followStatus}}</button>
             </div>
           </div>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="row bio">
-          <p style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
+          <p style="color:rgba(5, 5, 5, 0.432);">{{userInfo?.bio}}</p>
         </div>
       </div>
       <ol class="user-list">

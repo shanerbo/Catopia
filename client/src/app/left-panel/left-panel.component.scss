@@ -20,7 +20,9 @@
     background-color:gray;
   }
 }
-
+.nav-sidebar-inner-scroll{
+  position: fixed;
+}
 #sidebar {
   min-width: 200px;
   max-width: 200px;

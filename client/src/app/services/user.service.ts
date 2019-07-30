@@ -52,4 +52,11 @@ export class UserService {
   setFollowStatus(userId: string | number): Observable<any> {
     return this.ls.authRequest('post', 'api/user/' + userId + '/follow', {}, null);
   }
+  getUserAllInfo(userId: string | number): Promise<any> {
+    return this.http.get('api/user/' + userId + '/userInfo').toPromise().then((userAllInfo: any) => {
+      return userAllInfo;
+    }).catch((error) => {
+      throw error;
+    });
+  }
 }

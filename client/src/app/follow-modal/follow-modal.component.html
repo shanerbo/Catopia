@@ -9,14 +9,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <ol class="user-list">
-          <li class="row user">
+        <ol class="user-list" *ngIf="whichTab==='Following'; else follower">
+          <li class="row user" *ngFor="let user of userInfo.following">
             <div class="col profile-pic">
-              <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
+              <img src={{user?.prof_url}} alt="Avatar">
             </div>
             <div class="col user-info">
-              <p class="username">Jiarany</p>
-              <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am your dad,imyour dad im your dad</p>
+              <p class="username">{{user?.userName}}</p>
+              <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
             </div>
             <div class=" col unfollow-btn">
               <p *ngIf="whichTab =='Following'">
@@ -29,6 +29,28 @@
 
           </li>
         </ol>
+        <ng-template #follower>
+          <ol class="user-list">
+            <li class="row user" *ngFor="let user of userInfo?.follower">
+              <div class="col profile-pic">
+                <img src={{user?.prof_url}} alt="Avatar">
+              </div>
+              <div class="col user-info">
+                <p class="username">{{user?.userName}}</p>
+                <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
+              </div>
+              <div class=" col unfollow-btn">
+                <p *ngIf="whichTab =='Following'">
+                  <button type="button" class="btn btn-light">Unfollow</button>
+                </p>
+                <p *ngIf="whichTab =='Follower'">
+                  <button type="button" class="btn btn-light">Follow</button>
+                </p>
+              </div>
+
+            </li>
+          </ol>
+        </ng-template>
       </div>
     </div>
   </div>

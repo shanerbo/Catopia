@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { LoginService } from '../services/login.service';
+import { userInfo } from 'os';
+import { UserInfo } from '../interfaces/user-info';
 
 @Component({
   selector: 'app-follow-modal',
@@ -8,6 +10,10 @@ import { LoginService } from '../services/login.service';
 })
 export class FollowModalComponent {
   @Input() whichTab: string;
+  @Input() userInfo: any;
+  @Input() loginUserInfo: any;
+
+
 
 
   loggedin = false;

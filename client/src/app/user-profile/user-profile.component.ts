@@ -7,6 +7,7 @@ import { UserInfo } from '../interfaces/user-info';
 import { UserService } from '../services/user.service';
 import { Post } from '../interfaces/post';
 import { Subscription } from 'rxjs';
+import { currentId } from 'async_hooks';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
   public posts: Post[];
-  public user: UserInfo;
+  public userInfo: any;
   public whichTab: string;
   private userId: number;
   private currentUserSubscription: Subscription;
@@ -25,12 +26,14 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public followerCount: number;
   public followerList: UserInfo[];
   public followingList: UserInfo[];
+  // public catList:
   private followerIdList: number[];
   private followingIdList: number[];
-  public isFollowed = false;
+  public hasFollowed = false;
   public beingFollowed = false;
   public mutualFollowed = false;
   public followStatus = 'Follow';
+  public currentUserInfo: any;
   constructor(
     private ls: LoginService,
     private ps: PhotoService,
@@ -43,40 +46,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.fetchAllPhotos();
     this.route.params.subscribe((params) => {
       this.userId = params['id'];
-      this.fetchUserInfo();
+
       this.currentUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
         this.currentUser = user;
+        this.fetchUserInfo();
       });
-      this.fetchData();
     });
-  }
-
-  fetchData() {
-    Promise.all([
-      this.getFollowerList(),
-      this.getFollowingList()
-    ])
-      .then((result) => {
-        this.followerList = result[0];
-        this.followingList = result[1];
-
-        this.followerIdList = this.followerList.map((ele) => ele.id);
-        this.followingIdList = this.followingList.map((ele) => ele.id);
-        this.isFollowed = this.followerIdList.includes(this.currentUser.id) ? true : false;
-        this.beingFollowed = this.followingIdList.includes(this.currentUser.id) ? true : false;
-
-        if (this.isFollowed) {
-          this.followStatus = 'Unfollow';
-          if (this.beingFollowed) {
-            this.followStatus = 'Mutual';
-          }
-        } else {
-          console.log('sb');
-          this.followStatus = 'Follow';
-        }
-      });
-    // this.getFollowingCount();
-    // this.getFollowerCount();
   }
 
   ngOnDestroy() {
@@ -95,23 +70,46 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.posts = posts;
     });
   }
-  fetchUserInfo() {
-    this.us.getUserInfo(this.userId).then((user) => {
-      this.user = user;
+  fetchUserInfo(): Promise<any> {
+    return this.us.getUserAllInfo(this.userId).then((userInfo) => {
+      this.currentUserInfo = this.us.getUserAllInfo(this.currentUser.id);
+      this.userInfo = userInfo;
+      this.followerList = userInfo.follower;
+      this.followingList = userInfo.following;
+      this.followerIdList = this.followerList.map((ele) => ele.id);
+      this.followingIdList = this.followingList.map((ele) => ele.id);
+      if (this.currentUser) {
+        this.hasFollowed = this.followerIdList.includes(this.currentUser.id);
+        this.beingFollowed = this.followingIdList.includes(this.currentUser.id);
+      } else {
+        this.hasFollowed = false;
+        this.beingFollowed = false;
+      }
+
+      if (this.hasFollowed === true) {
+
+        this.followStatus = 'Unfollow';
+        if (this.beingFollowed) {
+          this.followStatus = 'Mutual';
+        }
+      } else {
+        console.log('sb');
+        this.followStatus = 'Follow';
+      }
     });
-  }
-
-  getFollowerList(): Promise<UserInfo[]> {
-    return this.us.getFollowerList(this.userId);
-  }
-
-  getFollowingList(): Promise<UserInfo[]> {
-    return this.us.getFollowingList(this.userId);
   }
 
   switchFollowStatus() {
     this.us.setFollowStatus(this.userId).subscribe((result) => {
-      this.fetchData();
+      if (result.result === 'unFollowed') {
+        this.hasFollowed = false;
+        console.log(this.followingList);
+      } else {
+        this.hasFollowed = true;
+        console.log(this.followerList);
+      }
+      this.fetchUserInfo();
+
     });
   }
 }
