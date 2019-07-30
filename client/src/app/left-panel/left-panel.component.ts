@@ -7,10 +7,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class LeftPanelComponent implements OnInit {
   @Output() refresh = new EventEmitter<string>();
-
   constructor() { }
-  isCollapsed = true;
-  toggleSideBar(): void {
+  public isCollapsed = true;
+
+  toggleSideBar(event): void {
     this.isCollapsed = !this.isCollapsed;
   }
 

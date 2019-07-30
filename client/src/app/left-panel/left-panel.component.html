@@ -42,7 +42,7 @@
       </li>
     </ul>
     <div><button id="sidebar-btn" type="button" class="navbar-toggler btn btn-lg btn-block" (click)="toggleSideBar()">
-        <span><i class="fas fa-chevron-circle-right fa-2x accentFont"></i></span>
+        <span><i class="fas fa-2x accentFont" [ngClass]="{ 'fa-chevron-circle-right': isCollapsed, 'fa-chevron-circle-left': !isCollapsed}" ></i></span>
       </button></div>
 
   </nav>
