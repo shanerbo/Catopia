@@ -32,7 +32,7 @@ exports.addCat = [
 		const newCat = {
 			name: req.body.name,
 			color: req.body.color,
-			breed: req.body.breed,
+			gender: req.body.gender,
 			age: getCatAge(req.body.age),
 			spay: req.body.spay,
 			prof_url: "https://storage.googleapis.com/cat_prof/Cat%20-%201.jpeg",
@@ -67,7 +67,7 @@ exports.updateCat = [
 		const newCat = {
 			name: req.body.name,
 			color: req.body.color,
-			breed: req.body.breed,
+			gender: req.body.gender,
 			age: catAge,
 			spay: req.body.spay,
 			prof_url: "https://storage.googleapis.com/cat_prof/Cat%20-%201.jpeg"
