@@ -40,5 +40,7 @@ export class AddCatModalComponent implements OnInit {
 
   ngOnInit() {
   }
+  submitForm() {
 
+  }
 }
