@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
       bio,
       prof_url
     };
-    return Users.create(newUser)
+    return Users.create(newUser);
   };
   Users.getRecommendUsers = () => {
     return Users.findAll({
