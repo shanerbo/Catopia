@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-left-panel',
@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./left-panel.component.scss']
 })
 export class LeftPanelComponent implements OnInit {
-  constructor() {}
-  isCollapsed = true;
-  toggleSideBar(): void {
+  @Output() refresh = new EventEmitter<string>();
+  constructor() { }
+  public isCollapsed = true;
+
+  toggleSideBar(event): void {
     this.isCollapsed = !this.isCollapsed;
   }
-  ngOnInit() {}
+
+  ngOnInit() { }
+
+  refreshPosts() {
+    this.refresh.next('refresh');
+  }
 }

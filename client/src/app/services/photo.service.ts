@@ -24,6 +24,13 @@ export class PhotoService {
       throw error;
     });
   }
+  getFollowingPhotos(): Promise<Post[]> {
+    return this.ls.authRequest('get', 'api/photo/following', {}, null).toPromise().then((posts: Post[]) => {
+      return posts;
+    }).catch((error) => {
+      throw error;
+    });
+  }
   getUserPosts(id: string): Promise<Post[]> {
     return this.http.get('api/photo/user/' + id).toPromise().then((posts: Post[]) => {
       console.log(posts);

@@ -4,47 +4,50 @@ const { sanitizeBody, body, validationResult } = require('express-validator');
 const passport = require('passport');
 const upload = require('multer')();
 const path = require('path');
-const postInclude = {
-  include: [
-    {
-      model: db.Comments,
-      include: [
-        {
-          model: db.Users,
-          attributes: [['id', 'commentUserId'], ['userName', 'commentUserName'], ['email', 'commentUserEmail']]
-        }
-      ],
-      order: [['createdAt', 'DESC']]
-    },
-    {
-      model: db.Cats,
-      attributes: [['id', 'cat_id'], 'prof_url','name'],
-      require: true,
-    },
-    {
-      model: db.Users,
-      attributes: [['id', 'postOwnerId'], ['userName', 'postOwnerName'], ['prof_url', 'postOwnerProfUrl']]
-    },
-    {
-      model: db.post_media,
-    },
-    {
-      model: db.post_likes
-    }
-  ],
-  order: [['createdAt', 'DESC']]
-};
+// ------------------helper constants------------------
+const postInclude = () => {
+  return {
+    include: [
+      {
+        model: db.Comments,
+        include: [
+          {
+            model: db.Users,
+            attributes: [['id', 'commentUserId'], ['userName', 'commentUserName'], ['email', 'commentUserEmail']]
+          }
+        ],
+        order: [['createdAt', 'DESC']]
+      },
+      {
+        model: db.Cats,
+        attributes: [['id', 'cat_id'], 'prof_url', 'name'],
+        require: true,
+      },
+      {
+        model: db.Users,
+        attributes: [['id', 'postOwnerId'], ['userName', 'postOwnerName'], ['prof_url', 'postOwnerProfUrl']]
+      },
+      {
+        model: db.post_media,
+      },
+      {
+        model: db.post_likes
+      }
+    ],
+    order: [['createdAt', 'DESC']]
+  }
+}
 
-function getCatPostsCondition(cat_id) {
-  let include = postInclude;
-  postInclude.include[1].where = { id: cat_id };
+function getCatPostsInclude(cat_id) {
+  let include = postInclude();
+  include.include[1].where = { id: cat_id };
   return include;
 };
-
+// ------------------------------------------------------
 exports.getCatPosts = [
   async (req, res, next) => {
     const cat_id = req.params.id;
-    const include = getCatPostsCondition(cat_id)
+    const include = getCatPostsInclude(cat_id)
     const ret = await db.Posts.getCatPosts(include, cat_id);
     res.json(ret);
   }
@@ -61,8 +64,7 @@ exports.getFollowingUsersPosts = [
       allFollowingInfo.forEach(element => {
         allFollowingArray.push(element.following + '');
       });
-      const ret = await db.Posts.getFollowingUserPosts(postInclude, allFollowingArray);
-
+      const ret = await db.Posts.getFollowingUserPosts(postInclude(), allFollowingArray);
       res.json(ret);
 
     }
@@ -120,14 +122,14 @@ exports.commentOnPhoto = [
 ];
 
 exports.getPosts = (req, res, next) => {
-  db.Posts.findAll(postInclude).then(result => {
+  db.Posts.findAll(postInclude()).then(result => {
     // console.log("after:", result);
     res.json(result);
   });
 };
 
 exports.getUserPosts = (req, res, next) => {
-  let searchCondition = postInclude;
+  let searchCondition = postInclude();
   if (!req.params.id || !Number(req.params.id)) {
     res.status(400).json({ error: "id is missing or invalid" });
   }
@@ -140,32 +142,34 @@ exports.getUserPosts = (req, res, next) => {
 };
 
 exports.likeOrUnlike = [
-  passport.authenticate('jwt',{session:false}),
-  async(req,res,next) => {
-    if(req.user){
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    if (req.user) {
       const exist = await db.post_likes.findOne({
-        where: { user_id: req.user.id,
-                 post_id: req.params.id}
-      }).catch(error=>next(error));
-      if(!exist){
+        where: {
+          user_id: req.user.id,
+          post_id: req.params.id
+        }
+      }).catch(error => next(error));
+      if (!exist) {
         const entry = {
           user_id: req.user.id,
           post_id: req.params.id
         }
         const create = await db.post_likes.create(entry);
-        if (create.length !==0 ){
+        if (create.length !== 0) {
           res.status(200);
-          res.json({ result: "liked"});
-        }else{
-          res.json({ result: "likeFailed"});
+          res.json({ result: "liked" });
+        } else {
+          res.json({ result: "likeFailed" });
         }
-      }else{
+      } else {
         exist.destroy();
         res.status(200);
-        res.json({ result: "unliked"});
+        res.json({ result: "unliked" });
       }
-    }else{
-      res.json({ error: "Needs login to follow user"});
+    } else {
+      res.json({ error: "Needs login to follow user" });
     }
   }
 ];

@@ -46,8 +46,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.fetchUserInfo();
       this.currentUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
         this.currentUser = user;
+        this.fetchData();
       });
-      this.fetchData();
     });
   }
 
@@ -62,8 +62,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
         this.followerIdList = this.followerList.map((ele) => ele.id);
         this.followingIdList = this.followingList.map((ele) => ele.id);
-        this.isFollowed = this.followerIdList.includes(this.currentUser.id) ? true : false;
-        this.beingFollowed = this.followingIdList.includes(this.currentUser.id) ? true : false;
+        this.isFollowed = this.followerIdList.includes(this.currentUser.id);
+        this.beingFollowed = this.followingIdList.includes(this.currentUser.id);
 
         if (this.isFollowed) {
           this.followStatus = 'Unfollow';
