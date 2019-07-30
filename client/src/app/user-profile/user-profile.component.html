@@ -50,17 +50,17 @@
           <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.bio}}</p>
         </div>
       </div>
-      <ol class="user-list">
+      <ol class="user-list" *ngFor="let cat of viewingUserInfo.cat">
         <li class="row user">
           <div class="col profile-pic">
-            <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
-
+            <img src="{{cat?.prof_url}}" alt="Avatar">
           </div>
           <div class="col user-info">
-            <p class="username">Ruby</p>
-            <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
+            <p class="username">{{cat?.name}}</p>
           </div>
         </li>
+      </ol>
+      <ol class="user-list" *ngIf="loggedinUserInfo?.id==viewingUserInfo?.id">
         <li class="row user">
           <div class="col profile-pic">
             <i class="fas fa-plus-circle fa-2x" data-toggle="modal" data-target="#addcat"></i>
@@ -69,7 +69,6 @@
             <p class="username">Add your cat</p>
           </div>
         </li>
-
       </ol>
     </div>
 
