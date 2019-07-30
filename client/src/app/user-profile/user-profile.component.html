@@ -5,6 +5,7 @@
   <div class="col-6">
     <app-follow-modal [whichTab]="whichTab" [viewingUserInfo]="viewingUserInfo" [loggedinUserInfo]="loggedinUserInfo">
     </app-follow-modal>
+    <app-add-cat-modal></app-add-cat-modal>
   </div>
 
   <div class=" col-3">
@@ -62,12 +63,10 @@
         </li>
         <li class="row user">
           <div class="col profile-pic">
-            <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
-
+            <i class="fas fa-plus-circle fa-2x" data-toggle="modal" data-target="#addcat"></i>
           </div>
           <div class="col user-info">
-            <p class="username">Ruby</p>
-            <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
+            <p class="username">Add your cat</p>
           </div>
         </li>
 

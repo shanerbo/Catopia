@@ -1,0 +1,144 @@
+.cat-profile{
+    border-color:#b35f5f3b;
+    border-style:solid;
+    border-width:1px;
+   
+    overflow-wrap: break-word;
+    margin:0px;
+    width:25pc;
+    // height:30pc;
+    padding:0px;
+    position:fixed;
+    padding-bottom:0px;
+    .profile{
+        width:100%;
+        padding:10px;
+        .pic{
+            padding:10px;
+            padding-left:20px;
+            max-width:40%;
+            float:left;
+            img{
+                width:100%;
+                border-radius:50%;
+                float:left;
+            }
+        }
+        .info{
+            min-width:55%;
+            max-width:60%;
+            .basic-info{
+                float:left;
+                max-width:50%
+
+            }
+
+        }
+        .name{
+            // padding-left:40px;
+            width:100%;
+            height:50%;
+            padding-top:10px;
+            font-weight:bold;
+            p{
+                margin-bottom:0px;
+            }
+        }
+        .age{
+            // padding-left:40px;
+            width:100%;
+            height:50%;
+            margin-bottom:0px;
+            p{
+                margin:0px;
+            }
+            
+        }
+        .Number{
+            padding-top:1px;
+            .color{
+                margin-bottom:0px;
+                
+            }
+            #color-tab{
+                padding-right:10px;
+                margin-bottom:0px;
+                font-weight:bold;
+            }
+            #color-value{
+                margin-bottom:0px;
+            }
+            
+            #gender-value{
+                margin-bottom:0px;
+                
+            }
+           
+            #gender-tab{
+                padding-right:10px;
+                max-width:100%;
+                font-weight:bold;
+                margin-bottom:0px;
+            } 
+            #spay-value{
+                margin-bottom:0px;
+                
+            }
+           
+            #spay-tab{
+                padding-right:10px;
+                max-width:100%;
+                font-weight:bold;
+                margin-bottom:0px;
+            }
+        }
+        }
+    }
+    .user-list{
+        background-color:#b35f5f3b;
+        margin-bottom:0px;
+        padding-left:40px;
+        padding-top:10px;
+        width: 100%;
+        max-height:250px;
+        .owner{
+            .p{
+                font-weight:bold;
+                margin:0px;
+            }
+        }
+        .user{
+            max-width: 100%;
+            padding-bottom:15px;
+            list-style:outside none none;
+                .profile-pic {
+                    max-width:15%;
+                    padding:0px;
+                    img{
+                        float:left;
+                        border-radius:50%;
+                        width:100%;
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+                .user-info{
+                    max-width:55%;
+                    padding:0px;
+                    .username{
+                        padding-left:10px;
+                        height:50%;
+                        margin:0px;
+                    }
+                    .userbio{
+                        padding-left:10px;
+                        margin:0px;
+                        overflow:hidden; 
+                        white-space: nowrap;
+                        text-overflow:ellipsis;
+                    }
+                }
+                
+                
+        }
+    }

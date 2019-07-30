@@ -3,6 +3,7 @@ const express = require('express');
 const loginController = require('../controllers/loginController');
 const postsController = require('../controllers/postsController');
 const userController = require('../controllers/userController');
+const catController = require('../controllers/catController');
 const router = express.Router();
 
 
@@ -27,4 +28,7 @@ router.get('/user/:id', userController.getUserProfile);// get user profile
 router.get('/user/:id/userInfo', userController.getUserInfo) // get whole user info
 
 router.post('/user/:id/follow', userController.followOrUnfollow);// follow new user
+
+router.post('/cat/new', catController.addCat);
+router.post('/cat/:id/edit', catController.updateCat);
 module.exports = router;

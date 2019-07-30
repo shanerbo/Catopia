@@ -12,14 +12,15 @@ module.exports = (Users) => {
   const localLogin = new LocalStrategy({
     usernameField: 'email'
   }, async (email, password, done) => {
-    console.log("entered email&pw", email, password);
+    // console.log("entered email&pw", email, password);
     await User.findOne({ where: { email: email } }).then((user) => {
-      console.log("found User:", user.dataValues);
       if (!user || !bcrypt.compareSync(password, user.pwd)) {
         return done(null, false, { error: "Email or password don't match. Please try again." });
       }
       user = user.dataValues;
       delete user.pwd;
+      console.log("auth success, logging in");
+      console.log("user:", user.userName);
       return done(null, user);
     }).catch((error) => {
       console.error(error);
@@ -31,15 +32,15 @@ module.exports = (Users) => {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: jwtSecret
   }, async (payload, done) => {
-    console.log("payload", payload);
+    // console.log("payload", payload);
     if (!payload.id) {
       return done(null, false);
     }
     const now = new Date().getTime();
     const expiration = payload.exp * 1000;
     if (expiration <= now) {
-      console.log(now);
-      console.log(expiration);
+      // console.log(now);
+      // console.log(expiration);
       return done(null, false);
     }
     let user = await User.findByPk(payload.id);
