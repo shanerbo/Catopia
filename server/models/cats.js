@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Cats = sequelize.define('Cats', {
     name: DataTypes.STRING,
     color: DataTypes.STRING,
-    breed: DataTypes.STRING,
+    gender: DataTypes.STRING,
     age: DataTypes.DATE,
     spay: DataTypes.STRING,
     prof_url: DataTypes.STRING,

@@ -26,23 +26,32 @@
         </a>
       </li>
       <li class="filter-list">
-        <a href="#filterSubmenu" data-toggle="collapse" aria-expanded="false" class="nav-link accentFont"><i
-            class="fas fa-filter fa-2x"></i> <span>Filter</span></a>
-        <ul class="collapse list-unstyled" id="filterSubmenu">
-          <li class="">
-            <a class="accentFont" href="#">Page 1</a>
-          </li>
-          <li class="">
-            <a class="accentFont" href="#">Page 2</a>
-          </li>
-          <li class="">
-            <a class="accentFont" href="#">Page 3</a>
-          </li>
-        </ul>
+        <a *ngIf="isCollapsed; else filterList" class="nav-link accentFont"><i class="fas fa-filter fa-2x"></i>
+          <span>Post Filter</span>
+        </a>
+        <ng-template #filterList>
+
+          <div class="list-unstyled form-group" id="filterSubmenu">
+            <label for="gender">Gender</label>
+            <select name="catFilter" class="form-control" id="gender">
+              <option value="">
+              </option>
+              <option value="boy">
+                Girl
+              </option>
+              <option value="boy">
+                Boy
+              </option>
+            </select>
+            <button type="submit" class="btn btn-primary float-right mt-2">Apply</button>
+          </div>
+
+        </ng-template>
       </li>
     </ul>
     <div><button id="sidebar-btn" type="button" class="navbar-toggler btn btn-lg btn-block" (click)="toggleSideBar()">
-        <span><i class="fas fa-2x accentFont" [ngClass]="{ 'fa-chevron-circle-right': isCollapsed, 'fa-chevron-circle-left': !isCollapsed}" ></i></span>
+        <span><i class="fas fa-2x accentFont"
+            [ngClass]="{ 'fa-chevron-circle-right': isCollapsed, 'fa-chevron-circle-left': !isCollapsed}"></i></span>
       </button></div>
 
   </nav>
