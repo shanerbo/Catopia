@@ -17,7 +17,7 @@ import { currentId } from 'async_hooks';
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
   public posts: Post[];
-  public userInfo: any;
+  public viewingUserInfo: any; // userInfo
   public whichTab: string;
   private userId: number;
   private currentUserSubscription: Subscription;
@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public beingFollowed = false;
   public mutualFollowed = false;
   public followStatus = 'Follow';
-  public currentUserInfo: any;
+  public loggedinUserInfo: any; // currentUserInfo
   constructor(
     private ls: LoginService,
     private ps: PhotoService,
@@ -47,6 +47,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.userId = params['id'];
 
+      this.currentUser = this.ls.user;
+      this.fetchUserInfo();
       this.currentUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
         this.currentUser = user;
         this.fetchUserInfo();
@@ -72,8 +74,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
   fetchUserInfo(): Promise<any> {
     return this.us.getUserAllInfo(this.userId).then((userInfo) => {
-      this.currentUserInfo = this.us.getUserAllInfo(this.currentUser.id);
-      this.userInfo = userInfo;
+      this.loggedinUserInfo = this.us.logInUserInfo;
+      this.viewingUserInfo = userInfo;
       this.followerList = userInfo.follower;
       this.followingList = userInfo.following;
       this.followerIdList = this.followerList.map((ele) => ele.id);

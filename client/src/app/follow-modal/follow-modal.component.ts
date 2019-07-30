@@ -10,8 +10,8 @@ import { UserInfo } from '../interfaces/user-info';
 })
 export class FollowModalComponent {
   @Input() whichTab: string;
-  @Input() userInfo: any;
-  @Input() loginUserInfo: any;
+  @Input() viewingUserInfo: any;
+  @Input() loggedinUserInfo: any;
 
 
 
