@@ -4,6 +4,7 @@ import { Post } from '../interfaces/post';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
 import { Comment } from '../interfaces/post';
+import { CatFilter } from '../interfaces/cat';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +18,17 @@ export class PhotoService {
   postPhoto(newPost: FormData): Observable<any> {
     return this.ls.authRequest('post', 'api/photo', {}, newPost);
   }
-  getAllPosts(): Promise<Post[]> {
-    return this.http.get('api/photo/all').toPromise().then((posts: Post[]) => {
+  getAllPosts(filters: CatFilter): Promise<Post[]> {
+    const headers = new HttpHeaders();
+    // for
+    return this.http.get('api/photo/all', { headers }).toPromise().then((posts: Post[]) => {
       return posts;
     }).catch((error) => {
       throw error;
     });
   }
-  getFollowingPhotos(): Promise<Post[]> {
-    return this.ls.authRequest('get', 'api/photo/following', {}, null).toPromise().then((posts: Post[]) => {
+  getFollowingPhotos(filters: CatFilter): Promise<Post[]> {
+    return this.ls.authRequest('get', 'api/photo/following', { body: { filters } }, null).toPromise().then((posts: Post[]) => {
       return posts;
     }).catch((error) => {
       throw error;

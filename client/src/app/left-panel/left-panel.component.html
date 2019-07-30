@@ -26,14 +26,16 @@
         </a>
       </li>
       <li class="filter-list">
-        <a *ngIf="isCollapsed; else filterList" class="nav-link accentFont"><i class="fas fa-filter fa-2x"></i>
+        <a *ngIf="isCollapsed; else filterList" (click)="expandSideBar()" class="nav-link accentFont"><i
+            class="fas fa-filter fa-2x"></i>
           <span>Post Filter</span>
         </a>
         <ng-template #filterList>
 
           <div class="list-unstyled form-group" id="filterSubmenu">
-            <label for="gender">Gender</label>
-            <select name="catFilter" class="form-control" id="gender">
+
+            <label for="gender" class="accentFont">Gender</label>
+            <select [(ngModel)]="filters.gender" name="catFilter" class="form-control" id="gender">
               <option value="">
               </option>
               <option value="boy">
@@ -43,7 +45,19 @@
                 Boy
               </option>
             </select>
-            <button type="submit" class="btn btn-primary float-right mt-2">Apply</button>
+            <div class="btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary toggle-btn">
+                <input type="checkbox" [(ngModel)]="filters.spay" name="spay" autocomplete="off"> Spayed
+              </label>
+            </div>
+            <div class="btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary toggle-btn">
+                <input type="checkbox" [(ngModel)]="filters.kitten" name="kitten" autocomplete="off"> Kittens(&lt; 6
+                Months)
+              </label>
+            </div>
+
+            <button type="submit" (click)="applyFilters($event)" class="btn btn-primary float-right mt-2">Apply</button>
           </div>
 
         </ng-template>

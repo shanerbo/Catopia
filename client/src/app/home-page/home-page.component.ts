@@ -7,6 +7,7 @@ import { UserInfo } from '../interfaces/user-info';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CatFilter } from '../interfaces/cat';
 
 @Component({
   selector: 'app-home-page',
@@ -17,6 +18,7 @@ export class HomePageComponent implements OnInit {
   public posts: Post[];
   public users: UserInfo[];
   public url: string;
+  private filters: CatFilter;
 
   constructor(
     private ls: LoginService,
@@ -39,7 +41,10 @@ export class HomePageComponent implements OnInit {
 
   refetchWithFilters(filters) {
     console.log(filters);
+    this.filters = filters;
+    this.fetchPosts();
   }
+
   fetchPosts() {
     console.log('visiting', this.url);
     if (this.url === '') {
@@ -61,7 +66,7 @@ export class HomePageComponent implements OnInit {
     });
   }
   fetchFollowingPhotos(): Promise<Post[]> {
-    return this.ps.getFollowingPhotos().then((posts: Post[]) => {
+    return this.ps.getFollowingPhotos(this.filters).then((posts: Post[]) => {
       console.log('Fetched all following users\' posts', posts);
       this.posts = posts;
       return posts;
