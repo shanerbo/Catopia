@@ -1,0 +1,22 @@
+#photos {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  .name{
+    width:40%;
+  }
+  .color{
+    width:40%;
+  }
+  .breed{
+    padding-left:10px;
+      width:40%;
+  }
+  .age{
+    padding-left:10px;
+      width:40%;
+  }
