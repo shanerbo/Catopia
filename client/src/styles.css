@@ -3,3 +3,8 @@
   color: #8AA194 !important;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.btn-primary {
+  background-color: #8AA194 !important;
+  border-color: #8AA194 !important;
+}

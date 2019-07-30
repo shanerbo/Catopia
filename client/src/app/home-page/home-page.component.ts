@@ -37,7 +37,9 @@ export class HomePageComponent implements OnInit {
     this.fetchRecommendUsers();
   }
 
-
+  refetchWithFilters(filters) {
+    console.log(filters);
+  }
   fetchPosts() {
     console.log('visiting', this.url);
     if (this.url === '') {

@@ -26,6 +26,7 @@ module.exports = {
           updatedAt: new Date(),
           spay: false,
           color: "white",
+          gender: "boy",
           age: getCatAge(80)
         },
         {
@@ -35,6 +36,7 @@ module.exports = {
           createdAt: new Date(),
           age: getCatAge(50),
           spay: true,
+          gender: "boy",
           color: "grey",
           updatedAt: new Date()
         },
@@ -44,6 +46,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%203.jpeg',
           createdAt: new Date(),
           age: getCatAge(80),
+          gender: "girl",
           spay: false,
           color: "red, wait what?",
           updatedAt: new Date()
@@ -54,6 +57,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%204.jpeg',
           createdAt: new Date(),
           age: getCatAge(80),
+          gender: "girl",
           spay: true,
           color: "pink af omg",
           updatedAt: new Date()
@@ -64,6 +68,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%205.jpeg',
           createdAt: new Date(),
           age: getCatAge(80),
+          gender: "boy",
           spay: false,
           color: "rainbow",
           updatedAt: new Date()
@@ -74,6 +79,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%206.jpeg',
           createdAt: new Date(),
           age: getCatAge(90),
+          gender: "boy",
           spay: false,
           color: "green",
           updatedAt: new Date()
@@ -84,6 +90,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%207.jpeg',
           createdAt: new Date(),
           age: getCatAge(580),
+          gender: "boy",
           spay: true,
           color: "no telling",
           updatedAt: new Date()
@@ -94,6 +101,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%208.jpeg',
           age: getCatAge(890),
           createdAt: new Date(),
+          gender: "girl",
           spay: true,
           color: "color of true elegance",
           updatedAt: new Date()
@@ -104,6 +112,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%209.jpeg',
           createdAt: new Date(),
           age: getCatAge(280),
+          gender: "male",
           spay: true,
           color: "color of first love",
           updatedAt: new Date()
@@ -113,6 +122,7 @@ module.exports = {
           name: 'mcaCat1',
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2010.jpeg',
           createdAt: new Date(),
+          gender: "boy",
           spay: true,
           color: "guess",
           age: getCatAge(780),
@@ -124,6 +134,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2011.jpeg',
           createdAt: new Date(),
           age: getCatAge(380),
+          gender: "girl",
           spay: true,
           color: "kinda yellow",
           updatedAt: new Date()
@@ -134,6 +145,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2012.jpeg',
           createdAt: new Date(),
           age: getCatAge(180),
+          gender: "boy",
           spay: true,
           color: "totally black",
           updatedAt: new Date()

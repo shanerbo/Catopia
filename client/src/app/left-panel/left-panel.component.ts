@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { CatFilter } from '../interfaces/cat';
 
 @Component({
   selector: 'app-left-panel',
@@ -7,11 +8,18 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class LeftPanelComponent implements OnInit {
   @Output() refresh = new EventEmitter<string>();
+  @Output() filter = new EventEmitter<CatFilter>();
+
+  public filters: CatFilter;
+
   constructor() { }
   public isCollapsed = true;
 
   toggleSideBar(event): void {
     this.isCollapsed = !this.isCollapsed;
+  }
+  expand(): void {
+    this.isCollapsed = false;
   }
 
   ngOnInit() { }
