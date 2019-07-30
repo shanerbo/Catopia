@@ -23,7 +23,7 @@ export class PhotoCardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.post);
+    // console.log(this.post);
   }
 
   likePost() {

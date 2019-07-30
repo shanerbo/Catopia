@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Post } from '../interfaces/post';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { UserInfo } from '../interfaces/user-info';
 
 @Component({
   selector: 'app-compose-box',
@@ -9,6 +10,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ComposeBoxComponent implements OnInit {
   @Output() post = new EventEmitter<FormData>();
+  @Input() currentUser: UserInfo;
 
   private photosToUpload: File[] = [];
   public photoList: FileList;
