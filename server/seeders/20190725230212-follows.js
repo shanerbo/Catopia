@@ -1,47 +1,49 @@
 'use strict';
+const model = require("../models/index");
+async function userId(email) {
+  return await model.Users.findUserByEmail(email).get('id');
+}
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      */
+  up: async (queryInterface, Sequelize) => {
+    const erbosId = await userId("erbos@sfu.ca");
+    const jiaranId = await userId("jiarany@sfu.ca");
+    const ottoId = await userId("ohu@sfu.ca");
+    const mcaId = await userId("mca176@sfu.ca");
     return queryInterface.bulkInsert('Follows', [
       {
-        user_id: 1,
-        following: 2,
+        user_id: erbosId,
+        following: jiaranId,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        user_id: 1,
-        following: 3,
+        user_id: erbosId,
+        following: ottoId,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        user_id: 2,
-        following: 1,
+        user_id: jiaranId,
+        following: ottoId,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        user_id: 3,
-        following: 1,
+        user_id: mcaId,
+        following: ottoId,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        user_id: 4,
-        following: 1,
+        user_id: erbosId,
+        following: mcaId,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        user_id: 4,
-        following: 2,
+        user_id: ottoId,
+        following: mcaId,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -55,6 +57,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkDelete('Follow', null, {});
+    return queryInterface.bulkDelete('Follows', null, {});
   }
 };

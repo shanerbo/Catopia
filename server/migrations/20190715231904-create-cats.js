@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       age: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       spay: {
         type: Sequelize.STRING

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     color: DataTypes.STRING,
     breed: DataTypes.STRING,
-    age: DataTypes.STRING,
+    age: DataTypes.DATE,
     spay: DataTypes.STRING,
     prof_url: DataTypes.STRING,
     user_id: DataTypes.INTEGER
@@ -19,5 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     return Cats.findAll({ where: { user_id }, attributes: [['id', 'cat_id'], 'name', 'prof_url', 'user_id'] });
   }
 
+  Cats.createCat = (cat) => {
+    return Cats.create(cat);
+  }
   return Cats;
 };
