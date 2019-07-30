@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <ol class="user-list" *ngIf="whichTab==='Following'; else follower">
+        <ol class="user-list" *ngIf="whichTab==='Following'; else Follower">
           <li class="row user" *ngFor="let user of userInfo.following">
             <div class="col profile-pic">
               <img src={{user?.prof_url}} alt="Avatar">
@@ -29,7 +29,7 @@
 
           </li>
         </ol>
-        <ng-template #follower>
+        <ng-template #Follower>
           <ol class="user-list">
             <li class="row user" *ngFor="let user of userInfo?.follower">
               <div class="col profile-pic">
