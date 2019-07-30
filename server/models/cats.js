@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Cats.findUserCats = (user_id) => {
-    return Cats.findAll({ where: { user_id } });
+    return Cats.findAll({ where: { user_id }, attributes: [['id', 'cat_id'], 'name', 'prof_url', 'user_id'] });
   }
 
   return Cats;

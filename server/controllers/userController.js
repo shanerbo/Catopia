@@ -4,24 +4,24 @@ const { sanitizeBody, body, validationResult } = require('express-validator');
 
 async function getFollowInfo(req, res, next, followerOrFollowing) {
 	const allFollowInfo = await db.Follows.getFollower(req.params.id, followerOrFollowing);
-	console.log("sup", allFollowInfo);
-	res.status(200);
-	res.json(allFollowInfo);
+	return allFollowInfo;
 }
 
-exports.getFollowerCount = [
+exports.getUserInfo = [
 	async (req, res, next) => {
-		const allFollowInfo = await db.Follows.getFollower(req.params.id, 'follower');
-		res.json(allFollowInfo.length);
-	}
-];
+		let userInfo = (await db.Users.findOne({ where: { id: req.params.id } })).toJSON();
+		delete userInfo.pwd;
+		const followerList = await getFollowInfo(req, res, next, 'follower');
+		const followingList = await getFollowInfo(req, res, next, 'following');
+		const catInfo = await db.Cats.findUserCats(req.params.id);
+		userInfo.following = followingList;
+		userInfo.follower = followerList;
+		userInfo.cat = catInfo;
+		res.json(userInfo);
 
-exports.getFollowingCount = [
-	async (req, res, next) => {
-		const allFollowInfo = await db.Follows.getFollower(req.params.id, 'following');
-		res.json(allFollowInfo.length);
 	}
-];
+]
+
 
 exports.getRecommendUsers = [
 	async (req, res, next) => {
@@ -70,15 +70,10 @@ exports.followOrUnfollow = [
 			}).catch(error => next(error));
 			if (!exist) {
 				const isFollowed = await db.Follows.findOne({ where: { user_id: req.params.id, following: req.user.id } })
-				// const mutual = isFollowed ? 1 : 0;
 				const entry = {
 					user_id: req.user.id,
 					following: req.params.id,
-					// mutual: mutual
 				}
-				// if (isFollowed) {
-				// 	await db.Follows.update({ "mutual": 1 }, { where: { user_id: req.params.id, following: req.user.id } });
-				// }
 				const create = await db.Follows.create(entry);
 				if (create.length !== 0) {
 					res.status(200);
@@ -88,7 +83,7 @@ exports.followOrUnfollow = [
 				}
 			} else {
 				exist.destroy();
-				// await db.Follows.update({ "mutual": 0 }, { where: { user_id: req.params.id, following: req.user.id } });
+
 				res.status(200);
 				res.json({ result: "unFollowed" })
 			}
