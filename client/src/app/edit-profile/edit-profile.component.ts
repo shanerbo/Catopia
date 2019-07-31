@@ -16,7 +16,9 @@ export class EditProfileComponent implements OnInit {
   file: FileList;
   constructor(
     private ls: LoginService,
-    private us: UserService
+    private us: UserService,
+    private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -55,6 +57,7 @@ export class EditProfileComponent implements OnInit {
       this.ls.saveToken(result.token);
       this.currentUserInfo = this.ls.getUserInfo();
       console.log(result);
+      this.router.navigateByUrl('/');
     }));
 
   }
