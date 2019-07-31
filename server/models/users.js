@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
   Users.findUserByEmail = (email) => {
     return Users.findOne({ where: { email } });
   };
+  Users.updateUser = (oldUser, newUser) => {
+    newUser.pwd = bcrypt.hashSync(newUser.pwd, salt);
+
+    return oldUser.update(newUser);
+  }
   Users.createUser = (
     userName,
     pwd,

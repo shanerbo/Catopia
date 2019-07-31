@@ -20,6 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ComposeBoxComponent } from './compose-box/compose-box.component';
 import { FollowModalComponent } from './follow-modal/follow-modal.component';
 import { MidPanelComponent } from './mid-panel/mid-panel.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MidPanelComponent } from './mid-panel/mid-panel.component';
     UserProfileComponent,
     ComposeBoxComponent,
     FollowModalComponent,
-    MidPanelComponent
+    MidPanelComponent,
+    EditProfileComponent
   ],
   imports: [
     FormsModule,

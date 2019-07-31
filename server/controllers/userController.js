@@ -1,5 +1,7 @@
 const db = require('../models/index');
 const passport = require('passport');
+const bcrypt = require('bcrypt');
+
 const { sanitizeBody, body, validationResult } = require('express-validator');
 
 async function getFollowInfo(req, res, next, followerOrFollowing) {
@@ -94,6 +96,53 @@ exports.followOrUnfollow = [
 			}
 		} else {
 			res.json({ error: "Needs login to follow user" });
+		}
+	}
+];
+
+exports.updateUser = [
+	passport.authenticate('jwt', { session: false }),
+	sanitizeBody('userName').escape(),
+	sanitizeBody('pwd').escape(),
+	sanitizeBody('firstName').escape(),
+	sanitizeBody('lastName').escape(),
+	sanitizeBody('email').escape(),
+	sanitizeBody('gender').escape(),
+	sanitizeBody('phone').escape(),
+	sanitizeBody('bio').escape(),
+	sanitizeBody('prof_url').escape(),
+	body('email', 'Eamil must be valid.').isEmail().isLength({ min: 1 }).trim(),
+	body('password', 'Password must longer than 6 characters.').isLength({ min: 6 }).trim(),
+	body('phone', 'Phone number must be number').isNumeric().isLength({ max: 10 }).trim(),
+
+	async (req, res, next) => {
+		if (req.user.id != req.params.id) {
+			res.status(400).json({ updateUser: "You can't edit someone else's info" });
+		}
+		console.log(req.body);
+		const newUserInfo = {
+			userName: req.body.userName,
+			pwd: req.body.pwd,
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			email: req.body.email,
+			gender: req.body.gender,
+			phone: req.body.phone,
+			bio: req.body.bio,
+			prof_url: null//TODO
+		}
+		const oldUser = await db.Users.findOne({
+			where: { id: req.user.id }
+		}).catch((error) => next(error));
+
+		if (!oldUser) {
+			res.status(400).json({ error: "Need to login to edit profile" });
+		}
+		const newUser = await db.Users.updateUser(oldUser, newUserInfo).catch((error) => next(error));
+		console.log(newUser.bio + "!!!!")
+		if (newUser) {
+			console.log(newUser.bio + "!!!!")
+			res.status(200).json({ update: "success" });
 		}
 	}
 ];

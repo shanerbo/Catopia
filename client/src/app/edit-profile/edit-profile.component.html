@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2 col-sm-0">
+      <app-left-panel></app-left-panel>
+    </div>
+
+    <div class="col-lg-8 col-sm-12">
+      <div class="card card-form">
+        <div class="card-body">
+          <div class="editUserForm">
+            <form class="pt-3" (ngSubmit)="onEditUserSubmit()">
+              <div class="form-group form-row">
+                <div class="col">
+                  <label for="firstName">First name</label>
+                  <input type="text" [(ngModel)]="currentUserInfo.firstName" class="form-control" name="firstName"
+                    placeholder="First name" id="firstName">
+                </div>
+                <div class="col">
+                  <label for="lastName">Last name</label>
+                  <input type="text" [(ngModel)]="currentUserInfo.lastName" class="form-control" name="lastName"
+                    placeholder="Last name" id="lastName">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" [(ngModel)]="currentUserInfo.email" class="form-control" name="email" id="email"
+                  placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <label for="userName">User name</label>
+                <input type="text" [(ngModel)]="currentUserInfo.Username" class="form-control" name="userName"
+                  id="userName" placeholder="Username" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" [(ngModel)]="currentUserInfo.pwd" class="form-control" name="pwd" id="password"
+                  required placeholder="Password" autocomplete="false">
+              </div>
+              <div class="form-group">
+                <label for="genderSelection">Gender</label>
+                <select [(ngModel)]="currentUserInfo.gender" name="gender" class="form-control" id="genderSelection">
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Prefer not to tell</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input type="text" [(ngModel)]="currentUserInfo.phone" class="form-control" name="editUserPhone"
+                  id="phone" placeholder="editUserPhone">
+              </div>
+              <div class="form-group">
+                <label for="bio">Description</label>
+                <input type="text" [(ngModel)]="currentUserInfo.bio" class="form-control" name="editUserbio" id="bio"
+                  placeholder="editUserbio">
+              </div>
+
+
+              <button id="submit-btn" type="submit" class="btn btn-primary btn-block">Update information</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-2 col-sm-0">
+      <app-right-panel [users]="users"></app-right-panel>
+    </div>
+  </div>
+
+
+
+
+</div>
