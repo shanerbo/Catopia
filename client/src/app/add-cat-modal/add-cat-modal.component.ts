@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Cat } from '../interfaces/cat';
 import { LoginService } from '../services/login.service';
 import { PhotoService } from '../services/photo.service';
@@ -6,6 +6,7 @@ import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserInfo } from '../interfaces/user-info';
 import { Subscription } from 'rxjs';
+import { CatService } from '../services/cat.service';
 
 
 
@@ -15,32 +16,54 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./add-cat-modal.component.scss']
 })
 export class AddCatModalComponent implements OnInit {
-  public newCat: Cat;
+  @Output() post = new EventEmitter<FormData>();
+
+  public newCat = {
+    name: '',
+    color: '',
+    gender: '',
+    age: '',
+    spay: false
+  };
   public logInUserSubscription: Subscription;
   public logInUserId: number;
-
-  constructor(private ls: LoginService,
-    private ps: PhotoService,
-    private us: UserService,
-    private route: ActivatedRoute) {
-
-    this.logInUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
-      this.logInUserId = user.id;
-      this.newCat = {
-        name: '',
-        color: '',
-        gender: '',
-        age: '',
-        spay: '',
-        prof_url: '',
-        user_id: this.logInUserId
-      };
-    });
+  public catProfFile: File;
+  public file: FileList;
+  public imgSrc: Blob;
+  constructor(
+    private cs: CatService
+  ) {
   }
 
   ngOnInit() {
   }
-  submitForm() {
+  handleFileInput(target) {
+    const file = target.files[0];
+    console.log(target.files);
+    this.catProfFile = file;
 
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = (event: any) => {
+      console.log(event);
+      this.imgSrc = event.target.result;
+      console.log(this.imgSrc);
+    };
+    this.file = null;
+  }
+  removeImg() {
+    this.imgSrc = null;
+  }
+  submitForm(event) {
+    const formData = new FormData();
+    formData.append('spay', this.newCat.spay + '');
+    formData.append('age', this.newCat.age);
+    formData.append('color', this.newCat.color);
+    formData.append('gender', this.newCat.gender);
+    formData.append('name', this.newCat.name);
+    formData.append('file', this.catProfFile);
+    this.cs.addCat(formData).subscribe((result) => {
+      console.log(result);
+    });
   }
 }

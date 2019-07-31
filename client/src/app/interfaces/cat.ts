@@ -9,7 +9,6 @@ export interface Cat {
   color?: string;
   gender?: string;
   age?: string;
-  spay?: string;
+  spay?: boolean;
   prof_url?: string;
-  user_id: number;
 }

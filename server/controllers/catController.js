@@ -1,6 +1,8 @@
 const db = require('../models/index');
 const gcp = require('../lib/google-cloud-storage');
 const passport = require('passport');
+const upload = require('multer')();
+
 const { sanitizeBody, body, validationResult } = require('express-validator');
 const defaultCatProfUrl = "https://storage.googleapis.com/cat_prof/Cat%20-%201.jpeg"
 function getCatAge(daysAgo) {
@@ -10,6 +12,7 @@ function getCatAge(daysAgo) {
 }
 
 exports.addCat = [
+	upload.any(),
 	(req, res, next) => {
 		console.log(req.body);
 		next();
@@ -29,7 +32,7 @@ exports.addCat = [
 			console.log("validation errors", errors.array());
 			return res.status(400).json(errors.array());
 		}
-		const catProfUrl = req.files[0].cloudStoragePublicUrl ?
+		const catProfUrl = req.files[0] ?
 			req.files[0].cloudStoragePublicUrl : defaultCatProfUrl;
 		console.log("welcome to add cat api bro");
 		const newCat = {
