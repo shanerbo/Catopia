@@ -40,7 +40,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.fetchAllPhotos();
     this.route.params.subscribe((params) => {
       this.userId = params['id'];
       this.fetchUserInfo();
@@ -90,11 +89,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   switchFollower() {
     this.whichTab = 'Follower';
   }
-  fetchAllPhotos() {
-    this.ps.getAllPosts().then((posts) => {
-      this.posts = posts;
-    });
-  }
+
   fetchUserInfo() {
     this.us.getUserInfo(this.userId).then((user) => {
       this.user = user;

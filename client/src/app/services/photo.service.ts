@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Post } from '../interfaces/post';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
@@ -18,24 +18,42 @@ export class PhotoService {
   postPhoto(newPost: FormData): Observable<any> {
     return this.ls.authRequest('post', 'api/photo', {}, newPost);
   }
+
+  private getParams(filters: CatFilter): string {
+    let params = '?';
+    if (filters) {
+      if (filters.gender !== '') {
+        params += 'gender=' + filters.gender + '&';
+      }
+      if (filters.kitten != null) {
+        params += 'kitten=' + filters.kitten + '&';
+      }
+      if (filters.spay != null) {
+        params += 'spay=' + filters.spay + '&';
+      }
+    }
+    return params;
+  }
   getAllPosts(filters: CatFilter): Promise<Post[]> {
-    const headers = new HttpHeaders();
-    // for
-    return this.http.get('api/photo/all', { headers }).toPromise().then((posts: Post[]) => {
+    console.log(filters);
+    const params = this.getParams(filters);
+    return this.http.get('api/photo/all' + params).toPromise().then((posts: Post[]) => {
       return posts;
     }).catch((error) => {
       throw error;
     });
   }
   getFollowingPhotos(filters: CatFilter): Promise<Post[]> {
-    return this.ls.authRequest('get', 'api/photo/following', { body: { filters } }, null).toPromise().then((posts: Post[]) => {
+    const params = this.getParams(filters);
+    return this.ls.authRequest('get', 'api/photo/following' + params, {}, null).toPromise().then((posts: Post[]) => {
       return posts;
     }).catch((error) => {
       throw error;
     });
   }
-  getUserPosts(id: string): Promise<Post[]> {
-    return this.http.get('api/photo/user/' + id).toPromise().then((posts: Post[]) => {
+  getUserPosts(id: string, filters: CatFilter): Promise<Post[]> {
+    const params = this.getParams(filters);
+    return this.http.get('api/photo/user/' + id + params).toPromise().then((posts: Post[]) => {
       console.log(posts);
       return posts;
     }).catch((error) => {

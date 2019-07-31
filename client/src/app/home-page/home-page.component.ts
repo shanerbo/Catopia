@@ -60,7 +60,7 @@ export class HomePageComponent implements OnInit {
   }
 
   fetchAllPhotos() {
-    this.ps.getAllPosts().then((posts) => {
+    this.ps.getAllPosts(this.filters).then((posts) => {
       console.log('Fetched all posts', posts);
       this.posts = posts;
     });

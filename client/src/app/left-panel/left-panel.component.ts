@@ -8,12 +8,13 @@ import { CatFilter } from '../interfaces/cat';
 })
 export class LeftPanelComponent implements OnInit {
   @Output() refresh = new EventEmitter<string>();
+  @Output() clearFilter = new EventEmitter<string>();
   @Output() filterSubmit = new EventEmitter<CatFilter>();
 
   public filters: CatFilter = {
-    gender: '',
+    gender: 'boy',
     spay: false,
-    kitten: false
+    kitten: true
   };
   public isCollapsed = true;
 
@@ -30,6 +31,9 @@ export class LeftPanelComponent implements OnInit {
     this.filterSubmit.next(this.filters);
   }
 
+  clear(): void {
+    this.clearFilter.next(null);
+  }
   refreshPosts() {
     this.refresh.next('refresh');
   }

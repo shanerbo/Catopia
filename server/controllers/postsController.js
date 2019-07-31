@@ -1,4 +1,5 @@
 const db = require('../models/index');
+const Op = db.Sequelize.Op;
 const gcp = require('../lib/google-cloud-storage');
 const { sanitizeBody, body, validationResult } = require('express-validator');
 const passport = require('passport');
@@ -39,9 +40,9 @@ const postInclude = () => {
 }
 
 function getCatPostsInclude(cat_id) {
-  let include = postInclude();
-  include.include[1].where = { id: cat_id };
-  return include;
+  let query = postInclude();
+  query.include[1].where = { id: cat_id };
+  return query;
 };
 // ------------------------------------------------------
 exports.getCatPosts = [
@@ -122,7 +123,25 @@ exports.commentOnPhoto = [
 ];
 
 exports.getPosts = (req, res, next) => {
-  db.Posts.findAll(postInclude()).then(result => {
+  let query = postInclude();
+  if (req.query) {
+    if (req.query.spay) {
+      req.query.spay = "false" ? false : true;
+    }
+    console.log("query:", req.query);
+    query.include[1].where = req.query;
+    if (req.query.kitten === 'true') {
+      const oneYearAgo = new Date();
+      oneYearAgo.setTime(oneYearAgo.getTime() - 365 * 24 * 60 * 60 * 1000);
+      query.include[1].where.age = {
+        [Op.gte]: oneYearAgo
+      }
+    }
+    delete query.include[1].where.kitten;
+  }
+
+  console.log("include:", query);
+  db.Posts.findAll(query).then(result => {
     // console.log("after:", result);
     res.json(result);
   });
