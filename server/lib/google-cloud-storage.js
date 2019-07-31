@@ -26,6 +26,9 @@ exports.uploadImgToGCP = (req, res, next) => {
       next();
     }
   }
+  if (req.files.length === 0) {
+    next();
+  }
   req.files.forEach((currentFile) => {
     const ext = path.extname(currentFile.originalname).toLowerCase();
     if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {

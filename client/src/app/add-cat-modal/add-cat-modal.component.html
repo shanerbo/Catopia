@@ -10,56 +10,65 @@
       <div class="modal-body">
         <form>
           <div class="card-body row">
-            <div class="input-file form-group col col-md-auto">
-              <input class="form-control" accept=".png,.gif,.jpeg,.jpg" type="file" name="photos" id="photos" />
-              <label for="photos"><i id="add-photos" class="fas fa-plus-circle fa-4x"></i>
-              </label>
-            </div>
+            <div *ngIf="!imgSrc; else img">
 
-            <div class="input-file-intro col">
-              <label for="photos">
-                <h4>Add your cat here!</h4>
-              </label>
+              <div class="input-file form-group col col-md-auto">
+                <input class="form-control" accept=".png,.gif,.jpeg,.jpg" type="file" name="photos" id="photos"
+                  [(ngModel)]="file" (change)="handleFileInput($event.target)" />
+                <label for="photos"><i id="add-photos" class="fas fa-plus-circle fa-4x"></i>
+                </label>
+              </div>
+              <div class="input-file-intro col">
+                <label for="photos">
+                  <h4>Add your cat profile pic here!</h4>
+                </label>
+              </div>
             </div>
+            <ng-template #img>
+              <img src="{{imgSrc}}" height="60" width="60" alt="">
+              <button (click)="removeImg()">X</button>
+            </ng-template>
           </div>
           <div class="col">
             <div class="row">
               <div class="form-group name">
-                <label for="cat-name" class="col-form-label"> Name:</label>
-                <input type="text" class="form-control" id="cat-name">
+                <label for="name" class="col-form-label"> Name:</label>
+                <input type="text" class="form-control" name="name" id="cat-name" [(ngModel)]="newCat.name">
               </div>
               <div class="form-group age">
                 <label for="age" class="col-form-label"> Age:</label>
-                <input type="text" class="form-control" id="age">
+                <input type="text" class="form-control" name="age" id="age" [(ngModel)]="newCat.age">
+                <select name="time" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=time>
+                  <option value="day">days</option>
+                  <option value="month">months</option>
+                  <option value="year">years</option>
+                </select>
               </div>
 
             </div>
             <div class="row">
               <div class=" form-group color">
                 <label for="color" class="col-form-label"> Color:</label>
-                <input type="text" class="form-control" id="color">
+                <input type="text" class="form-control" name="color" id="color" [(ngModel)]="newCat.color">
               </div>
             </div>
             <div class="row">
+              <label for="spay">Spay:</label>
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="spay" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">Spay
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item">Yes</a>
-                  <a class="dropdown-item">No</a>
-                  <a class="dropdown-item">Unknown</a>
-                </div>
+                <select name="spay" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=newCat.spay>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                  <option value="">Not Sure</option>
+                </select>
               </div>
+              <label for="gender">Gender:</label>
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="gender" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">Gender
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item">Male</a>
-                  <a class="dropdown-item">Female</a>
-                  <a class="dropdown-item">Unknown</a>
-                </div>
+                <select name="gender" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=newCat.gender>
+                  <option value=""></option>
+                  <option value="Boy">Boy</option>
+                  <option value="Girl">Girl</option>
+                  <option value="lgbtq+ cat">Avoid to self identify</option>
+                </select>
               </div>
             </div>
           </div>
@@ -67,7 +76,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Add Cat</button>
+        <button type="button" (click)="submitForm($event)" class=" btn btn-primary">Add Cat</button>
       </div>
     </div>
   </div>

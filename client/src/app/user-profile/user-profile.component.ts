@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { PhotoService } from '../services/photo.service';
@@ -7,7 +6,6 @@ import { UserInfo } from '../interfaces/user-info';
 import { UserService } from '../services/user.service';
 import { Post } from '../interfaces/post';
 import { Subscription } from 'rxjs';
-import { currentId } from 'async_hooks';
 
 
 @Component({
