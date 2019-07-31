@@ -15,11 +15,12 @@ module.exports = {
       color: {
         type: Sequelize.STRING
       },
-      breed: {
-        type: Sequelize.STRING
+      gender: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       age: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       spay: {
         type: Sequelize.STRING

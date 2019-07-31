@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Cats = sequelize.define('Cats', {
     name: DataTypes.STRING,
     color: DataTypes.STRING,
-    breed: DataTypes.STRING,
-    age: DataTypes.STRING,
+    gender: DataTypes.STRING,
+    age: DataTypes.DATE,
     spay: DataTypes.STRING,
     prof_url: DataTypes.STRING,
     user_id: DataTypes.INTEGER
@@ -16,8 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Cats.findUserCats = (user_id) => {
-    return Cats.findAll({ where: { user_id } });
+    return Cats.findAll({ where: { user_id }, attributes: [['id', 'cat_id'], 'name', 'prof_url', 'user_id'] });
   }
 
+  Cats.createCat = (cat) => {
+    return Cats.create(cat);
+  }
   return Cats;
 };

@@ -1,0 +1,29 @@
+@import "../global.scss";
+#photos {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  .name{
+    width:40%;
+  }
+  .color{
+    width:40%;
+  }
+  #gender{
+    padding-left:10px;
+  }
+  #spay{
+    margin-right:10px;
+  }
+  .age{
+    padding-left:10px;
+      width:40%;
+  }
+  .fa-plus-circle:before {
+    content: "\f055";
+    color:$themeColor;
+  }

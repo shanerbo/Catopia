@@ -1,14 +1,12 @@
 <div class="row">
   <div class="col-lg-2 col-sm-0">
-    <app-left-panel></app-left-panel>
+    <app-left-panel (refresh)="fetchPosts($event)" (filter)="refetchWithFilters($event)"></app-left-panel>
   </div>
   <div class="col-lg-6 col-sm-12">
-    <app-compose-box (post)="postPhotos($event)"></app-compose-box>
+    <app-compose-box *ngIf="ls.getUserInfo()" [currentUser]="ls.getUserInfo()" (post)="postPhotos($event)">
+    </app-compose-box>
     <div *ngFor="let post of posts">
-      <app-photo-card 
-        (likePostEvent)="likedPost($event)" 
-        (commentEvent)="postComment($event)"
-        [post]="post">
+      <app-photo-card (likePostEvent)="likedPost($event)" (commentEvent)="postComment($event)" [post]="post">
       </app-photo-card>
     </div>
   </div>

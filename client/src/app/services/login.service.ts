@@ -24,9 +24,7 @@ export class LoginService {
     private router: Router
   ) {
     if (this.getToken()) {
-      this.signInCurrentUser().then((user) => {
-        this.user = user;
-      }).catch((error) => {
+      this.signInCurrentUser().catch((error) => {
         console.log('auto signin error ', error);
         this.unsetToken();
       });
