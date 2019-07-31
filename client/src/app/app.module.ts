@@ -20,6 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ComposeBoxComponent } from './compose-box/compose-box.component';
 import { FollowModalComponent } from './follow-modal/follow-modal.component';
 import { MidPanelComponent } from './mid-panel/mid-panel.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CatProfileComponent } from './cat-profile/cat-profile.component';
 import { CatPageComponent } from './cat-page/cat-page.component';
 import { AddCatModalComponent } from './add-cat-modal/add-cat-modal.component';
@@ -38,6 +39,7 @@ import { CatPhotoModalComponent } from './cat-photo-modal/cat-photo-modal.compon
     ComposeBoxComponent,
     FollowModalComponent,
     MidPanelComponent,
+    EditProfileComponent,
     CatProfileComponent,
     CatPageComponent,
     AddCatModalComponent,

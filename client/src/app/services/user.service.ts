@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Post } from '../interfaces/post';
+import { Observable, Subject } from 'rxjs';
 import { LoginService } from './login.service';
-import { UserInfo } from '../interfaces/user-info';
+import { UserInfo, TokenResponse } from '../interfaces/user-info';
 import { Subscription } from 'rxjs';
 
 
@@ -10,6 +11,9 @@ import { Subscription } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+  public currentUser = new Subject<UserInfo>();
+  public user: UserInfo;
+
   public logInUserInfo: any;
   public userFollowingList: UserInfo[];
   public userFollowerList: UserInfo[];
@@ -64,5 +68,9 @@ export class UserService {
     }).catch((error) => {
       throw error;
     });
+  }
+
+  update(updatedUser: FormData): Observable<any> {
+    return this.ls.authRequest('post', '/api/user/edit', {}, updatedUser);
   }
 }

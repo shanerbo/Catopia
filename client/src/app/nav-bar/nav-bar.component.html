@@ -18,6 +18,9 @@
     <ng-template #logoutBlock>
       <ul class="navbar-nav ml-auto navbar-right">
         <li class="nav-item">
+          <a id="edit-profile-btn" [routerLink]="['user', user.id, 'edit']" class="nav-link">edit profile</a>
+        </li>
+        <li class="nav-item">
           <a id="avatar-btn" [routerLink]="['user',user.id]" class="nav-link">
             <img class="nav-avatar mr-1" width="20" height="20" src="{{user.prof_url}}" alt="{{user.userName}}">
             {{user.userName}}
