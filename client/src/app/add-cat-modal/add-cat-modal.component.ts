@@ -18,11 +18,11 @@ import { CatService } from '../services/cat.service';
 export class AddCatModalComponent implements OnInit {
   @Output() post = new EventEmitter<FormData>();
 
-  public newCat = {
+  public newCat: Cat = {
     name: '',
     color: '',
     gender: '',
-    age: '',
+    age: 0,
     spay: false
   };
   public logInUserSubscription: Subscription;
@@ -30,6 +30,8 @@ export class AddCatModalComponent implements OnInit {
   public catProfFile: File;
   public file: FileList;
   public imgSrc: Blob;
+  public time: string;
+  private realAge: number;
   constructor(
     private cs: CatService
   ) {
@@ -57,7 +59,20 @@ export class AddCatModalComponent implements OnInit {
   submitForm(event) {
     const formData = new FormData();
     formData.append('spay', this.newCat.spay + '');
-    formData.append('age', this.newCat.age);
+    switch (this.time) {
+      case 'day':
+        this.realAge = this.newCat.age * 1;
+        break;
+      case 'month':
+        this.realAge = this.newCat.age * 31;
+        break;
+      case 'year':
+        this.realAge = this.newCat.age * 365;
+        break;
+      default:
+        this.realAge = this.newCat.age * 1;
+    }
+    formData.append('age', this.realAge + '');
     formData.append('color', this.newCat.color);
     formData.append('gender', this.newCat.gender);
     formData.append('name', this.newCat.name);

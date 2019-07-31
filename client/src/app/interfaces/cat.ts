@@ -8,7 +8,7 @@ export interface Cat {
   name: string;
   color?: string;
   gender?: string;
-  age?: string;
+  age?: number;
   spay?: boolean;
   prof_url?: string;
 }

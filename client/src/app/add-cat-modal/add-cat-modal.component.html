@@ -38,6 +38,11 @@
               <div class="form-group age">
                 <label for="age" class="col-form-label"> Age:</label>
                 <input type="text" class="form-control" name="age" id="age" [(ngModel)]="newCat.age">
+                <select name="time" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=time>
+                  <option value="day">days</option>
+                  <option value="month">months</option>
+                  <option value="year">years</option>
+                </select>
               </div>
 
             </div>
