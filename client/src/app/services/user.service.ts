@@ -70,13 +70,7 @@ export class UserService {
     });
   }
 
-  update(updatedUser: UserInfo) {
-    this.ls.authRequest('post', '/api/user/' + updatedUser.id + '/edit', { body: updatedUser }, null)
-      .subscribe((result: TokenResponse) => {
-        this.ls.setUser(this.ls.getUserInfo());
-      }, (err) => {
-        console.log(err);
-      });
+  update(updatedUser: FormData): Observable<any> {
+    return this.ls.authRequest('post', '/api/user/edit', {}, updatedUser);
   }
-
 }

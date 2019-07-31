@@ -10,12 +10,10 @@ import { UserInfo } from '../interfaces/user-info';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-
   currentUserInfo: UserInfo;
-
-
-
-
+  currentProfUrl: string | Blob;
+  userProfFile: File;
+  file: FileList;
   constructor(
     private ls: LoginService,
     private us: UserService
@@ -23,16 +21,37 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
     this.currentUserInfo = this.ls.getUserInfo();
+    this.currentProfUrl = this.currentUserInfo.prof_url;
   }
+  handleFileInput(target) {
+    const file = target.files[0];
+    console.log(target.files);
+    this.userProfFile = file;
 
-  OnDestroy() {
-
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = (event: any) => {
+      console.log(event);
+      this.currentProfUrl = event.target.result;
+    };
+    this.currentProfUrl = null;
   }
-
+  OnDestroy() { }
   onEditUserSubmit() {
-    this.us.update(
-      this.currentUserInfo
-    );
+    const formData = new FormData();
+    formData.append('firstName', this.currentUserInfo.firstName);
+    formData.append('lastName', this.currentUserInfo.lastName);
+    if (this.currentUserInfo.pwd) {
+      formData.append('pwd', this.currentUserInfo.pwd);
+    }
+    formData.append('gender', this.currentUserInfo.gender);
+    formData.append('phone', this.currentUserInfo.phone + '');
+    formData.append('bio', this.currentUserInfo.bio);
+    formData.append('file', this.userProfFile);
+    this.us.update(formData).subscribe((result => {
+      this.ls.saveToken(result.token);
+      this.currentUserInfo = this.ls.getUserInfo();
+    }));
 
   }
 

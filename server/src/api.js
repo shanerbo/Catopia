@@ -23,7 +23,7 @@ router.post('/photo/:id/comment', postsController.commentOnPhoto);// post a post
 router.get('/user/recommend', userController.getRecommendUsers);// get recommendUsers
 router.post('/user/:id/follow', userController.followOrUnfollow);// follow new user
 router.get('/user/:id', userController.getUserProfile);// get user profile
-router.post('/user/:id/edit', userController.updateUser);// update user profile
+router.post('/user/edit', userController.updateUser);// update user profile
 router.get('/user/:id/follower', userController.getUserFollower);// get user follower
 router.get('/user/:id/following', userController.getUserFollowing);// get user follower
 router.get('/user/:id', userController.getUserProfile);// get user profile

@@ -8,28 +8,37 @@
       <div class="card card-form">
         <div class="card-body">
           <div class="editUserForm">
-            <form class="pt-3" (ngSubmit)="onEditUserSubmit()">
-              <div class="form-group form-row">
-                <div class="col">
-                  <label for="firstName">First name</label>
-                  <input type="text" [(ngModel)]="currentUserInfo.firstName" class="form-control" name="firstName"
-                    placeholder="First name" id="firstName">
+            <form class="pt-3">
+              <div class=" form-row">
+                <div>
+                  <div class="input-file form-group col col-md-auto">
+                    <label for="photos"><img src="{{currentProfUrl}}" width=60 height=60 alt="">
+                      <input class="form-control" accept=".png,.gif,.jpeg,.jpg" type="file" name="photos" id="photos"
+                        [(ngModel)]="file" (change)="handleFileInput($event.target)" />
+                    </label>
+                  </div>
                 </div>
                 <div class="col">
-                  <label for="lastName">Last name</label>
+                  <label for="firstName">First Name</label>
+                  <input type="text" [(ngModel)]="currentUserInfo.firstName" class="form-control" name="firstName"
+                    placeholder="First Name" id="firstName">
+                </div>
+                <div class="col">
+                  <label for="lastName">Last Name</label>
                   <input type="text" [(ngModel)]="currentUserInfo.lastName" class="form-control" name="lastName"
-                    placeholder="Last name" id="lastName">
+                    placeholder="Last Name" id="lastName">
                 </div>
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" [(ngModel)]="currentUserInfo.email" class="form-control" name="email" id="email"
-                  placeholder="Email" required>
+                <input type="email" disabled=true [(ngModel)]="currentUserInfo.email" class="form-control" name="email"
+                  id="email" placeholder="Email" required>
               </div>
               <div class="form-group">
-                <label for="userName">User name</label>
-                <input type="text" [(ngModel)]="currentUserInfo.Username" class="form-control" name="userName"
-                  id="userName" placeholder="Username" required>
+                <label for="userName">User Name</label>
+                <input type="text" disabled=true [(ngModel)]="currentUserInfo.userName" class="form-control"
+                  name="userName" id="userName" placeholder="User Name" required>
+                <button disabled=true>Join the Membership</button>
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
@@ -39,24 +48,25 @@
               <div class="form-group">
                 <label for="genderSelection">Gender</label>
                 <select [(ngModel)]="currentUserInfo.gender" name="gender" class="form-control" id="genderSelection">
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Prefer not to tell</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="prefer not to tell">Prefer not to tell</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="phone">Phone number</label>
+                <label for="phone">Phone Number</label>
                 <input type="text" [(ngModel)]="currentUserInfo.phone" class="form-control" name="editUserPhone"
-                  id="phone" placeholder="editUserPhone">
+                  id="phone" placeholder="Phone Number">
               </div>
               <div class="form-group">
-                <label for="bio">Description</label>
+                <label for="bio">Bio</label>
                 <input type="text" [(ngModel)]="currentUserInfo.bio" class="form-control" name="editUserbio" id="bio"
                   placeholder="editUserbio">
               </div>
 
 
-              <button id="submit-btn" type="submit" class="btn btn-primary btn-block">Update information</button>
+              <button id="submit-btn" type="submit" class="btn btn-primary btn-block"
+                (click)="onEditUserSubmit()">Update information</button>
             </form>
           </div>
 
@@ -65,7 +75,7 @@
 
     </div>
     <div class="col-lg-2 col-sm-0">
-      <app-right-panel [users]="users"></app-right-panel>
+      <!-- <app-right-panel [users]="users"></app-right-panel> -->
     </div>
   </div>
 

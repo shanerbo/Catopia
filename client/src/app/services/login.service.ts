@@ -90,7 +90,7 @@ export class LoginService {
     }
   }
 
-  private saveToken(token: string): void {
+  public saveToken(token: string): void {
     localStorage.setItem('login-token', token);
     this.token = token;
   }
