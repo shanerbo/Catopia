@@ -47,10 +47,14 @@ export class EditProfileComponent implements OnInit {
     formData.append('gender', this.currentUserInfo.gender);
     formData.append('phone', this.currentUserInfo.phone + '');
     formData.append('bio', this.currentUserInfo.bio);
-    formData.append('file', this.userProfFile);
+    if (this.file) {
+      formData.append('file', this.userProfFile);
+      console.log('upload images');
+    }
     this.us.update(formData).subscribe((result => {
       this.ls.saveToken(result.token);
       this.currentUserInfo = this.ls.getUserInfo();
+      console.log(result);
     }));
 
   }

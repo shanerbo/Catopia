@@ -42,8 +42,8 @@
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" [(ngModel)]="currentUserInfo.pwd" class="form-control" name="pwd" id="password"
-                  required placeholder="Password" autocomplete="false">
+                <input minlength="6" type="password" [(ngModel)]="currentUserInfo.pwd" class="form-control" name="pwd"
+                  id="password" required placeholder="Password" autocomplete="false">
               </div>
               <div class="form-group">
                 <label for="genderSelection">Gender</label>
@@ -55,8 +55,8 @@
               </div>
               <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="text" [(ngModel)]="currentUserInfo.phone" class="form-control" name="editUserPhone"
-                  id="phone" placeholder="Phone Number">
+                <input type="number" maxlength="10" [(ngModel)]="currentUserInfo.phone" class="form-control"
+                  name="editUserPhone" id="phone" placeholder="Phone Number">
               </div>
               <div class="form-group">
                 <label for="bio">Bio</label>

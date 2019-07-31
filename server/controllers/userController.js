@@ -123,7 +123,7 @@ exports.updateUser = [
 	sanitizeBody('phone').escape(),
 	sanitizeBody('bio').escape(),
 	sanitizeBody('prof_url').escape(),
-	body('phone', 'Phone number must be number').isNumeric().isLength({ max: 10 }).trim(),
+	body('phone', 'Phone number must be number').isLength({ max: 10 }).trim(),
 	upload.any(),
 	(req, res, next) => { req.uploadBucket = "user_prof"; next(); },
 	gcp.uploadImgToGCP,
@@ -131,12 +131,9 @@ exports.updateUser = [
 	async (req, res, next) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
-			res.status(400).json({ error: 'Invalid phone number' });
+			return res.status(400).json({ error: 'Invalid phone number' });
 		}
 		console.log(req.body);
-		const userProfUrl = req.files[0] ?
-			req.files[0].cloudStoragePublicUrl : defaultUserProfUrl;
-
 		const newUserInfo = {
 			userName: req.body.userName,
 			firstName: req.body.firstName,
@@ -145,19 +142,21 @@ exports.updateUser = [
 			gender: req.body.gender,
 			phone: req.body.phone,
 			bio: req.body.bio,
-			prof_url: userProfUrl
+		}
+		if (req.files[0]) {
+			newUserInfo.prof_url = req.files[0].cloudStoragePublicUrl;
 		}
 		if (req.body.pwd && req.body.pwd >= 6) {
 			newUserInfo.pwd = req.body.pwd;
 		} else if (req.body.pwd && req.body.pwd < 6) {
-			req.status(400).json({ error: "password update fail" });
+			return req.status(400).json({ error: "password update fail" });
 		}
 		const oldUser = await db.Users.findOne({
 			where: { id: req.user.id }
 		}).catch((error) => next(error));
 
 		if (!oldUser) {
-			res.status(400).json({ error: "Need to login to edit profile" });
+			return res.status(400).json({ error: "Need to login to edit profile" });
 		}
 		const newUser = await db.Users.updateUser(oldUser, newUserInfo).catch((error) => next(error));
 		if (newUser) {
