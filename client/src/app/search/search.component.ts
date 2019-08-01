@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, Route, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -10,18 +11,16 @@ import { Subscription } from 'rxjs';
 export class SearchComponent implements OnInit, OnDestroy {
   private querySubscription: Subscription;
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
+    private ss: SearchService,
     private keyWord: string
   ) { }
 
   ngOnInit() {
-    this.querySubscription = this.route
-      .queryParams
-      .subscribe(params => {
-        this.keyWord = params['keyWord'] + '' || '';
+    this.keyWord = this.route.snapshot.queryParamMap.get('keyWord');
+    this.querySubscription = this.ss.seachResult(this.keyWord).subscribe((result => {
 
-      });
+    });
   }
   ngOnDestroy() {
     this.querySubscription.unsubscribe();

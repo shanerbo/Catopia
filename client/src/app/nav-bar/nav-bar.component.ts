@@ -15,12 +15,12 @@ export class NavBarComponent implements OnInit {
 
   @Input() user: UserInfo;
   constructor(private ls: LoginService,
-    private route: Router
+    private router: Router
   ) { }
 
   ngOnInit() { }
   onSearch() {
-    this.route.navigate(['/search'], { queryParams: { keyWord: this.keyWord } });
+    this.router.navigate(['/search'], { queryParams: { keyWord: this.keyWord } });
   }
   logout() {
     this.ls.signout();
