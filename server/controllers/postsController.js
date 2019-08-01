@@ -39,6 +39,41 @@ const postQuery = () => {
   }
 }
 
+function getPostQueryWithParams(params) {
+  let query = postQuery();
+  if (params) {
+    // -----------------cat filters----------------
+    //filters.gender is auto-handled
+    if (params.spay) {//handle spay
+      if (params.spay === "false") {
+        params.spay = false;
+      } else if (params.spay === "true") {
+        params.spay = true;
+      } else {
+        delete params.spay;
+      }
+    }
+    console.log("processed spay query:", params);
+    const oneYearAgo = new Date();
+    oneYearAgo.setTime(oneYearAgo.getTime() - 365 * 24 * 60 * 60 * 1000);
+    if (params.kitten === 'true') {
+      params.age = {
+        [Op.gte]: oneYearAgo //birthday after one year ago
+      }
+    } else if (params.kitten === 'false') {
+      params.age = {
+        [Op.lt]: oneYearAgo //birthday earlier than one year ago
+      }
+    }
+    delete params.kitten;
+    console.log("processed kitten query", params);
+    //---------------------------------------------
+
+    query.include[1].where = params;
+  }
+  return query;
+}
+
 // ------------------------------------------------------
 exports.getCatPosts = [
   async (req, res, next) => {
@@ -95,9 +130,10 @@ exports.getFollowingUsersPosts = [
       const allFollowingInfo = await db.Follows.getFollower(req.user.id, "following");
       const allFollowingArray = [];
       allFollowingInfo.forEach(element => {
-        allFollowingArray.push(element.following + '');
+        allFollowingArray.push(element.id);
       });
-      const ret = await db.Posts.getFollowingUserPosts(postQuery(), allFollowingArray);
+      const query = getPostQueryWithParams(req.query);
+      const ret = await db.Posts.getFollowingUserPosts(query, allFollowingArray);
       res.json(ret);
 
     }
@@ -154,15 +190,18 @@ exports.commentOnPhoto = [
   }
 ];
 
+
 exports.getPosts = (req, res, next) => {
-  db.Posts.findAll(postQuery()).then(result => {
+  const query = getPostQueryWithParams(req.query);
+  console.log("include:", query);
+  db.Posts.findAll(query).then(result => {
     // console.log("after:", result);
     res.json(result);
   });
 };
 
 exports.getUserPosts = (req, res, next) => {
-  let searchCondition = postQuery();
+  let searchCondition = getPostQueryWithParams(req.query);
   if (!req.params.id || !Number(req.params.id)) {
     res.status(400).json({ error: "id is missing or invalid" });
   }

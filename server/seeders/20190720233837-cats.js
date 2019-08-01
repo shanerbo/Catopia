@@ -112,7 +112,7 @@ module.exports = {
           prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%209.jpeg',
           createdAt: new Date(),
           age: getCatAge(280),
-          gender: "male",
+          gender: "boy",
           spay: true,
           color: "color of first love",
           updatedAt: new Date()

@@ -8,22 +8,38 @@ import { CatFilter } from '../interfaces/cat';
 })
 export class LeftPanelComponent implements OnInit {
   @Output() refresh = new EventEmitter<string>();
-  @Output() filter = new EventEmitter<CatFilter>();
+  @Output() clearFilter = new EventEmitter<string>();
+  @Output() filterSubmit = new EventEmitter<CatFilter>();
 
   public filters: CatFilter;
+  public isCollapsed = true;
 
   constructor() { }
-  public isCollapsed = true;
+  ngOnInit() {
+    this.initFilters();
+  }
+  initFilters() {
+    this.filters = {
+      gender: '',
+      spay: null,
+      kitten: null
+    };
+  }
 
   toggleSideBar(event): void {
     this.isCollapsed = !this.isCollapsed;
   }
-  expand(): void {
+  expandSideBar(): void {
     this.isCollapsed = false;
   }
+  applyFilters(event): void {
+    this.filterSubmit.next(this.filters);
+  }
 
-  ngOnInit() { }
-
+  clear(): void {
+    this.initFilters();
+    this.clearFilter.next(null);
+  }
   refreshPosts() {
     this.refresh.next('refresh');
   }
