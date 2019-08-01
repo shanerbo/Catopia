@@ -2,10 +2,10 @@ const db = require('../models/index');
 const Op = db.Sequelize.Op;
 
 exports.searchForUserOrCat = async (req, res, next) => {
-  const keyword = "%" + req.query.keyword + "%";
-  if (!keyword) {
-    return res.status(401).send("Missing keyword");
+  if (!req.query.keyword) {
+    return res.status(401).json({});
   }
+  const keyword = "%" + req.query.keyword + "%";
   const foundUsers = await db.Users.findAll({
     where: {
       [Op.or]: {
@@ -18,7 +18,7 @@ exports.searchForUserOrCat = async (req, res, next) => {
       }
     },
     attributes: {
-      excludes: ['pwd']
+      exclude: ['pwd']
     }
   });
   const foundCats = await db.Cats.findAll({
