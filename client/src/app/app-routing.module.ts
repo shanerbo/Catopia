@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'following', component: HomePageComponent },
   { path: 'liked', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user/:id', component: UserProfileComponent },
   { path: 'user/edit', component: EditProfileComponent },
+  { path: 'user/:id', component: UserProfileComponent },
   { path: 'cat', component: CatPageComponent }
 ];
 
