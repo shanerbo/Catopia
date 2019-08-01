@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'liked', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'user/:id', component: UserProfileComponent },
-  { path: 'user/:id/edit', component: EditProfileComponent },
+  { path: 'user/edit', component: EditProfileComponent },
   { path: 'cat', component: CatPageComponent }
 ];
 

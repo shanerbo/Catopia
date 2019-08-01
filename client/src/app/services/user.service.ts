@@ -73,4 +73,32 @@ export class UserService {
   update(updatedUser: FormData): Observable<any> {
     return this.ls.authRequest('post', '/api/user/edit', {}, updatedUser);
   }
+
+  checkFollowStatus(logInUser: UserInfo, viewingUser: any): string {
+    let hasFollowed = false;
+    let beingFollowed = false;
+    const viewingUserFollowerList = viewingUser.follower;
+    const viewingUserFollowingList = viewingUser.following;
+    const followerIdList =
+      viewingUserFollowerList.map((ele) => ele.id);
+    const followingIdList = viewingUserFollowingList.map((ele) => ele.id);
+    if (logInUser) {
+      hasFollowed = followerIdList.includes(logInUser.id);
+      beingFollowed = followingIdList.includes(logInUser.id);
+    } else {
+      hasFollowed = false;
+      beingFollowed = false;
+    }
+    let followStatus = '';
+    if (hasFollowed === true) {
+      followStatus = 'Unfollow';
+      if (beingFollowed) {
+        followStatus = 'Mutual';
+      }
+    } else {
+      followStatus = 'Follow';
+    }
+    return followStatus;
+  }
+
 }
