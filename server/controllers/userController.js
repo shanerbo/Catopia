@@ -4,7 +4,7 @@ const upload = require('multer')();
 const gcp = require('../lib/google-cloud-storage');
 const jwt = require('jsonwebtoken');
 const jwtsecret = process.env.JWTSECRET;
-const defaultUserProfUrl = "https://www.paramedicmemorial.org/wp-content/uploads/2018/04/placeholder-avatar.png"
+
 const { sanitizeBody, body, validationResult } = require('express-validator');
 
 
