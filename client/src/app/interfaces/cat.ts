@@ -6,10 +6,9 @@ export interface CatFilter {
 
 export interface Cat {
   name: string;
-  color: string;
-  gender: string;
-  age: string;
-  spay: string;
-  prof_url: string;
-  user_id: number;
+  color?: string;
+  gender?: string;
+  age?: number;
+  spay?: boolean;
+  prof_url?: string;
 }

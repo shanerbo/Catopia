@@ -88,10 +88,4 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  likedPost() {
-    this.fetchAllPhotos();
-  }
-  postComment(event) {
-    this.fetchAllPhotos();
-  }
 }

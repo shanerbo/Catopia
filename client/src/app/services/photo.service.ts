@@ -52,7 +52,7 @@ export class PhotoService {
       throw error;
     });
   }
-  getUserPosts(id: string, filters: CatFilter): Promise<Post[]> {
+  getUserPosts(id: string | number, filters: CatFilter): Promise<Post[]> {
     const params = this.getParams(filters);
     return this.http.get('api/photo/user/' + id + params).toPromise().then((posts: Post[]) => {
       console.log(posts);

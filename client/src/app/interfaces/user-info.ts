@@ -10,6 +10,7 @@ export interface UserInfo {
   phone?: number;
   bio?: string;
   prof_url?: string;
+  pwd?: string;
 }
 
 export interface TokenResponse {

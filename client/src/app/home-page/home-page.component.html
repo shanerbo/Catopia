@@ -7,12 +7,11 @@
     <app-compose-box *ngIf="ls.getUserInfo()" [currentUser]="ls.getUserInfo()" (post)="postPhotos($event)">
     </app-compose-box>
     <div *ngFor="let post of posts">
-      <app-photo-card (likePostEvent)="likedPost($event)" (commentEvent)="postComment($event)" [post]="post">
+      <app-photo-card (likePostEvent)="fetchAllPhotos($event)" (commentEvent)="fetchAllPhotos($event)" [post]="post">
       </app-photo-card>
     </div>
   </div>
-  <div class="col-lg-2 col-sm-0">
+  <div class="col-lg-4 col-sm-0">
     <app-right-panel [users]="users"></app-right-panel>
   </div>
-  <div class="col-lg-2"></div>
 </div>

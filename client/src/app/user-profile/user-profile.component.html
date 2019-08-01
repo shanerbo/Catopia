@@ -1,28 +1,35 @@
 <div class="row">
-  <div class="col-3">
-    <app-left-panel></app-left-panel>
+  <div class="col-lg-2 col-sm-0">
+    <app-left-panel (refresh)="fetchUserPhotos($event)" (clearFilter)="fetchUserPhotos($event)"
+      (filterSubmit)="fetchUserPhotos($event)"></app-left-panel>
   </div>
-  <div class="col-6">
-    <app-follow-modal [whichTab]="whichTab"></app-follow-modal>
+  <div class="col-lg-6 col-sm-12">
+    <div *ngFor="let post of posts">
+      <app-photo-card (likePostEvent)="fetchUserPhotos($event)" (commentEvent)="fetchUserPhotos($event)" [post]="post">
+      </app-photo-card>
+    </div>
+    <app-follow-modal [whichTab]="whichTab" [viewingUserInfo]="viewingUserInfo" [loggedinUserInfo]="loggedinUserInfo">
+    </app-follow-modal>
+    <app-add-cat-modal></app-add-cat-modal>
   </div>
 
-  <div class="col-3">
+  <div class="col-lg-4 col-sm-0">
     <div class="right-panel">
       <div class="row profile">
         <div class="col pic">
-          <img src="{{user?.prof_url}}" alt="Avatar">
+          <img src="{{viewingUserInfo?.prof_url}}" alt="Avatar">
         </div>
         <div class="col info">
           <div class="row information">
             <div class="col basic-info">
               <div class="row name">
-                <p>{{user?.userName}}</p>
+                <p>{{viewingUserInfo?.userName}}</p>
               </div>
               <div class="row gender">
-                <p style="color:rgba(5, 5, 5, 0.432);">{{user?.gender}}</p>
+                <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.gender}}</p>
               </div>
             </div>
-            <div class="col follow-btn">
+            <div class="col follow-btn" *ngIf="loggedinUserInfo?.id!=viewingUserInfo?.id">
               <button type="button" class="btn btn-light" (click)="switchFollowStatus()">{{followStatus}}</button>
             </div>
           </div>
@@ -45,31 +52,28 @@
         </div>
 
         <div class="row bio">
-          <p style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
+          <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.bio}}</p>
         </div>
       </div>
-      <ol class="user-list">
+      <ol class="user-list" *ngFor="let cat of viewingUserInfo?.cat">
         <li class="row user">
           <div class="col profile-pic">
-            <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
-
+            <img src="{{cat?.prof_url}}" alt="Avatar">
           </div>
           <div class="col user-info">
-            <p class="username">Ruby</p>
-            <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
+            <p class="username">{{cat?.name}}</p>
           </div>
         </li>
+      </ol>
+      <ol class="user-list" *ngIf="loggedinUserInfo?.id==viewingUserInfo?.id">
         <li class="row user">
           <div class="col profile-pic">
-            <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
-
+            <i class="fas fa-plus-circle fa-2x" data-toggle="modal" data-target="#addcat"></i>
           </div>
           <div class="col user-info">
-            <p class="username">Ruby</p>
-            <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">I'am Ruby</p>
+            <p class="username">Add your cat</p>
           </div>
         </li>
-
       </ol>
     </div>
 

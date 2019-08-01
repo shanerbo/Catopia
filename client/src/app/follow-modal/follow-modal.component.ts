@@ -8,6 +8,8 @@ import { LoginService } from '../services/login.service';
 })
 export class FollowModalComponent {
   @Input() whichTab: string;
+  @Input() viewingUserInfo: any;
+  @Input() loggedinUserInfo: any;
 
 
   loggedin = false;
