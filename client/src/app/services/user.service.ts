@@ -23,7 +23,12 @@ export class UserService {
     private http: HttpClient,
     private ls: LoginService,
   ) {
-    this.getLogInUserInfo();
+    this.logInUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
+      if (user) {
+        this.user = user;
+        this.getLogInUserInfo();
+      }
+    });
   }
 
   getRecommendUsers(): Promise<UserInfo[]> {
@@ -35,12 +40,9 @@ export class UserService {
   }
 
   getLogInUserInfo(): void {
-    this.logInUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
-      if (user) {
-        this.getUserAllInfo(user.id).then((logInUserInfo) => {
-          this.logInUserInfo = logInUserInfo;
-        });
-      }
+
+    this.getUserAllInfo(this.user.id).then((logInUserInfo) => {
+      this.logInUserInfo = logInUserInfo;
     });
   }
 
@@ -59,8 +61,10 @@ export class UserService {
     });
   }
 
-  setFollowStatus(userId: string | number): Observable<any> {
-    return this.ls.authRequest('post', 'api/user/' + userId + '/follow', {}, null);
+  setFollowStatus(userId: string | number): Promise<any> {
+    return this.ls.authRequest('post', 'api/user/' + userId + '/follow', {}, null).toPromise().then(() => {
+      this.getLogInUserInfo();
+    });
   }
   getUserAllInfo(userId: string | number): Promise<any> {
     return this.http.get('api/user/' + userId + '/userInfo').toPromise().then((userAllInfo: any) => {

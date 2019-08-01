@@ -80,7 +80,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   switchFollowStatus() {
-    this.us.setFollowStatus(this.viewingUserId).subscribe((result) => {
+    this.us.setFollowStatus(this.viewingUserId).then((result) => {
       if (result.result === 'unFollowed') {
         this.hasFollowed = false;
       } else {

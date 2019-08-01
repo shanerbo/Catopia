@@ -20,6 +20,7 @@ export class FollowModalComponent implements OnInit, OnChanges {
   public viewingFollowerIdList: any;
   public viewingFollowingIdList: any;
   public loginFollowingIdList: any;
+  public loginFollowerIdList: any;
   loggedin = false;
   constructor(
     private ls: LoginService,
@@ -29,7 +30,7 @@ export class FollowModalComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    console.log('loged:' + (this.loggedinUserInfo).id);
+    console.log('loged:' + this.loggedinUserInfo.id);
     this.fetchData();
     // this.ls.currentUser.subscribe((user) => {
     //   this.loggedin = !!user;
@@ -42,9 +43,10 @@ export class FollowModalComponent implements OnInit, OnChanges {
     this.viewingFollowerIdList = (this.viewingUserInfo.follower).map((ele) => ele.id);
     this.viewingFollowingIdList = (this.viewingUserInfo.following).map((ele) => ele.id);
     this.loginFollowingIdList = (this.loggedinUserInfo.following).map((ele) => ele.id);
+    this.loginFollowerIdList = (this.loggedinUserInfo.follower).map((ele) => ele.id);
   }
   switchFollowStatus(id: number) {
-    this.us.setFollowStatus(id).subscribe((result) => {
+    this.us.setFollowStatus(id).then((result) => {
       this.updateFollow.next('updated');
     });
   }
