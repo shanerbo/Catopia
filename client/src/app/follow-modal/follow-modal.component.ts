@@ -6,19 +6,21 @@ import { LoginService } from '../services/login.service';
   templateUrl: './follow-modal.component.html',
   styleUrls: ['./follow-modal.component.scss']
 })
-export class FollowModalComponent {
+export class FollowModalComponent implements OnInit {
   @Input() whichTab: string;
   @Input() viewingUserInfo: any;
   @Input() loggedinUserInfo: any;
 
 
   loggedin = false;
-  constructor(public ls: LoginService) { }
+  constructor(public ls: LoginService) {
 
-  // ngOnInit() {
-  // this.ls.currentUser.subscribe((user) => {
-  //   this.loggedin = !!user;
-  // });
-  // }
+  }
+
+  ngOnInit() {
+    // this.ls.currentUser.subscribe((user) => {
+    //   this.loggedin = !!user;
+    // });
+  }
 
 }

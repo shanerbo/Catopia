@@ -5,7 +5,7 @@
   <div class="col-6">
     <app-follow-modal [whichTab]="whichTab" [viewingUserInfo]="viewingUserInfo" [loggedinUserInfo]="loggedinUserInfo">
     </app-follow-modal>
-    <app-add-cat-modal></app-add-cat-modal>
+    <app-add-cat-modal (addCat)="fetchUserInfo($event)"></app-add-cat-modal>
   </div>
 
   <div class=" col-3">

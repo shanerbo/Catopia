@@ -1,10 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Cat } from '../interfaces/cat';
-import { LoginService } from '../services/login.service';
-import { PhotoService } from '../services/photo.service';
-import { UserService } from '../services/user.service';
-import { ActivatedRoute } from '@angular/router';
-import { UserInfo } from '../interfaces/user-info';
 import { Subscription } from 'rxjs';
 import { CatService } from '../services/cat.service';
 
@@ -16,7 +11,7 @@ import { CatService } from '../services/cat.service';
   styleUrls: ['./add-cat-modal.component.scss']
 })
 export class AddCatModalComponent implements OnInit {
-  @Output() post = new EventEmitter<FormData>();
+  @Output() addCat = new EventEmitter<any>();
 
   public newCat: Cat = {
     name: '',
@@ -78,6 +73,7 @@ export class AddCatModalComponent implements OnInit {
     formData.append('name', this.newCat.name);
     formData.append('file', this.catProfFile);
     this.cs.addCat(formData).subscribe((result) => {
+      this.addCat.next('added');
       console.log(result);
     });
   }
