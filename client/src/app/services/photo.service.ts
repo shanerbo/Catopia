@@ -20,8 +20,9 @@ export class PhotoService {
   }
 
   private getParams(filters: CatFilter): string {
-    let params = '?';
+    let params = '';
     if (filters) {
+      params += '?';
       if (filters.gender !== '') {
         params += 'gender=' + filters.gender + '&';
       }
@@ -29,7 +30,7 @@ export class PhotoService {
         params += 'kitten=' + filters.kitten + '&';
       }
       if (filters.spay != null) {
-        params += 'spay=' + filters.spay + '&';
+        params += 'spay=' + filters.spay;
       }
     }
     return params;
