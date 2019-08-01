@@ -19,9 +19,13 @@
               <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
             </div>
             <div class=" col unfollow-btn">
-              <p>
-                <button type="button" class="btn btn-light"
-                  (click)="switchFollowStatus(userInfo.id)">{{followStatus}}</button>
+              <p *ngIf="loggedinUserInfo.id != user.id">
+                <button type="button" class="btn btn-light" *ngIf="!loginFollowingIdList.includes(user.id)"
+                  (click)="switchFollowStatus(user.id)">Follow
+                </button>
+                <button type="button" class="btn btn-light" *ngIf="loginFollowingIdList.includes(user.id)"
+                  (click)="switchFollowStatus(user.id)">Unfollow
+                </button>
               </p>
             </div>
 

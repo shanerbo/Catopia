@@ -8,7 +8,8 @@
       <app-photo-card (likePostEvent)="fetchUserPhotos($event)" (commentEvent)="fetchUserPhotos($event)" [post]="post">
       </app-photo-card>
     </div>
-    <app-follow-modal [whichTab]="whichTab" [viewingUserInfo]="viewingUserInfo" [loggedinUserInfo]="loggedinUserInfo">
+    <app-follow-modal *ngIf="loggedinUserInfo" [whichTab]="whichTab" [viewingUserInfo]="viewingUserInfo"
+      [loggedinUserInfo]="loggedinUserInfo" (updateFollow)="fetchUserInfo($event)">
     </app-follow-modal>
     <app-add-cat-modal (addCat)="fetchUserInfo($event)"></app-add-cat-modal>
   </div>
