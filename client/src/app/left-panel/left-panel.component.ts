@@ -11,15 +11,20 @@ export class LeftPanelComponent implements OnInit {
   @Output() clearFilter = new EventEmitter<string>();
   @Output() filterSubmit = new EventEmitter<CatFilter>();
 
-  public filters: CatFilter = {
-    gender: 'boy',
-    spay: false,
-    kitten: true
-  };
+  public filters: CatFilter;
   public isCollapsed = true;
 
   constructor() { }
-  ngOnInit() { }
+  ngOnInit() {
+    this.initFilters();
+  }
+  initFilters() {
+    this.filters = {
+      gender: '',
+      spay: null,
+      kitten: null
+    };
+  }
 
   toggleSideBar(event): void {
     this.isCollapsed = !this.isCollapsed;
@@ -32,6 +37,7 @@ export class LeftPanelComponent implements OnInit {
   }
 
   clear(): void {
+    this.initFilters();
     this.clearFilter.next(null);
   }
   refreshPosts() {

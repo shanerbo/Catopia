@@ -45,16 +45,28 @@
                 Gril
               </option>
             </select>
-            <div class="accentFont">
-
-              <input type="checkbox" name="spay" [(ngModel)]="filters.spay" checked="filters.spay">
-              Spayed
-            </div>
-
-            <div class="accentFont">
-              <input type="checkbox" name="kitten" [(ngModel)]="filters.kitten" [checked]="filters.kitten">Kittens(&lt;
-              1 year old)
-            </div>
+            <label for="spay" class="accentFont">Spay</label>
+            <select [(ngModel)]="filters.spay" name="catFilter" class="form-control" id="spay">
+              <option value="">
+              </option>
+              <option value="true">
+                Spayed
+              </option>
+              <option value="false">
+                Not Spayed
+              </option>
+            </select>
+            <label for="kitten" class="accentFont">Kitten</label>
+            <select [(ngModel)]="filters.kitten" name="catFilter" class="form-control" id="kitten">
+              <option value="">
+              </option>
+              <option value="true">
+                Kitten(&lt;1 year old)
+              </option>
+              <option value="false">
+                Cat above 1 year old
+              </option>
+            </select>
 
             <button type="submit" (click)="applyFilters($event)" class="btn btn-primary float-right mt-2">Apply</button>
             <button (click)="clear()" class="btn btn-primary float-right mt-2">Clear Filter</button>

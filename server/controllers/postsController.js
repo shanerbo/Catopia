@@ -44,6 +44,41 @@ function getCatPostsInclude(cat_id) {
   query.include[1].where = { id: cat_id };
   return query;
 };
+
+function getPostQueryWithParams(params) {
+  let query = postInclude();
+  if (params) {
+    // -----------------cat filters----------------
+    //filters.gender is auto-handled
+    if (params.spay) {//handle spay
+      if (params.spay === "false") {
+        params.spay = false;
+      } else if (params.spay === "true") {
+        params.spay = true;
+      } else {
+        delete params.spay;
+      }
+    }
+    console.log("processed spay query:", params);
+    if (params.kitten === 'true') {
+      const oneYearAgo = new Date();
+      oneYearAgo.setTime(oneYearAgo.getTime() - 365 * 24 * 60 * 60 * 1000);
+      params.age = {
+        [Op.gte]: oneYearAgo
+      }
+    }
+    delete params.kitten;
+    console.log("processed kitten query", params);
+    //---------------------------------------------
+    if (params.search) {
+      // TODO:handle search keyword here
+    }
+
+    query.include[1].where = params;
+  }
+  return query;
+}
+
 // ------------------------------------------------------
 exports.getCatPosts = [
   async (req, res, next) => {
@@ -65,7 +100,8 @@ exports.getFollowingUsersPosts = [
       allFollowingInfo.forEach(element => {
         allFollowingArray.push(element.following + '');
       });
-      const ret = await db.Posts.getFollowingUserPosts(postInclude(), allFollowingArray);
+      const query = getPostQueryWithParams(req.query);
+      const ret = await db.Posts.getFollowingUserPosts(query, allFollowingArray);
       res.json(ret);
 
     }
@@ -122,24 +158,9 @@ exports.commentOnPhoto = [
   }
 ];
 
-exports.getPosts = (req, res, next) => {
-  let query = postInclude();
-  if (req.query) {
-    if (req.query.spay) {
-      req.query.spay = "false" ? false : true;
-    }
-    console.log("query:", req.query);
-    query.include[1].where = req.query;
-    if (req.query.kitten === 'true') {
-      const oneYearAgo = new Date();
-      oneYearAgo.setTime(oneYearAgo.getTime() - 365 * 24 * 60 * 60 * 1000);
-      query.include[1].where.age = {
-        [Op.gte]: oneYearAgo
-      }
-    }
-    delete query.include[1].where.kitten;
-  }
 
+exports.getPosts = (req, res, next) => {
+  const query = getPostQueryWithParams(req.query);
   console.log("include:", query);
   db.Posts.findAll(query).then(result => {
     // console.log("after:", result);
@@ -148,7 +169,7 @@ exports.getPosts = (req, res, next) => {
 };
 
 exports.getUserPosts = (req, res, next) => {
-  let searchCondition = postInclude();
+  let searchCondition = getPostQueryWithParams(req.query);
   if (!req.params.id || !Number(req.params.id)) {
     res.status(400).json({ error: "id is missing or invalid" });
   }
