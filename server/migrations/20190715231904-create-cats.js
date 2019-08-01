@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       spay: {
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN
       },
       prof_url: {
         allowNull: false,

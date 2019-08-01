@@ -26,24 +26,50 @@
         </a>
       </li>
       <li class="filter-list">
-        <a *ngIf="isCollapsed; else filterList" class="nav-link accentFont"><i class="fas fa-filter fa-2x"></i>
+        <a *ngIf="isCollapsed; else filterList" (click)="expandSideBar()" class="nav-link accentFont"><i
+            class="fas fa-filter fa-2x"></i>
           <span>Post Filter</span>
         </a>
         <ng-template #filterList>
 
           <div class="list-unstyled form-group" id="filterSubmenu">
-            <label for="gender">Gender</label>
-            <select name="catFilter" class="form-control" id="gender">
+
+            <label for="gender" class="accentFont">Gender</label>
+            <select [(ngModel)]="filters.gender" name="catFilter" class="form-control" id="gender">
               <option value="">
-              </option>
-              <option value="boy">
-                Girl
               </option>
               <option value="boy">
                 Boy
               </option>
+              <option value="girl">
+                Gril
+              </option>
             </select>
-            <button type="submit" class="btn btn-primary float-right mt-2">Apply</button>
+            <label for="spay" class="accentFont">Spay</label>
+            <select [(ngModel)]="filters.spay" name="catFilter" class="form-control" id="spay">
+              <option value="">
+              </option>
+              <option value="true">
+                Spayed
+              </option>
+              <option value="false">
+                Not Spayed
+              </option>
+            </select>
+            <label for="kitten" class="accentFont">Kitten</label>
+            <select [(ngModel)]="filters.kitten" name="catFilter" class="form-control" id="kitten">
+              <option value="">
+              </option>
+              <option value="true">
+                Kitten(&lt;1 year old)
+              </option>
+              <option value="false">
+                Cat above 1 year old
+              </option>
+            </select>
+
+            <button type="submit" (click)="applyFilters($event)" class="btn btn-primary float-right mt-2">Apply</button>
+            <button (click)="clear()" class="btn btn-primary float-right mt-2">Clear Filter</button>
           </div>
 
         </ng-template>

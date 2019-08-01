@@ -6,6 +6,7 @@ import { UserInfo } from '../interfaces/user-info';
 import { UserService } from '../services/user.service';
 import { Post } from '../interfaces/post';
 import { Subscription } from 'rxjs';
+import { CatFilter } from '../interfaces/cat';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public mutualFollowed = false;
   public followStatus = 'Follow';
   public loggedinUserInfo: any; // currentUserInfo
+
   constructor(
     private ls: LoginService,
     private ps: PhotoService,
@@ -40,8 +42,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   ) { }
 
 
+
   ngOnInit() {
-    this.fetchAllPhotos();
     this.route.params.subscribe((params) => {
       this.userId = params['id'];
 
@@ -51,6 +53,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         this.currentUser = user;
         this.fetchUserInfo();
       });
+      this.fetchUserPhotos(null);
     });
   }
 
@@ -65,8 +68,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   switchFollower() {
     this.whichTab = 'Follower';
   }
-  fetchAllPhotos() {
-    this.ps.getAllPosts().then((posts) => {
+  fetchUserPhotos(filters: CatFilter) {
+    this.ps.getUserPosts(this.userId, filters).then((posts) => {
       this.posts = posts;
     });
   }

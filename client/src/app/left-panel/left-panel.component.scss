@@ -56,6 +56,13 @@
 
 }
 
+.toggle-btn.active{
+  opacity: 1;
+}
+.toggle-btn {
+  opacity: 0.4;
+}
+
 #sidebar ul li a:hover {
   color: $themeColor;
   background: #fff;
