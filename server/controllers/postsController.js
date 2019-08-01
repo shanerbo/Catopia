@@ -60,11 +60,15 @@ function getPostQueryWithParams(params) {
       }
     }
     console.log("processed spay query:", params);
+    const oneYearAgo = new Date();
+    oneYearAgo.setTime(oneYearAgo.getTime() - 365 * 24 * 60 * 60 * 1000);
     if (params.kitten === 'true') {
-      const oneYearAgo = new Date();
-      oneYearAgo.setTime(oneYearAgo.getTime() - 365 * 24 * 60 * 60 * 1000);
       params.age = {
-        [Op.gte]: oneYearAgo
+        [Op.gte]: oneYearAgo //birthday after one year ago
+      }
+    } else if (params.kitten === 'false') {
+      params.age = {
+        [Op.lt]: oneYearAgo //birthday earlier than one year ago
       }
     }
     delete params.kitten;
