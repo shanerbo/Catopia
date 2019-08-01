@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     return follows === "follower" ?
       sequelize.query(`select "userName", "email", "user_id" as "id", "following", "bio", "prof_url" from "Users" full join "Follows" on "Users".id = "Follows".user_id where  "Follows".following = ?`,
         { replacements: [user_id], type: sequelize.QueryTypes.SELECT })
-      : sequelize.query(`select "userName", "email", "user_id" as "id", "following", "bio", "prof_url" from "Users" full join "Follows" on "Users".id = "Follows".following where user_id = ?`,
+      : sequelize.query(`select "userName", "email", "user_id" , "following" as "id", "bio", "prof_url" from "Users" full join "Follows" on "Users".id = "Follows".following where user_id = ?`,
         {
           replacements: [user_id],
           type: sequelize.QueryTypes.SELECT
