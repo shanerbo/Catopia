@@ -89,14 +89,14 @@ export class HomePageComponent implements OnInit {
     this.ps.postPhoto(post).subscribe((result) => {
       console.log('upload ', result);
       // TODO: re-fetch all posts
-      this.fetchAllPhotos();
+      this.fetchPosts();
     });
   }
 
   likedPost() {
-    this.fetchAllPhotos();
+    this.fetchPosts();
   }
   postComment(event) {
-    this.fetchAllPhotos();
+    this.fetchPosts();
   }
 }
