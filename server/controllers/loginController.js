@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const { sanitizeBody, body, validationResult } = require('express-validator');
 const jwtsecret = process.env.JWTSECRET;
 const passport = require('passport');
-
+const defaultUserProfUrl = "https://www.paramedicmemorial.org/wp-content/uploads/2018/04/placeholder-avatar.png"
 function generateJwt(userObj) {
   var expiry = new Date();
   expiry.setDate(expiry.getDate() + 3);
@@ -70,7 +70,7 @@ exports.signup = [
         null, //gender,
         null, //phone,
         null, //bio,
-        null, //prof_url
+        defaultUserProfUrl, //prof_url
       )
         .then((result) => {
           console.log("signup result:", result.dataValues);

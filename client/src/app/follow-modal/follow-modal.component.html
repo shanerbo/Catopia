@@ -19,9 +19,18 @@
               <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
             </div>
             <div class=" col unfollow-btn">
-              <p>
+              <p *ngIf="loggedinUserInfo.id != user.id">
+                <button type="button" class="btn btn-light" *ngIf="!loginFollowingIdList.includes(user.id)"
+                  (click)="switchFollowStatus(user.id)">Follow
+                </button>
                 <button type="button" class="btn btn-light"
-                  (click)="switchFollowStatus(userInfo.id)">{{followStatus}}</button>
+                  *ngIf="loginFollowingIdList.includes(user.id) && !loginFollowerIdList.includes(user.id)"
+                  (click)="switchFollowStatus(user.id)">Unfollow
+                </button>
+                <button type="button" class="btn btn-light"
+                  *ngIf="loginFollowingIdList.includes(user.id) && loginFollowerIdList.includes(user.id)"
+                  (click)="switchFollowStatus(user.id)">Mutual
+                </button>
               </p>
             </div>
 
@@ -38,11 +47,18 @@
                 <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
               </div>
               <div class=" col unfollow-btn">
-                <p *ngIf="whichTab =='Following'">
-                  <button type="button" class="btn btn-light">Unfollow</button>
-                </p>
-                <p *ngIf="whichTab =='Follower'">
-                  <button type="button" class="btn btn-light">Follow</button>
+                <p *ngIf="loggedinUserInfo.id != user.id">
+                  <button type="button" class="btn btn-light" *ngIf="!loginFollowingIdList.includes(user.id)"
+                    (click)="switchFollowStatus(user.id)">Follow
+                  </button>
+                  <button type="button" class="btn btn-light"
+                    *ngIf="loginFollowingIdList.includes(user.id) && !loginFollowerIdList.includes(user.id)"
+                    (click)="switchFollowStatus(user.id)">Unfollow
+                  </button>
+                  <button type="button" class="btn btn-light"
+                    *ngIf="loginFollowingIdList.includes(user.id) && loginFollowerIdList.includes(user.id)"
+                    (click)="switchFollowStatus(user.id)">Mutual
+                  </button>
                 </p>
               </div>
 

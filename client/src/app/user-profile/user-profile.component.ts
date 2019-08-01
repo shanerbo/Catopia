@@ -18,19 +18,16 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public posts: Post[];
   public viewingUserInfo: any; // userInfo
   public whichTab: string;
-  private userId: number;
+  private viewingUserId: number;
   private currentUserSubscription: Subscription;
   public currentUser: UserInfo;
-  public followingCount: number;
-  public followerCount: number;
+
   public followerList: UserInfo[];
   public followingList: UserInfo[];
   // public catList:
-  private followerIdList: number[];
-  private followingIdList: number[];
   public hasFollowed = false;
   public beingFollowed = false;
-  public mutualFollowed = false;
+
   public followStatus = 'Follow';
   public loggedinUserInfo: any; // currentUserInfo
 
@@ -45,9 +42,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.userId = params['id'];
-
-      this.currentUser = this.ls.user;
+      this.viewingUserId = params['id'];
       this.fetchUserInfo();
       this.currentUserSubscription = this.ls.currentUser.subscribe((user: UserInfo) => {
         this.currentUser = user;
@@ -69,47 +64,27 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.whichTab = 'Follower';
   }
   fetchUserPhotos(filters: CatFilter) {
-    this.ps.getUserPosts(this.userId, filters).then((posts) => {
+    this.ps.getUserPosts(this.viewingUserId, filters).then((posts) => {
       this.posts = posts;
     });
   }
+
   fetchUserInfo(): Promise<any> {
-    return this.us.getUserAllInfo(this.userId).then((userInfo) => {
-      this.loggedinUserInfo = this.us.logInUserInfo;
-      this.viewingUserInfo = userInfo;
+    return this.us.getUserAllInfo(this.viewingUserId).then((userInfo) => {
       this.followerList = userInfo.follower;
       this.followingList = userInfo.following;
-      this.followerIdList = this.followerList.map((ele) => ele.id);
-      this.followingIdList = this.followingList.map((ele) => ele.id);
-      if (this.currentUser) {
-        this.hasFollowed = this.followerIdList.includes(this.currentUser.id);
-        this.beingFollowed = this.followingIdList.includes(this.currentUser.id);
-      } else {
-        this.hasFollowed = false;
-        this.beingFollowed = false;
-      }
-
-      if (this.hasFollowed === true) {
-
-        this.followStatus = 'Unfollow';
-        if (this.beingFollowed) {
-          this.followStatus = 'Mutual';
-        }
-      } else {
-        console.log('sb');
-        this.followStatus = 'Follow';
-      }
+      this.viewingUserInfo = userInfo;
+      this.loggedinUserInfo = this.us.logInUserInfo;
+      this.followStatus = this.us.checkFollowStatus(this.us.logInUserInfo, userInfo);
     });
   }
 
   switchFollowStatus() {
-    this.us.setFollowStatus(this.userId).subscribe((result) => {
+    this.us.setFollowStatus(this.viewingUserId).then((result) => {
       if (result.result === 'unFollowed') {
         this.hasFollowed = false;
-        console.log(this.followingList);
       } else {
         this.hasFollowed = true;
-        console.log(this.followerList);
       }
       this.fetchUserInfo();
 
