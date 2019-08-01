@@ -50,8 +50,18 @@ export class HomePageComponent implements OnInit {
         throw error;
       });
     } else if (this.url === 'liked') {
-      // TODO: get all liked posts. Need this api
+      this.fetchLikedPost().catch((error) => {
+        console.log(error);
+      });
     }
+  }
+
+  fetchLikedPost(): Promise<Post[]> {
+    return this.us.getUserLikedPost().then((posts) => {
+      console.log('Fetched liked post', posts);
+      this.posts = posts;
+      return this.posts;
+    });
   }
 
   fetchAllPhotos() {

@@ -1,11 +1,12 @@
 const db = require('../models/index');
+const Op = db.Sequelize.Op;
 const gcp = require('../lib/google-cloud-storage');
 const { sanitizeBody, body, validationResult } = require('express-validator');
 const passport = require('passport');
 const upload = require('multer')();
 const path = require('path');
 // ------------------helper constants------------------
-const postInclude = () => {
+const postQuery = () => {
   return {
     include: [
       {
@@ -38,20 +39,52 @@ const postInclude = () => {
   }
 }
 
-function getCatPostsInclude(cat_id) {
-  let include = postInclude();
-  include.include[1].where = { id: cat_id };
-  return include;
-};
 // ------------------------------------------------------
 exports.getCatPosts = [
   async (req, res, next) => {
     const cat_id = req.params.id;
-    const include = getCatPostsInclude(cat_id)
-    const ret = await db.Posts.getCatPosts(include, cat_id);
-    res.json(ret);
+    const allPostQuery = postQuery();
+    const allPost_cats = await db.Cats.findOne({
+      include: [
+        {
+          model: db.Posts,
+          include: allPostQuery.include,
+          order: allPostQuery.order
+        }],
+      where: {
+        id: cat_id
+      }
+    });
+    console.log(allPost_cats);
+    res.json(allPost_cats);
   }
 ]
+
+exports.getUserLikedPosts = [
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    console.log("!!!");
+    if (!req.user) {
+      res.json({ error: "Please login" });
+    } else {
+      const user_id = req.user.id;
+      const likedPostArray = (await db.post_likes.findAll({
+        where: {
+          user_id: user_id
+        }
+      })).map(ele => ele.get('post_id'));
+      console.log("dat array", likedPostArray, typeof likedPostArray);
+      const allPostQuery = postQuery();
+      allPostQuery.where = {
+        id: likedPostArray
+      }
+
+      const likedPost = await db.Posts.findAll(allPostQuery);
+
+      res.json(likedPost);
+    }
+  }
+];
 
 exports.getFollowingUsersPosts = [
   passport.authenticate('jwt', { session: false }),
@@ -64,7 +97,7 @@ exports.getFollowingUsersPosts = [
       allFollowingInfo.forEach(element => {
         allFollowingArray.push(element.following + '');
       });
-      const ret = await db.Posts.getFollowingUserPosts(postInclude(), allFollowingArray);
+      const ret = await db.Posts.getFollowingUserPosts(postQuery(), allFollowingArray);
       res.json(ret);
 
     }
@@ -122,14 +155,14 @@ exports.commentOnPhoto = [
 ];
 
 exports.getPosts = (req, res, next) => {
-  db.Posts.findAll(postInclude()).then(result => {
+  db.Posts.findAll(postQuery()).then(result => {
     // console.log("after:", result);
     res.json(result);
   });
 };
 
 exports.getUserPosts = (req, res, next) => {
-  let searchCondition = postInclude();
+  let searchCondition = postQuery();
   if (!req.params.id || !Number(req.params.id)) {
     res.status(400).json({ error: "id is missing or invalid" });
   }

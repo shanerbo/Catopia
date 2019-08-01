@@ -17,6 +17,7 @@ router.get('/photo/user/:id', postsController.getUserPosts);// show certain user
 router.get('/photo/following', postsController.getFollowingUsersPosts);// show user's following users' photos
 router.post('/photo/:id/like', postsController.likeOrUnlike); //show certain photo's like
 router.get('/photo/cat/:id', postsController.getCatPosts);// show certain cat's posts
+router.get('/photo/like', postsController.getUserLikedPosts);//get user liked posts
 router.post('/photo', postsController.postPhoto);// post a post
 
 router.post('/photo/:id/comment', postsController.commentOnPhoto);// post a post
