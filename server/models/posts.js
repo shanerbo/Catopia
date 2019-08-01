@@ -18,19 +18,24 @@ module.exports = (sequelize, DataTypes) => {
     return Posts.findAll({ where: { user_id } })
   }
 
-  Posts.getFollowingUserPosts = (include, conditionArray) => {
-    let searchCondition = include;
+  Posts.getFollowingUserPosts = (searchCondition, conditionArray) => {
     console.log("conditionArray", conditionArray);
     searchCondition.where = {
       user_id: conditionArray
     };
-    return Posts.findAll(include);
+    return Posts.findAll(searchCondition);
   };
   Posts.getCatPosts = (include) => {
     return Posts.findAll(include);
   }
   Posts.createPost = (user_id, description) => {
     return Posts.create({ user_id, description });
+  }
+
+  Posts.getUserLikedPost = (query) => {
+    // let searchCondition = query.;
+    console.log(query + "!!!");
+    return Posts.findAll(query)
   }
   return Posts;
 };

@@ -61,6 +61,9 @@ module.exports = (sequelize, DataTypes) => {
     return Users.findAll({
       order: [['createdAt', 'DESC']],
       limit: 25,
+      attributes: {
+        exclude: ['pwd']
+      }
     });
   };
   return Users;

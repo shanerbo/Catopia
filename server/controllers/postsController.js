@@ -6,7 +6,7 @@ const passport = require('passport');
 const upload = require('multer')();
 const path = require('path');
 // ------------------helper constants------------------
-const postInclude = () => {
+const postQuery = () => {
   return {
     include: [
       {
@@ -39,14 +39,8 @@ const postInclude = () => {
   }
 }
 
-function getCatPostsInclude(cat_id) {
-  let query = postInclude();
-  query.include[1].where = { id: cat_id };
-  return query;
-};
-
 function getPostQueryWithParams(params) {
-  let query = postInclude();
+  let query = postQuery();
   if (params) {
     // -----------------cat filters----------------
     //filters.gender is auto-handled
@@ -84,11 +78,48 @@ function getPostQueryWithParams(params) {
 exports.getCatPosts = [
   async (req, res, next) => {
     const cat_id = req.params.id;
-    const include = getCatPostsInclude(cat_id)
-    const ret = await db.Posts.getCatPosts(include, cat_id);
-    res.json(ret);
+    const allPostQuery = postQuery();
+    const allPost_cats = await db.Cats.findOne({
+      include: [
+        {
+          model: db.Posts,
+          include: allPostQuery.include,
+          order: allPostQuery.order
+        }],
+      where: {
+        id: cat_id
+      }
+    });
+    console.log(allPost_cats);
+    res.json(allPost_cats);
   }
 ]
+
+exports.getUserLikedPosts = [
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    console.log("!!!");
+    if (!req.user) {
+      res.json({ error: "Please login" });
+    } else {
+      const user_id = req.user.id;
+      const likedPostArray = (await db.post_likes.findAll({
+        where: {
+          user_id: user_id
+        }
+      })).map(ele => ele.get('post_id'));
+      console.log("dat array", likedPostArray, typeof likedPostArray);
+      const allPostQuery = postQuery();
+      allPostQuery.where = {
+        id: likedPostArray
+      }
+
+      const likedPost = await db.Posts.findAll(allPostQuery);
+
+      res.json(likedPost);
+    }
+  }
+];
 
 exports.getFollowingUsersPosts = [
   passport.authenticate('jwt', { session: false }),
@@ -99,7 +130,7 @@ exports.getFollowingUsersPosts = [
       const allFollowingInfo = await db.Follows.getFollower(req.user.id, "following");
       const allFollowingArray = [];
       allFollowingInfo.forEach(element => {
-        allFollowingArray.push(element.following + '');
+        allFollowingArray.push(element.id);
       });
       const query = getPostQueryWithParams(req.query);
       const ret = await db.Posts.getFollowingUserPosts(query, allFollowingArray);

@@ -6,7 +6,6 @@ import { LoginService } from './login.service';
 import { UserInfo, TokenResponse } from '../interfaces/user-info';
 import { Subscription } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -74,6 +73,14 @@ export class UserService {
     });
   }
 
+  getUserLikedPost(): Promise<Post[]> {
+    return this.ls.authRequest('get', 'api/photo/like', {}, null).toPromise().then((posts: Post[]) => {
+      console.log(posts);
+      return posts;
+    }).catch((error) => {
+      throw error;
+    });
+  }
   update(updatedUser: FormData): Observable<any> {
     return this.ls.authRequest('post', '/api/user/edit', {}, updatedUser);
   }
