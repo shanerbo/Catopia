@@ -1,8 +1,4 @@
-- Show real data on profile page
-- Show real data on recommendation panel
-- Rearrange angular components for better reusability
-	- create new middle panel component
-	- etc.
-- APIs needed:
-	- get one cat's all posts
-	- get recommended users
+- Cat profile page with real data
+- search bar
+- Search result page
+- image crop

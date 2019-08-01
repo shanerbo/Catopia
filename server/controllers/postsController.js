@@ -74,9 +74,6 @@ function getPostQueryWithParams(params) {
     delete params.kitten;
     console.log("processed kitten query", params);
     //---------------------------------------------
-    if (params.search) {
-      // TODO:handle search keyword here
-    }
 
     query.include[1].where = params;
   }

@@ -4,6 +4,7 @@ const loginController = require('../controllers/loginController');
 const postsController = require('../controllers/postsController');
 const userController = require('../controllers/userController');
 const catController = require('../controllers/catController');
+const searchController = require('../controllers/searchController');
 const router = express.Router();
 
 
@@ -34,4 +35,7 @@ router.post('/user/:id/follow', userController.followOrUnfollow);// follow new u
 
 router.post('/cat/new', catController.addCat);
 router.post('/cat/:id/edit', catController.updateCat);
+
+router.get('/search', searchController.searchForUserOrCat);
+
 module.exports = router;
