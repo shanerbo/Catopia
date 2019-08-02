@@ -5,6 +5,10 @@ body {
   background-color: #f1f1f1;
 }
 
+.selected{
+  border: $themeColor solid 5px;
+}
+
 .avatar {
   vertical-align: middle;
   width: 50px;
@@ -52,6 +56,11 @@ body {
     color: grey;
     cursor: pointer;
   }
+
+  .eachCat:hover{
+    border: $accentColor solid 5px;
+  }
+
 
   .input-file-intro label h4:hover {
     color: $themeColor;

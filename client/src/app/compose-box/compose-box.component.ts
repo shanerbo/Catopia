@@ -1,7 +1,11 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Post } from '../interfaces/post';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { UserInfo } from '../interfaces/user-info';
+import { UserInfo, MegaUserInfo } from '../interfaces/user-info';
+import { Cat } from '../interfaces/cat';
+import { UserService } from '../services/user.service';
+import { Observable } from 'rxjs';
+import { CatService } from '../services/cat.service';
 
 @Component({
   selector: 'app-compose-box',
@@ -15,10 +19,16 @@ export class ComposeBoxComponent implements OnInit {
   private photosToUpload: File[] = [];
   public photoList: FileList;
   public imgSrc: Blob[] = [];
+  public catId = {};
   public description = '';
-  constructor() { }
+  public megaCurrentUser$: Observable<MegaUserInfo>;
 
-  ngOnInit() { }
+  constructor(
+    private us: UserService
+  ) { }
+
+  ngOnInit() {
+  }
 
   handleFileInput(target) {
     console.log(this.photoList);
@@ -46,6 +56,16 @@ export class ComposeBoxComponent implements OnInit {
     this.imgSrc.splice(index, 1);
   }
 
+  addCat(id: number) {
+    // this.catId.push(id);
+    console.log(id);
+    if (!this.catId[id]) {
+      this.catId[id] = true;
+    } else if (this.catId[id]) {
+      delete this.catId[id];
+    }
+  }
+
   submitForm(event) {
     const formData = new FormData();
     if (!this.photosToUpload) {
@@ -56,6 +76,20 @@ export class ComposeBoxComponent implements OnInit {
     });
 
     formData.append('description', this.description);
+
+    console.log(this.catId);
+    const catIds = Object.keys(this.catId);
+    console.log('post with cats:', catIds);
+    catIds.forEach((id, i) => {
+      formData.append('cat' + i, id + '');
+    });
     this.post.next(formData);
+    this.resetForm();
+  }
+  resetForm() {
+    this.photosToUpload = [];
+    this.imgSrc = [];
+    this.catId = {};
+    this.description = '';
   }
 }

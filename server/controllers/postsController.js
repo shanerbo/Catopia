@@ -159,13 +159,25 @@ exports.postPhoto = [
     const newPost = await db.Posts.createPost(req.user.id, req.body.description);
     let addPhotoPromises = [];
     req.files.forEach(file => {
-
       const promise = db.post_media.addPostMedia(newPost.get('id'), file.cloudStoragePublicUrl)
       addPhotoPromises.push(promise);
     });
     const addedPhotos = await Promise.all(addPhotoPromises).catch((err) => {
       next(err);
     });
+    let catKeys = Object.keys(req.body);
+    catKeys = catKeys.filter(key => key.includes("cat"));
+    console.log(catKeys);
+    let addPostCatPromises = [];
+    catKeys.forEach((key) => {
+      const cat_id = req.body[key];
+      addPostCatPromises.push(newPost.addCat(cat_id));
+      console.log(cat_id);
+    });
+    await Promise.all(addPostCatPromises).then((result) => {
+    }).catch((err) => {
+      next(err);
+    });;
     if (addedPhotos.length === req.files.length) {
       res.json({ upload: "success" });
     }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Post } from '../interfaces/post';
 import { Observable, Subject } from 'rxjs';
 import { LoginService } from './login.service';
-import { UserInfo, TokenResponse } from '../interfaces/user-info';
+import { UserInfo, TokenResponse, MegaUserInfo } from '../interfaces/user-info';
 import { Subscription } from 'rxjs';
 
 @Injectable({
@@ -13,9 +13,7 @@ export class UserService {
   public currentUser = new Subject<UserInfo>();
   public user: UserInfo;
 
-  public logInUserInfo: any;
-  public logUserFollowingList: any;
-  public logUserFollowerList: any;
+  public logInUserInfo: MegaUserInfo;
   public logInUserSubscription: Subscription;
 
   constructor(
@@ -33,8 +31,6 @@ export class UserService {
   getLogInUserInfo(): void {
     this.getUserAllInfo(this.user.id).then((logInUserInfo) => {
       this.logInUserInfo = logInUserInfo;
-      this.logUserFollowerList = this.logInUserInfo.follower.map((ele) => ele.id);
-      this.logUserFollowingList = this.logInUserInfo.following.map((ele) => ele.id);
     });
   }
 
@@ -58,7 +54,6 @@ export class UserService {
       throw error;
     });
   }
-
   getUserLikedPost(): Promise<Post[]> {
     return this.ls.authRequest('get', 'api/photo/like', {}, null).toPromise().then((posts: Post[]) => {
       console.log(posts);

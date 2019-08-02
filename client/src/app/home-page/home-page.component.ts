@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { PhotoService } from '../services/photo.service';
 import { Post } from '../interfaces/post';
-import { FormGroup } from '@angular/forms';
 import { UserInfo } from '../interfaces/user-info';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { CatFilter } from '../interfaces/cat';
 
 @Component({
@@ -17,8 +15,6 @@ import { CatFilter } from '../interfaces/cat';
 export class HomePageComponent implements OnInit {
   public posts: Post[];
   public users: UserInfo[];
-  public logInUserFollowerList: any;
-  public logInUserFollowingList: any;
   public url: string;
   public logUserId: any;
   private filters: CatFilter;
@@ -41,8 +37,6 @@ export class HomePageComponent implements OnInit {
       this.fetchPosts();
     });
     this.fetchRecommendUsers();
-    this.logInUserFollowerList = this.us.logUserFollowerList;
-    this.logInUserFollowingList = this.us.logUserFollowingList;
   }
 
   refetchWithFilters(filters) {
