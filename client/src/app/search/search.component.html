@@ -1,34 +1,36 @@
-<div class="row">
-  <div>
-
-    <h1>Found Users:</h1>
-  </div>
+<div class="container">
   <div class="row">
-    <div class="card" style="width: 18rem; height: 24rem;" *ngFor="let user of userResult">
-      <div class="card-img-top" [ngStyle]="{'background-image': 'url('
+    <div class="row">
+      <h1>Found Users:</h1>
+    </div>
+    <div class="row">
+      <div class="card m-2" style="width: 18rem; height: 24rem;" *ngFor="let user of userResult">
+        <div class="card-img-top" style="height:100%" [ngStyle]="{'background-image': 'url('
       +user.prof_url+ ')', 'background-size': 'cover' }"></div>
-      <div class="card-body">
-        <h5 class="card-title">{{user.userName}}</h5>
-        <p class="card-text">{{user.bio}}</p>
-        <a routerLink="['user','{{user.id}}']" class="btn btn-primary">Go to Profile page</a>
+        <div class="card-body">
+          <h5 class="card-title">{{user.userName}}</h5>
+          <p class="card-text" style="overflow:hidden; white-space: nowrap;text-overflow:ellipsis;">{{user.bio}}</p>
+          <a routerLink="['user','{{user.id}}']" class="btn btn-primary">Go to Profile page</a>
+        </div>
       </div>
+
     </div>
-
   </div>
-</div>
 
-<div class="row">
-  <h1 class="row">Found Cats:</h1>
   <div class="row">
+    <h1 class="row">Found Cats:</h1>
+    <div class="row">
 
-    <div class="card" style="width: 18rem; height: 24rem;" *ngFor="let cat of catResult">
-      <img class="card-img-top" src="{{cat.prof_url}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{cat.name}}</h5>
-        <p class="card-text">Owner: {{cat.owner}}</p>
-        <a routerLink="['cat','{{cat.id}}']" class="btn btn-primary">Go to Profile page</a>
+      <div class="card m-2" style="width: 18rem; height: 24rem;" *ngFor="let cat of catResult">
+        <div class="card-img-top" style="height:100%" [ngStyle]="{'background-image': 'url('
+      +cat.prof_url+ ')', 'background-size': 'cover' }"></div>
+        <div class="card-body">
+          <h5 class="card-title" style="overflow:hidden; white-space: nowrap;text-overflow:ellipsis;">{{cat.name}}</h5>
+          <p class="card-text">Owner: {{cat.owner}}</p>
+          <a routerLink="['cat','{{cat.id}}']" class="btn btn-primary">Go to Profile page</a>
+        </div>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>
