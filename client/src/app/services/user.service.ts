@@ -15,8 +15,8 @@ export class UserService {
   public user: UserInfo;
 
   public logInUserInfo: any;
-  public userFollowingList: UserInfo[];
-  public userFollowerList: UserInfo[];
+  public logUserFollowingList: any;
+  public logUserFollowerList: any;
   public logInUserSubscription: Subscription;
 
   constructor(
@@ -31,31 +31,17 @@ export class UserService {
     });
   }
 
+  getLogInUserInfo(): void {
+    this.getUserAllInfo(this.user.id).then((logInUserInfo) => {
+      this.logInUserInfo = logInUserInfo;
+      this.logUserFollowerList = this.logInUserInfo.follower.map((ele) => ele.id);
+      this.logUserFollowingList = this.logInUserInfo.following.map((ele) => ele.id);
+    });
+  }
+
   getRecommendUsers(): Promise<UserInfo[]> {
     return this.http.get('api/user/recommend').toPromise().then((recommendedUserInfo: UserInfo[]) => {
       return recommendedUserInfo;
-    }).catch((error) => {
-      throw error;
-    });
-  }
-
-  getLogInUserInfo(): void {
-
-    this.getUserAllInfo(this.user.id).then((logInUserInfo) => {
-      this.logInUserInfo = logInUserInfo;
-    });
-  }
-
-  getFollowerList(userId: string | number): Promise<UserInfo[]> {
-    return this.http.get('api/user/' + userId + '/follower').toPromise().then((followerList: UserInfo[]) => {
-      return followerList;
-    }).catch((error) => {
-      throw error;
-    });
-  }
-  getFollowingList(userId: string | number): Promise<UserInfo[]> {
-    return this.http.get('api/user/' + userId + '/following').toPromise().then((followingList: UserInfo[]) => {
-      return followingList;
     }).catch((error) => {
       throw error;
     });
@@ -104,5 +90,4 @@ export class UserService {
     }
     return followStatus;
   }
-
 }
