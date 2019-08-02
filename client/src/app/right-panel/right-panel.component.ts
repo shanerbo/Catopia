@@ -1,18 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { UserInfo } from '../interfaces/user-info';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-right-panel',
   templateUrl: './right-panel.component.html',
   styleUrls: ['./right-panel.component.scss']
 })
-export class RightPanelComponent implements OnInit {
+export class RightPanelComponent implements OnInit, OnChanges {
   @Input() users: UserInfo;
-
-  constructor() { }
+  constructor(
+    private us: UserService,
+  ) { }
 
   ngOnInit() {
-    console.log(this.users);
   }
+  ngOnChanges() {
 
+  }
+  switchFollowStatus(id: number) {
+    this.us.setFollowStatus(id).then((result) => {
+      console.log('update');
+    });
+  }
 }

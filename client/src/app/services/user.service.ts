@@ -14,8 +14,6 @@ export class UserService {
   public user: UserInfo;
 
   public logInUserInfo: MegaUserInfo;
-  public userFollowingList: UserInfo[];
-  public userFollowerList: UserInfo[];
   public logInUserSubscription: Subscription;
 
   constructor(
@@ -30,31 +28,15 @@ export class UserService {
     });
   }
 
-  getRecommendUsers(): Promise<UserInfo[]> {
-    return this.http.get('api/user/recommend').toPromise().then((recommendedUserInfo: UserInfo[]) => {
-      return recommendedUserInfo;
-    }).catch((error) => {
-      throw error;
-    });
-  }
-
   getLogInUserInfo(): void {
-
     this.getUserAllInfo(this.user.id).then((logInUserInfo) => {
       this.logInUserInfo = logInUserInfo;
     });
   }
 
-  getFollowerList(userId: string | number): Promise<UserInfo[]> {
-    return this.http.get('api/user/' + userId + '/follower').toPromise().then((followerList: UserInfo[]) => {
-      return followerList;
-    }).catch((error) => {
-      throw error;
-    });
-  }
-  getFollowingList(userId: string | number): Promise<UserInfo[]> {
-    return this.http.get('api/user/' + userId + '/following').toPromise().then((followingList: UserInfo[]) => {
-      return followingList;
+  getRecommendUsers(): Promise<UserInfo[]> {
+    return this.http.get('api/user/recommend').toPromise().then((recommendedUserInfo: UserInfo[]) => {
+      return recommendedUserInfo;
     }).catch((error) => {
       throw error;
     });
@@ -110,5 +92,4 @@ export class UserService {
     }
     return followStatus;
   }
-
 }

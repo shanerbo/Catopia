@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cat-profile',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cat-profile.component.scss']
 })
 export class CatProfileComponent implements OnInit {
+  @Input() catInfo: any;
+  @Input() ownerInfo: any;
+  constructor(
 
-  constructor() { }
+  ) { }
 
   ngOnInit() {
+
   }
 
 }

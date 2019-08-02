@@ -1,16 +1,16 @@
 <div class="cat-profile">
   <div class="row profile">
     <div class="col pic">
-      <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
+      <img src="{{catInfo?.prof_url}}" alt="Avatar">
     </div>
     <div class="col info">
       <div class="row information">
         <div class="col basic-info">
           <div class="row name">
-            <p>Ruby</p>
+            <p>{{catInfo?.name}}</p>
           </div>
           <div class="row age">
-            <p style="color:rgba(5, 5, 5, 0.432);">1 year old</p>
+            <p style="color:rgba(5, 5, 5, 0.432);">{{catInfo?.age}}</p>
           </div>
         </div>
       </div>
@@ -18,15 +18,20 @@
         <div class="col information">
           <div class="row color">
             <a id="color-tab" style="color:rgba(5, 5, 5, 0.432);">Color: </a>
-            <a id="color-value" style="color:rgba(5, 5, 5, 0.432);">black</a>
+            <a id="color-value" style="color:rgba(5, 5, 5, 0.432);">{{catInfo?.color}}</a>
           </div>
           <div class="row spay">
             <a id="spay-tab" style="color:rgba(5, 5, 5, 0.432);">Spay: </a>
-            <a id="spay-value" style="color:rgba(5, 5, 5, 0.432);">Yes</a>
+            <div *ngIf="catInfo?.spay">
+              <a id="spay-value" style="color:rgba(5, 5, 5, 0.432);">Yes</a>
+            </div>
+            <div *ngIf="!catInfo?.spay">
+              <a id="spay-value" style="color:rgba(5, 5, 5, 0.432);">No</a>
+            </div>
           </div>
           <div class="row gender">
             <a id="gender-tab" style="color:rgba(5, 5, 5, 0.432);">Gender: </a>
-            <a id="gender-value" style="color:rgba(5, 5, 5, 0.432);">Female</a>
+            <a id="gender-value" style="color:rgba(5, 5, 5, 0.432);">{{catInfo?.gender}}</a>
           </div>
         </div>
       </div>
@@ -43,11 +48,11 @@
     </div>
     <li class="row user">
       <div class="col profile-pic">
-        <img src="http://p3.pstatp.com/large/568e00002da81f8118ac" alt="Avatar">
+        <img src="{{ownerInfo?.prof_url}}" alt="Avatar">
       </div>
       <div class="col user-info">
-        <p class="username">Jiarany</p>
-        <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">2B or not 2B</p>
+        <a href="/user/{{ownerInfo?.id}}" class="username">{{ownerInfo?.userName}}</a>
+        <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{ownerInfo?.bio}}</p>
       </div>
     </li>
   </ol>

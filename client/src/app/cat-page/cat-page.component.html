@@ -1,13 +1,14 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-lg-2 col-sm-0">
     <app-left-panel></app-left-panel>
   </div>
-  <div class="col-6">
-    <app-photo-card></app-photo-card>
+  <div class="col-lg-6  col-sm-12">
+    <div *ngFor="let post of posts">
+      <app-photo-card [post]="post"></app-photo-card>
+    </div>
   </div>
 
-  <div class="col-3">
-    <app-cat-profile> </app-cat-profile>
-
+  <div class="col-lg-3 col-sm-0">
+    <app-cat-profile [catInfo]="catInfo" [ownerInfo]="ownerInfo"> </app-cat-profile>
   </div>
 </div>

@@ -3,8 +3,6 @@
     border-style:solid;
     border-width:1px;
     overflow:scroll;
-    margin:60px;
-    width: 25pc;
     height:30pc;
     padding:0px;
     background-color:#b35f5f3b;
@@ -25,7 +23,7 @@
         .user{
             max-width: 100%;
             margin:5px;
-            margin-bottom:15px;
+            margin-bottom:5px;
             list-style:outside none none;
                 .profile-pic {
                     max-width:15%;
@@ -39,7 +37,7 @@
                     }
                 }
                 .user-info{
-                    max-width:55%;
+                    max-width:45%;
                     padding:0px;
                     .username{
                         padding-left:10px;
@@ -48,7 +46,7 @@
                         margin:0px;
                     }
                     .userbio{
-                        padding-left:10px;
+                        padding-left:5px;
                         margin:0px;
                         overflow:hidden; 
                         white-space: nowrap;
@@ -58,8 +56,8 @@
                 .follow-btn{
                     padding:0px;
                     padding-top:5px;
-                    padding-left:15px;
-                    max-width:25%;
+                    padding-left:10px;
+                    max-width:15%;
                 }
                 .btn-light{
                     color: #b35f5f3b;
