@@ -18,5 +18,9 @@ export class RightPanelComponent implements OnInit, OnChanges {
   ngOnChanges() {
 
   }
-
+  switchFollowStatus(id: number) {
+    this.us.setFollowStatus(id).then((result) => {
+      console.log('update');
+    });
+  }
 }
