@@ -9,9 +9,17 @@
         <a class="username" href="/user/{{user.id}}">{{user.userName}}</a>
         <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user.bio}}</p>
       </div>
-      <div class="col follow-btn">
-        <button type="button" class="btn btn-light">Follow</button>
+      <div class="col follow-btn" *ngIf="us.logUserFollowerList; else guest">
+        <button type="button" class="btn btn-light"
+          *ngIf="us.logUserFollowerList.includes(user.id)&&!us.logUserFollowingList.includes(user.id)">Follow</button>
+        <button type="button" class="btn btn-light"
+          *ngIf="us.logUserFollowerList.includes(user.id)&&us.logUserFollowingList.includes(user.id)">Mutual</button>
+        <button type="button" class="btn btn-light"
+          *ngIf="!us.logUserFollowerList.includes(user.id)&&us.logUserFollowingList.includes(user.id)">Unfollow</button>
       </div>
+      <ng-template #guest>
+        <button type=" button" class="btn btn-light">Follow</button>
+      </ng-template>
     </li>
   </ol>
 </div>

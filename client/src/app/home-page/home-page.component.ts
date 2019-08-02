@@ -17,7 +17,10 @@ import { CatFilter } from '../interfaces/cat';
 export class HomePageComponent implements OnInit {
   public posts: Post[];
   public users: UserInfo[];
+  public logInUserFollowerList: any;
+  public logInUserFollowingList: any;
   public url: string;
+  public logUserId: any;
   private filters: CatFilter;
 
   constructor(
@@ -32,11 +35,14 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     // TODO: fetch all posts and save the data as Post type
+
     this.route.url.subscribe((url) => {
       this.url = url.length > 0 ? url[0].path : '';
       this.fetchPosts();
     });
     this.fetchRecommendUsers();
+    this.logInUserFollowerList = this.us.logUserFollowerList;
+    this.logInUserFollowingList = this.us.logUserFollowingList;
   }
 
   refetchWithFilters(filters) {
@@ -84,8 +90,9 @@ export class HomePageComponent implements OnInit {
   }
   fetchRecommendUsers() {
     this.us.getRecommendUsers().then((users) => {
-      console.log(users);
       this.users = users;
+
+      this.logUserId = 1;
     });
   }
 
