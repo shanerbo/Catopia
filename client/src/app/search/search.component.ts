@@ -10,17 +10,24 @@ import { SearchService } from '../services/search.service';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   private querySubscription: Subscription;
+  private userResult: any;
+  private catResult: any;
+  private keyWord: string;
   constructor(
     private route: ActivatedRoute,
-    private ss: SearchService,
-    private keyWord: string
+    private ss: SearchService
   ) { }
 
   ngOnInit() {
-    this.keyWord = this.route.snapshot.queryParamMap.get('keyWord');
-    this.querySubscription = this.ss.seachResult(this.keyWord).subscribe((result => {
-
+    this.querySubscription = this.route.queryParams.subscribe(params => {
+      this.ss.seachResult(params['keyword']).then((result) => {
+        this.userResult = result.foundUsers;
+        this.catResult = result.foundCats;
+        console.log('result: ', this.userResult);
+        console.log(this.catResult);
+      });
     });
+
   }
   ngOnDestroy() {
     this.querySubscription.unsubscribe();

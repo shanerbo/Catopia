@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
   loggedin = false;
-  public keyWord: string;
+  public keyword: string;
 
   @Input() user: UserInfo;
   constructor(private ls: LoginService,
@@ -20,7 +20,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() { }
   onSearch() {
-    this.router.navigate(['/search'], { queryParams: { keyWord: this.keyWord } });
+    this.router.navigate(['/search'], { queryParams: { keyword: this.keyword } });
   }
   logout() {
     this.ls.signout();

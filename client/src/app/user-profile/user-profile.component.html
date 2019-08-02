@@ -31,6 +31,10 @@
               </div>
             </div>
             <div class="col follow-btn" *ngIf="loggedinUserInfo?.id!=viewingUserInfo?.id">
+              <!-- <button type="button" class="btn btn-light" *ngIf="followStatus==='Mutual'"
+                (click)="switchFollowStatus()">Mutual</button>
+              <button type="button" class="btn btn-light" *ngIf="followStatus==='Follow'"
+                (click)="switchFollowStatus()">Follow</button> -->
               <button type="button" class="btn btn-light" (click)="switchFollowStatus()">{{followStatus}}</button>
             </div>
           </div>

@@ -10,7 +10,7 @@ export class SearchService {
     private http: HttpClient,
   ) { }
 
-  seachResult(keyWord: string): Observable<any> {
-    return this.http.get('api/search?keyword=' + keyWord);
+  seachResult(keyWord: string): Promise<any> {
+    return this.http.get('api/search?keyword=' + keyWord).toPromise();
   }
 }
