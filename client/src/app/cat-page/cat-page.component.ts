@@ -11,6 +11,7 @@ export class CatPageComponent implements OnInit {
   public catId: number;
   public catInfo: any;
   public ownerInfo: any;
+  public posts: any;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -22,7 +23,8 @@ export class CatPageComponent implements OnInit {
       this.catId = params['id'];
       this.http.get('api/photo/cat/' + this.catId).toPromise().then((result) => {
         this.catInfo = result;
-        console.log(this.catInfo);
+        this.posts = result['Posts'];
+        console.log(this.posts);
         this.http.get('api/user/' + this.catInfo.user_id + '/userInfo').toPromise().then((owner) => {
           this.ownerInfo = owner;
           console.log('owner:', this.ownerInfo);
