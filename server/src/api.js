@@ -13,7 +13,7 @@ router.get('/auth', loginController.auth);
 router.post('/signin', loginController.signin);
 router.post('/signup', loginController.signup);
 
-router.get('/photo/all', postsController.getPosts);//show all post
+router.get('/photo/all', postsController.getAllPosts);//show all post
 router.get('/photo/user/:id', postsController.getUserPosts);// show certain user's photos
 router.get('/photo/following', postsController.getFollowingUsersPosts);// show user's following users' photos
 router.post('/photo/:id/like', postsController.likeOrUnlike); //show certain photo's like

@@ -21,8 +21,8 @@ const postQuery = () => {
       },
       {
         model: db.Cats,
-        attributes: [['id', 'cat_id'], 'prof_url', 'name'],
-        require: true,
+        attributes: [['id', 'cat_id'], 'prof_url', 'name']
+        // require: true,
       },
       {
         model: db.Users,
@@ -69,7 +69,9 @@ function getPostQueryWithParams(params) {
     console.log("processed kitten query", params);
     //---------------------------------------------
 
-    query.include[1].where = params;
+    if (Object.keys(params) > 0) {
+      query.include[1].where = params;
+    }
   }
   return query;
 }
@@ -191,8 +193,9 @@ exports.commentOnPhoto = [
 ];
 
 
-exports.getPosts = (req, res, next) => {
+exports.getAllPosts = (req, res, next) => {
   const query = getPostQueryWithParams(req.query);
+  // const query = postQuery();
   console.log("include:", query);
   db.Posts.findAll(query).then(result => {
     // console.log("after:", result);
