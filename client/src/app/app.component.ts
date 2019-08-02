@@ -15,12 +15,12 @@ export class AppComponent implements OnInit {
   public user: UserInfo;
   private userSubscription: Subscription;
 
-  constructor(private ls: LoginService) {}
+  constructor(private ls: LoginService) { }
   public ngOnInit() {
     this.userSubscription = this.ls.currentUser.subscribe(user => {
       console.log(user);
       this.user = user;
-      if (!user.prof_url) {
+      if (user && !user.prof_url) {
         user.prof_url = 'https://storage.googleapis.com/user_posts/1564022608961family_color-20-512.png';
       }
     });
