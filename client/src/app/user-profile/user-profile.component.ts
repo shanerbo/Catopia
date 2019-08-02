@@ -38,8 +38,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) { }
 
-
-
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.viewingUserId = params['id'];

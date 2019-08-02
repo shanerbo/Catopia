@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user/edit', component: EditProfileComponent },
   { path: 'user/:id', component: UserProfileComponent },
-  { path: 'cat', component: CatPageComponent }
+  { path: 'cat/:id', component: CatPageComponent }
 ];
 
 @NgModule({
