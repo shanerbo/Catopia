@@ -12,7 +12,8 @@ import { Subscription } from 'rxjs';
 export class UserService {
   public currentUser = new Subject<UserInfo>();
   public user: UserInfo;
-
+  public logUserFollowingList: any;
+  public logUserFollowerList: any;
   public logInUserInfo: MegaUserInfo;
   public logInUserSubscription: Subscription;
 
@@ -31,6 +32,8 @@ export class UserService {
   getLogInUserInfo(): void {
     this.getUserAllInfo(this.user.id).then((logInUserInfo) => {
       this.logInUserInfo = logInUserInfo;
+      this.logUserFollowerList = this.logInUserInfo.follower.map((ele) => ele.id);
+      this.logUserFollowingList = this.logInUserInfo.following.map((ele) => ele.id);
     });
   }
 

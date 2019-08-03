@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // Our own stuff ❤
 import { HomePageComponent } from './home-page/home-page.component';
@@ -51,7 +52,8 @@ import { UserService } from './services/user.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [
     LoginService,
