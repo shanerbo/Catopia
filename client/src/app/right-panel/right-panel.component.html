@@ -3,12 +3,12 @@
   <ol class="user-list">
     <li class="row user" *ngFor="let user of users">
       <div class="col profile-pic">
-        <a href="/user/{{user.id}}">
+        <a [routerLink]="'/user/'+user.id">
           <img src={{user.prof_url}} alt="{{user.userName}}">
         </a>
       </div>
       <div class="col user-info">
-        <a class="username" href="/user/{{user.id}}">{{user.userName}}</a>
+        <a class="username" [routerLink]="'/user/'+user.id">{{user.userName}}</a>
         <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user.bio}}</p>
       </div>
       <div class="col m-auto follow-btn" *ngIf="us.logUserFollowerList">
@@ -19,9 +19,6 @@
         <button type="button" (click)="switchFollowStatus(user.id)" class="float-right btn btn-light"
           *ngIf="!us.logUserFollowerList.includes(user.id)&&us.logUserFollowingList.includes(user.id)">Unfollow</button>
       </div>
-      <!-- <ng-template #guest>
-        <button type=" button" (click)="switchFollowStatus(user.id)" class="btn btn-light">Follow</button>
-      </ng-template> -->
     </li>
   </ol>
 </div>

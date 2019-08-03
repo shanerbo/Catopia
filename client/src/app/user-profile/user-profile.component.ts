@@ -118,6 +118,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.viewingUserInfo = userInfo;
       this.loggedinUserInfo = this.us.logInUserInfo;
       this.followStatus = this.us.checkFollowStatus(this.us.logInUserInfo, userInfo);
+      console.log('this guy:', this.viewingUserInfo);
     });
   }
 

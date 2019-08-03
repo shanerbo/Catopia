@@ -15,7 +15,7 @@
               <img src={{user?.prof_url}} class="rounded-circle" alt="Avatar">
             </div>
             <div class="col user-info">
-              <a class="username" href="/user/{{user?.id}}">{{user?.userName}}</a>
+              <a class="username" [routerLink]="'/user/'+user?.id">{{user?.userName}}</a>
               <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
             </div>
             <div class=" col unfollow-btn">
@@ -43,7 +43,7 @@
                 <img src={{user?.prof_url}} alt="Avatar">
               </div>
               <div class="col user-info">
-                <a class="username" href="/user/{{user?.id}}">{{user?.userName}}</a>
+                <a class="username" [routerLink]="'/user/'+user?.id">{{user?.userName}}</a>
                 <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user?.bio}}</p>
               </div>
               <div class=" col unfollow-btn">

@@ -49,7 +49,7 @@
         <img src="{{ownerInfo?.prof_url}}" alt="Avatar">
       </div>
       <div class="col user-info">
-        <a href="/user/{{ownerInfo?.id}}" class="username">{{ownerInfo?.userName}}</a>
+        <a [routerLink]="'/user/'+ownerInfo?.id" class="username">{{ownerInfo?.userName}}</a>
         <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{ownerInfo?.bio}}</p>
       </div>
     </li>

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 // Our own stuff ❤
 import { HomePageComponent } from './home-page/home-page.component';
@@ -28,8 +29,8 @@ import { AddCatModalComponent } from './add-cat-modal/add-cat-modal.component';
 import { SearchComponent } from './search/search.component';
 import { CatService } from './services/cat.service';
 import { UserService } from './services/user.service';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    RouterModule,
     FlashMessagesModule.forRoot()
   ],
   providers: [

@@ -35,7 +35,7 @@
 
           <div class="overflow-auto">
             <div class="cat-pic">
-              <a href="/" *ngFor="let cat of post.Cats">
+              <a routerLink="/" *ngFor="let cat of post.Cats">
                 <img src="{{cat.prof_url}}" alt="Avatar">
               </a>
             </div>
@@ -49,7 +49,8 @@
               <img src="{{comment.User.commentUserProfUrl}}" alt="Avatar">
             </div>
             <div class="col reply-info">
-              <a class="username" href="/user/{{comment.User.commentUserId}}">{{comment.User.commentUserName}}</a>
+              <a class="username"
+                [routerLink]="'/user/'+comment.User.commentUserId">{{comment.User.commentUserName}}</a>
               <p class="reply">{{comment.content}}</p>
               <p class="reply-date" style="color:rgba(5, 5, 5, 0.432);">{{moment(comment.createdAt).fromNow()}}</p>
             </div>
