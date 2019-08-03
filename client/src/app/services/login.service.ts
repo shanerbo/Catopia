@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { TokenPayload, UserInfo, TokenResponse } from '../interfaces/user-info';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +22,8 @@ export class LoginService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private fs: FlashMessagesService
   ) {
     if (this.getToken()) {
       this.signInCurrentUser().catch((error) => {
@@ -29,6 +31,10 @@ export class LoginService {
         this.unsetToken();
       });
     }
+  }
+
+  showErrMsg(msg: string) {
+    this.fs.show(msg, { cssClass: 'alert-danger' });
   }
 
   signup(email: string, username: string, password: string, password_confirm: string) {
@@ -39,8 +45,14 @@ export class LoginService {
         this.setUser(this.getUserInfo());
         console.log('signup success, saved info', this.getUserInfo());
         this.router.navigateByUrl('/');
-      }, (err) => {
-        console.log(err); // TODO: make this a flash message
+      }, (err: HttpErrorResponse) => {
+        console.log(err.error); // TODO: make this a flash message
+        if (err.error) {
+
+          err.error.forEach(msg => {
+            this.showErrMsg(msg);
+          });
+        }
       });
 
   }
@@ -56,8 +68,14 @@ export class LoginService {
         this.saveToken(resp.token);
         this.setUser(this.getUserInfo());
         this.router.navigateByUrl('/');
-      }, (err) => {
+      }, (err: HttpErrorResponse) => {
         console.log(err); // TODO: make this a flash message
+        if (err.error === 'Unauthorized') {
+          this.showErrMsg('Email or passport don\'t match. Please try again');
+        } else {
+          this.showErrMsg('Please try again');
+
+        }
       });
   }
 
