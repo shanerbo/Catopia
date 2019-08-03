@@ -3,8 +3,8 @@
     <app-left-panel (refresh)="fetchPosts()" (clearFilter)="refetchWithFilters($event)"
       (filterSubmit)="refetchWithFilters($event)"></app-left-panel>
   </div>
-  <div class="col-lg-0 col-lg-0 col-md-0 col-sm-0"></div>
-  <div class="col-lg-6 col-lg-6 col-md-6 col-sm-12">
+  <div class="col-xl-1 col-lg-0 col-md-0 col-sm-0"></div>
+  <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12">
     <app-compose-box *ngIf="ls.getUserInfo()" [currentUser]="ls.getUserInfo()" (post)="postPhotos($event)">
     </app-compose-box>
     <div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
