@@ -29,7 +29,7 @@ export class HomePageComponent implements OnInit {
   // nisVersion = nisPackage.dependencies['ngx-infinite-scroll'];
 
   constructor(
-    private ls: LoginService,
+    public ls: LoginService,
     private ps: PhotoService,
     private us: UserService,
     private route: ActivatedRoute,
