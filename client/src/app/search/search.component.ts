@@ -10,8 +10,8 @@ import { SearchService } from '../services/search.service';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   private querySubscription: Subscription;
-  private userResult: any;
-  private catResult: any;
+  public userResult: any;
+  public catResult: any;
   private keyWord: string;
   constructor(
     private route: ActivatedRoute,

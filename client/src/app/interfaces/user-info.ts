@@ -13,6 +13,8 @@ export interface UserInfo {
   bio?: string;
   prof_url?: string;
   pwd?: string;
+  postOwnerProfUrl?: string;
+  postOwnerName?: string;
 }
 
 export interface MegaUserInfo {

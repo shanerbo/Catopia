@@ -1,0 +1,18 @@
+{
+  "name": "cmpt470-final-project",
+  "version": "1.0.0",
+  "description": "The website is a community for cat owners and lovers. Users can share their cats’ photos and browse other people’s. Cat owners can interact with other cat owners and maybe find friends through their lovely pets. Not cat owners can get strong doses of cute cat photos and maybe find a cat to adopt. If time permits, we can implement an e-commerce sub-site selling cat supplies for some revenue.\r ### How to run it:\r - To run in dev mode:\r cd into server folder, run:\r ``` npm run start_all ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client&&npm i&&cd ../server&&npm i",
+    "dev": "cd server&&npm run start_all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@csil-git1.cs.surrey.sfu.ca:ohu/cmpt470-final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

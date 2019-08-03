@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit {
   private filters: CatFilter;
 
   constructor(
-    private ls: LoginService,
+    public ls: LoginService,
     private ps: PhotoService,
     private us: UserService,
     private route: ActivatedRoute,

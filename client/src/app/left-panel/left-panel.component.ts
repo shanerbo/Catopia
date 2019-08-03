@@ -26,13 +26,13 @@ export class LeftPanelComponent implements OnInit {
     };
   }
 
-  toggleSideBar(event): void {
+  toggleSideBar(): void {
     this.isCollapsed = !this.isCollapsed;
   }
   expandSideBar(): void {
     this.isCollapsed = false;
   }
-  applyFilters(event): void {
+  applyFilters(): void {
     this.filterSubmit.next(this.filters);
   }
 

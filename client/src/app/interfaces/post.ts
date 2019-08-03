@@ -1,3 +1,5 @@
+import { UserInfo } from './user-info';
+
 export interface Comment {
   content: string;
   post_id: number;
@@ -30,4 +32,8 @@ export interface Post {
   createdAt: string;
   updatedAt: string;
   Cats?: Cat[];
+  User?: UserInfo;
+  Comments?: Comment[];
+  post_likes?: any;
+
 }
