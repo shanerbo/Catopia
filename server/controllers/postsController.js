@@ -14,7 +14,7 @@ const postQuery = () => {
         include: [
           {
             model: db.Users,
-            attributes: [['id', 'commentUserId'], ['userName', 'commentUserName'], ['email', 'commentUserEmail']]
+            attributes: [['id', 'commentUserId'], ['userName', 'commentUserName'], ['email', 'commentUserEmail'], ['prof_url', 'commentUserProfUrl']]
           }
         ],
         order: [['createdAt', 'DESC']]

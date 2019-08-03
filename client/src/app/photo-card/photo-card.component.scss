@@ -8,12 +8,11 @@
     padding-top:0px;
     padding-bottom:0px;
     border-color:#b35f5f3b;
-    border-width: px;
+    border-width: 1px;
     border-style: solid;
     .content{
         height:80%;
     }
-    box-shadow: 0 4px 8px 0 rgba(255,230,230, 0.8), 0 6px 20px 0 rgba(255,230,230, 0.8);
 }
 .display{
     padding:0px;
@@ -46,36 +45,66 @@ ngb-carousel{
     padding:0px;
     width: 45%;
     // height:100%;
-    overflow:scroll;
+.comment-list{
+    overflow-y:scroll;
+    height:10pc;
     .comment{
         padding-top:10px;
-        padding-left:20px;
+        padding-left:45px;
         float:right;
         width: 100%;
+        overflow:hidden;
         }
-        .username{
-            font-weight:bold;
-            font-family: Arial, Helvetica, sans-serif;
-            top: 8px;
-            left: 16px; 
+    }
+        .comment-prof{
+            max-width: 70px;
+            height: 50px;
+            img{
+                margin:0px;
+                padding: 5px;
+                padding:5px;
+                border-radius:50%;
+                width: 50px;
+               height: 50px;
+            }
+
         }
-        .reply{
-            margin:0px;
-            padding-bottom:10px;
+        .reply-info{
+            max-width:80%;
+            .username{
+                font-weight:bold;
+                font-family: Arial, Helvetica, sans-serif;
+                top: 8px;
+                left: 16px; 
+            }
+            .reply{
+                margin:0px;
+                padding-bottom:10px;
+            }
+            .reply-date{
+                margin-bottom:0px;
+                font-size:12px;
+            }
+        
         }
+        
     #user{
         padding-top: 5px;
         background-color:#a6a6a617;
         width:100%;
         margin:0px;
         .profile-pic{
-            max-width:20%;
-            float:left;
+            margin-left:10px;
+            margin-top:10px;
+            padding:0px;
+            position: relative;
+            overflow: hidden;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 50%;
             img{
-                margin:10px;
-                width:100%;
-                border-radius:50%;
-                float:left;
+                width: 100%;
+                height: auto;
             }
         }
         .user-comment{
@@ -92,10 +121,12 @@ ngb-carousel{
                 float:right;
                 margin:0px;
                 padding-left:20px;
+                font-size:12px;
             }
             .description{
                 margin:0px;
                 padding-bottom: 5px;
+                overflow-wrap: break-word;
             }
             .overflow-auto {
                 padding-bottom:5px;
@@ -103,11 +134,9 @@ ngb-carousel{
                     margin:0px;
                     padding: 5px;
                     padding:5px;
-                    max-width:40px;
-                    max-height:40px;
                     border-radius:50%;
-                    max-width: 50px;
-                    max-height: 50px;
+                    width: 50px;
+                   height: 50px;
                 }
             }
         }
@@ -131,7 +160,7 @@ ngb-carousel{
     height: 10%
   }
   .func-btn:hover{
-    color:#ffe6e6;
+    color:#b35f5f3b;
   }
 
 .mb-3{
@@ -144,7 +173,7 @@ ngb-carousel{
             color: white;
         }
         .post-btn:hover{
-            background-color:#ffe6e6;
+            background-color:#b35f5f3b;
     }
     }
 }

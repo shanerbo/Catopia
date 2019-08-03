@@ -28,29 +28,39 @@
             </div>
           </div>
           <div>
-            <p class="description">{{post.description}}</p>
+            <p class="description">
+              {{post.description}}
+            </p>
           </div>
 
           <div class="overflow-auto">
-            <a href="/" *ngFor="let cat of post.Cats">
-              <img src="{{cat.prof_url}}" alt="Avatar">
-            </a>
+            <div class="cat-pic">
+              <a href="/" *ngFor="let cat of post.Cats">
+                <img src="{{cat.prof_url}}" alt="Avatar">
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="overflow-auto comment" *ngFor="let comment of post.Comments">
-        <div>
-          <a class="username" href="/user/{{comment.User.commentUserId}}">{{comment.User.commentUserName}}</a>
-          <p class="reply">{{comment.content}}</p>
-          <p class="reply-date">{{moment(comment.createdAt).fromNow()}}</p>
+      <div class="overflow-auto comment-list">
+        <div class="comment" *ngFor="let comment of post.Comments">
+          <div class="row">
+            <div class="col comment-prof">
+              <img src="{{comment.User.commentUserProfUrl}}" alt="Avatar">
+            </div>
+            <div class="col reply-info">
+              <a class="username" href="/user/{{comment.User.commentUserId}}">{{comment.User.commentUserName}}</a>
+              <p class="reply">{{comment.content}}</p>
+              <p class="reply-date" style="color:rgba(5, 5, 5, 0.432);">{{moment(comment.createdAt).fromNow()}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row function-group">
+  <div class=" row function-group">
     <div class="btn-group" role="group">
-      <button class="btn func-btn"><i class="fas fa-share"></i> </button>
       <button class="btn func-btn" (click)="likePost()"><i class="fas fa-paw"></i> </button>
       <p class="like-num" style="color:rgba(5, 5, 5, 0.432);">{{post.post_likes.length}}</p>
 
