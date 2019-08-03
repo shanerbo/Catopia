@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit {
   public logUserId: any;
   private filters: CatFilter;
   postsArray = [];
-  loadedPosts = 2;
+  loadedPosts = 1;
   loadMore = 1;
   throttle = 300;
   scrollDistance = 1;
@@ -66,7 +66,7 @@ export class HomePageComponent implements OnInit {
     // add another 20 items
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
-    if (this.loadedPosts < this.posts.length) {
+    if (this.loadedPosts <= this.posts.length) {
       this.prependItems(start, this.loadedPosts);
       this.direction = 'down';
     }
@@ -75,7 +75,7 @@ export class HomePageComponent implements OnInit {
     console.log('scrolled up!', ev);
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
-    if (this.loadedPosts < this.posts.length) {
+    if (this.loadedPosts <= this.posts.length) {
       this.prependItems(start, this.loadedPosts);
       this.direction = 'up';
     }

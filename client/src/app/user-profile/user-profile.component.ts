@@ -31,12 +31,55 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public followStatus = 'Follow';
   public loggedinUserInfo: any; // currentUserInfo
 
+
+  postsArray = [];
+  loadedPosts = 1;
+  loadMore = 1;
+  throttle = 300;
+  scrollDistance = 1;
+  scrollUpDistance = 2;
+  direction = '';
+
   constructor(
     private ls: LoginService,
     private ps: PhotoService,
     private us: UserService,
     private route: ActivatedRoute
   ) { }
+
+  addItems(startIndex, endIndex, _method) {
+    for (let i = 0; i < this.loadMore; ++i) {
+      this.postsArray.push(this.posts[startIndex + i]);
+    }
+  }
+
+  appendItems(startIndex, endIndex) {
+    this.addItems(startIndex, endIndex, 'push');
+  }
+
+  prependItems(startIndex, endIndex) {
+    this.addItems(startIndex, endIndex, 'unshift');
+  }
+
+  onScrollDown(ev) {
+    console.log('scrolled down!!', ev);
+    // add another 20 items
+    const start = this.loadedPosts;
+    this.loadedPosts += this.loadMore;
+    if (this.loadedPosts <= this.posts.length) {
+      this.prependItems(start, this.loadedPosts);
+      this.direction = 'down';
+    }
+  }
+  onUp(ev) {
+    console.log('scrolled up!', ev);
+    const start = this.loadedPosts;
+    this.loadedPosts += this.loadMore;
+    if (this.loadedPosts <= this.posts.length) {
+      this.prependItems(start, this.loadedPosts);
+      this.direction = 'up';
+    }
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -64,6 +107,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   fetchUserPhotos(filters: CatFilter) {
     this.ps.getUserPosts(this.viewingUserId, filters).then((posts) => {
       this.posts = posts;
+      this.appendItems(0, this.loadMore);
     });
   }
 
@@ -79,11 +123,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   switchFollowStatus() {
     this.us.setFollowStatus(this.viewingUserId).then((result) => {
-      // if (result.result === 'unFollowed') {
-      //   this.hasFollowed = false;
-      // } else {
-      //   this.hasFollowed = true;
-      // }
       this.fetchUserInfo();
     });
   }

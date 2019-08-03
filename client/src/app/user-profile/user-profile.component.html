@@ -4,82 +4,86 @@
       (filterSubmit)="fetchUserPhotos($event)"></app-left-panel>
   </div>
   <div class="col-lg-6 col-sm-12">
-    <div *ngFor="let post of posts">
-      <app-photo-card (likePostEvent)="fetchUserPhotos($event)" (commentEvent)="fetchUserPhotos($event)" [post]="post">
-      </app-photo-card>
+    <div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+      [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()"
+      (scrolledUp)="onUp()">
+      <div *ngFor="let post of postsArray">
+        <app-photo-card (likePostEvent)="fetchUserPhotos($event)" (commentEvent)="fetchUserPhotos($event)"
+          [post]="post">
+        </app-photo-card>
+      </div>
+      <app-follow-modal *ngIf="loggedinUserInfo" [whichTab]="whichTab" [viewingUserInfo]="viewingUserInfo"
+        [loggedinUserInfo]="loggedinUserInfo" (updateFollow)="fetchUserInfo($event)">
+      </app-follow-modal>
+      <app-add-cat-modal (addCat)="fetchUserInfo($event)"></app-add-cat-modal>
     </div>
-    <app-follow-modal *ngIf="loggedinUserInfo" [whichTab]="whichTab" [viewingUserInfo]="viewingUserInfo"
-      [loggedinUserInfo]="loggedinUserInfo" (updateFollow)="fetchUserInfo($event)">
-    </app-follow-modal>
-    <app-add-cat-modal (addCat)="fetchUserInfo($event)"></app-add-cat-modal>
-  </div>
 
-  <div class="col-lg-4 col-sm-0">
-    <div class="right-panel">
-      <div class="row profile">
-        <div class="col pic">
-          <img src="{{viewingUserInfo?.prof_url}}" alt="Avatar">
-        </div>
-        <div class="col info">
-          <div class="row information">
-            <div class="col basic-info">
-              <div class="row name">
-                <p>{{viewingUserInfo?.userName}}</p>
+    <div class="col-lg-4 col-sm-0">
+      <div class="right-panel">
+        <div class="row profile">
+          <div class="col pic">
+            <img src="{{viewingUserInfo?.prof_url}}" alt="Avatar">
+          </div>
+          <div class="col info">
+            <div class="row information">
+              <div class="col basic-info">
+                <div class="row name">
+                  <p>{{viewingUserInfo?.userName}}</p>
+                </div>
+                <div class="row gender">
+                  <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.gender}}</p>
+                </div>
               </div>
-              <div class="row gender">
-                <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.gender}}</p>
-              </div>
-            </div>
-            <div class="col follow-btn" *ngIf="loggedinUserInfo?.id!=viewingUserInfo?.id">
-              <!-- <button type="button" class="btn btn-light" *ngIf="followStatus==='Mutual'"
+              <div class="col follow-btn" *ngIf="loggedinUserInfo?.id!=viewingUserInfo?.id">
+                <!-- <button type="button" class="btn btn-light" *ngIf="followStatus==='Mutual'"
                 (click)="switchFollowStatus()">Mutual</button>
               <button type="button" class="btn btn-light" *ngIf="followStatus==='Follow'"
                 (click)="switchFollowStatus()">Follow</button> -->
-              <button type="button" class="btn btn-light" (click)="switchFollowStatus()">{{followStatus}}</button>
-            </div>
-          </div>
-          <div class="row Number">
-            <div class="col follow">
-              <div class="row following">
-                <a id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </a>
-                <a (click)="switchFollowing()" id="following-num" data-toggle="modal" data-target="#following"
-                  style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </a>
-              </div>
-              <div class="row follower">
-                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">
-                  Follower: </p>
-                <p id="follower-num" data-toggle="modal" data-target="#following" (click)="switchFollower()"
-                  style="color:rgba(5, 5, 5, 0.432);">
-                  {{followerList?.length}} </p>
+                <button type="button" class="btn btn-light" (click)="switchFollowStatus()">{{followStatus}}</button>
               </div>
             </div>
+            <div class="row Number">
+              <div class="col follow">
+                <div class="row following">
+                  <a id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </a>
+                  <a (click)="switchFollowing()" id="following-num" data-toggle="modal" data-target="#following"
+                    style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </a>
+                </div>
+                <div class="row follower">
+                  <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">
+                    Follower: </p>
+                  <p id="follower-num" data-toggle="modal" data-target="#following" (click)="switchFollower()"
+                    style="color:rgba(5, 5, 5, 0.432);">
+                    {{followerList?.length}} </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="row bio">
-          <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.bio}}</p>
+          <div class="row bio">
+            <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.bio}}</p>
+          </div>
         </div>
+        <ol class="user-list" *ngFor="let cat of viewingUserInfo?.cat">
+          <li class="row user">
+            <div class="col profile-pic">
+              <img src="{{cat?.prof_url}}" alt="Avatar">
+            </div>
+            <div class="col user-info">
+              <a href="/cat/{{cat?.cat_id}}" class="username">{{cat?.name}}</a>
+            </div>
+          </li>
+        </ol>
+        <ol class="user-list" *ngIf="loggedinUserInfo?.id==viewingUserInfo?.id">
+          <li class="row user">
+            <div class="col profile-pic">
+              <i class="fas fa-plus-circle fa-2x" data-toggle="modal" data-target="#addcat"></i>
+            </div>
+            <div class="col user-info">
+              <p class="username">Add your cat</p>
+            </div>
+          </li>
+        </ol>
       </div>
-      <ol class="user-list" *ngFor="let cat of viewingUserInfo?.cat">
-        <li class="row user">
-          <div class="col profile-pic">
-            <img src="{{cat?.prof_url}}" alt="Avatar">
-          </div>
-          <div class="col user-info">
-            <a href="/cat/{{cat?.cat_id}}" class="username">{{cat?.name}}</a>
-          </div>
-        </li>
-      </ol>
-      <ol class="user-list" *ngIf="loggedinUserInfo?.id==viewingUserInfo?.id">
-        <li class="row user">
-          <div class="col profile-pic">
-            <i class="fas fa-plus-circle fa-2x" data-toggle="modal" data-target="#addcat"></i>
-          </div>
-          <div class="col user-info">
-            <p class="username">Add your cat</p>
-          </div>
-        </li>
-      </ol>
-    </div>
 
-  </div>
+    </div>

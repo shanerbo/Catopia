@@ -12,6 +12,13 @@ export class CatPageComponent implements OnInit {
   public catInfo: any;
   public ownerInfo: any;
   public posts: any;
+  postsArray = [];
+  loadedPosts = 1;
+  loadMore = 1;
+  throttle = 300;
+  scrollDistance = 1;
+  scrollUpDistance = 2;
+  direction = '';
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -24,6 +31,7 @@ export class CatPageComponent implements OnInit {
       this.http.get('api/photo/cat/' + this.catId).toPromise().then((result) => {
         this.catInfo = result;
         this.posts = result['Posts'];
+        this.appendItems(0, this.loadMore);
         console.log(this.posts);
         this.http.get('api/user/' + this.catInfo.user_id + '/userInfo').toPromise().then((owner) => {
           this.ownerInfo = owner;
@@ -32,6 +40,39 @@ export class CatPageComponent implements OnInit {
       });
 
     });
+  }
+  addItems(startIndex, endIndex, _method) {
+    for (let i = 0; i < this.loadMore; ++i) {
+      this.postsArray.push(this.posts[startIndex + i]);
+    }
+  }
+
+  appendItems(startIndex, endIndex) {
+    this.addItems(startIndex, endIndex, 'push');
+  }
+
+  prependItems(startIndex, endIndex) {
+    this.addItems(startIndex, endIndex, 'unshift');
+  }
+
+  onScrollDown(ev) {
+    console.log('scrolled down!!', ev);
+    // add another 20 items
+    const start = this.loadedPosts;
+    this.loadedPosts += this.loadMore;
+    if (this.loadedPosts <= this.posts.length) {
+      this.prependItems(start, this.loadedPosts);
+      this.direction = 'down';
+    }
+  }
+  onUp(ev) {
+    console.log('scrolled up!', ev);
+    const start = this.loadedPosts;
+    this.loadedPosts += this.loadMore;
+    if (this.loadedPosts <= this.posts.length) {
+      this.prependItems(start, this.loadedPosts);
+      this.direction = 'up';
+    }
   }
 
 }
