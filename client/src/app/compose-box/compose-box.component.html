@@ -20,45 +20,56 @@
       </div>
     </div>
 
-    <div *ngIf="imgSrc.length != 0" class="card-body">
-      <div class="row">
 
-        <div *ngFor="let photo of photosToUpload; let index = index" class="col-lg-4 col-sm-6 upload-img">
-          <div class="col">
-            <div class="row">
-              <img [src]="imgSrc[index]" alt="your image" />
+    <div class="card-bottom">
+      <div *ngIf="imgSrc.length != 0" class="card-body">
+        <div class="row">
+
+          <div *ngFor="let photo of photosToUpload; let index = index" class="col-lg-4 col-sm-6 upload-img">
+
+            <img [src]="imgSrc[index]" alt="your image" />
+            <i class="fas fa-trash-alt delete-btn fa-2x" (click)="deleteFileInput(index)"></i>
+
+
+          </div>
+          <div class="col-lg-3 col-sm-4 add-btn">
+            <label for="photos">
+              <div class="icon-add"><i id="add-photos" class="fas fa-plus fa-4x"></i>
+              </div>
+            </label>
+
+
+
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <div *ngFor="let cat of us.logInUserInfo?.cat; let index = index" class="col-2 ">
+            <div class="row overflow-auto">
+              <img src="{{cat.prof_url}}" [ngClass]="{selected : catId[cat.cat_id] }" class="avatar eachCat"
+                (click)="addCat(cat.cat_id)">
             </div>
-            <div class="row">
-              <button class="btn btn-primary" (click)="deleteFileInput(index)">
-                Delete img
-              </button>
+            <div class=" row overflow-auto">
+              <div class="eachCat" (click)="addCat(cat.cat_id)">{{cat.name}}
+              </div>
             </div>
           </div>
         </div>
-        <label for="photos"><i id="add-photos" class="fas fa-plus-circle fa-4x"></i>
-        </label>
-      </div>
 
-      <div class="row">
-        <div *ngFor="let cat of us.logInUserInfo?.cat; let index = index" class="col-2">
-          <div class="row">
-            <img src="{{cat.prof_url}}" [ngClass]="{selected : catId[cat.cat_id] }" class="avatar eachCat"
-              (click)="addCat(cat.cat_id)">
-          </div>
-          <div class=" row">
-            <div class="eachCat" (click)="addCat(cat.cat_id)">{{cat.name}}
-            </div>
-          </div>
+        <div class="form-group row description input-group mb-3">
+          <input class="form-control input-des" type="text" placeholder="What's up with this photo" name="description"
+            [(ngModel)]="description" />
+          <div class="input-group-append"><button class="btn btn-primary" type="submit" id="submit-post">
+              Post <i class="fas fa-cat"></i>
+            </button></div>
+
+
         </div>
       </div>
 
-      <div class="form-group row">
-        <input class="form-control" type="text" placeholder="What's up with this photo" name="description"
-          [(ngModel)]="description" />
-        <button class="btn btn-primary" type="submit" id="submit-post">
-          Post
-        </button>
-      </div>
+
     </div>
   </form>
 </div>

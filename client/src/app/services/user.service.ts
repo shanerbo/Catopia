@@ -14,6 +14,7 @@ export class UserService {
   public user: UserInfo;
   public logUserFollowingList: any;
   public logUserFollowerList: any;
+
   public logInUserInfo: MegaUserInfo;
   public logInUserSubscription: Subscription;
 
@@ -37,6 +38,7 @@ export class UserService {
       this.logInUserInfo = logInUserInfo;
       this.logUserFollowerList = this.logInUserInfo.follower.map((ele) => ele.id);
       this.logUserFollowingList = this.logInUserInfo.following.map((ele) => ele.id);
+
     });
   }
 
