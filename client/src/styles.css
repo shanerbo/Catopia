@@ -8,3 +8,16 @@
   background-color: #8AA194 !important;
   border-color: #8AA194 !important;
 }
+a{
+  color: #000 !important;
+  text-decoration: none;
+  font-size:5pt;
+  
+}
+a:link,a:visited,a:hover,a:active{
+  color:#000;
+  text-decoration: none;
+}
+a:hover{
+  font-weight: bold;
+}
