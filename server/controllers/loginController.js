@@ -12,6 +12,10 @@ function generateJwt(userObj) {
   console.log(userObj);
   return jwt.sign(userObj, jwtsecret); // DO NOT KEEP YOUR SECRET IN THE CODE!
 };
+const errorFormatter = ({ location, msg, param, value, nestedErrors }) => {
+  // Build your resulting errors however you want! String, object, whatever - it works!
+  return `${param}: ${msg}`;
+};
 
 function issueJwt(req, res) {
   if (req.user) {
@@ -21,19 +25,6 @@ function issueJwt(req, res) {
 };
 
 exports.signin = [
-  // Validate fields.
-  body('email', 'Eamil must be valid.').isEmail().isLength({ min: 1 }).trim(),
-  body('password', 'Password must longer than 6 characters.').isLength({ min: 6 }).trim(),
-  (req, res, next) => {
-    const errors = validationResult(req);
-    // console.log("printing:", req.body);
-    if (!errors.isEmpty()) {
-      console.error(errors);
-      res.status(400).json(errors);
-    } else {
-      next();
-    }
-  },
   passport.authenticate('local', { session: false }),
   issueJwt
 ];
@@ -55,10 +46,9 @@ exports.signup = [
     return true;
   }).isLength({ min: 6 }).trim(),
   function (req, res, next) {
-    const errors = validationResult(req);
-
+    const errors = validationResult(req).formatWith(errorFormatter);
     if (!errors.isEmpty()) {
-      res.status(400).json({ error: errors.array() });
+      res.status(400).send(errors.array());
     } else {
       Users.createUser(
         req.body.username,

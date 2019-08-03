@@ -15,7 +15,7 @@ module.exports = (Users) => {
     // console.log("entered email&pw", email, password);
     await User.findOne({ where: { email: email } }).then((user) => {
       if (!user || !bcrypt.compareSync(password, user.pwd)) {
-        return done(null, false, { error: "Email or password don't match. Please try again." });
+        return done(null, false, "Email or password don't match. Please try again.");
       }
       user = user.dataValues;
       delete user.pwd;
@@ -50,7 +50,7 @@ module.exports = (Users) => {
       console.log("user found:", user);
       return done(null, user);
     } else {
-      return done(null, false);
+      return done("jwt token invalid", false);
     }
   });
 
