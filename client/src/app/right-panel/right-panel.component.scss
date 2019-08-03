@@ -3,9 +3,7 @@
     border-color:#b35f5f3b;
     border-style:solid;
     border-width:1px;
-    
-
-    width:25pc;
+    margin-top:30px;
     height:30pc;
     padding:0px;
     background-color: white;
@@ -23,6 +21,7 @@
         padding:10px;
         width: 100%;
         height: 80%;
+        overflow:auto;
         .user{
             width: 100%;
             margin:5px;
@@ -40,7 +39,7 @@
                     }
                 }
                 .user-info{
-                    max-width:60%;
+                    max-width:53%;
                     padding:0px;
                     .username{
                         padding-left:10px;
@@ -66,8 +65,24 @@
                     color: #b35f5f3b;
                     font-weight:bold;
                 }
-                .btn-light:hover{
+                .btn-light:hover,.btn-light:focus{
                     background-color: #f7f3f3f8;
+                    border-style:none;
+                }
+                .mutual{
+                    color: #b35f5f3b;
+                    font-weight:bold;
+                }
+                .mutual:hover span {
+                    color: #b35f5f3b;
+                    font-weight:bold; 
+                    display:none}
+                .mutual:hover:before {
+                    content:"Unfollow"
+                }
+                .mutual:hover,.mutual:focus{
+                    background-color: #f7f3f3f8;
+                    border-style:none;
                 }
         }
     }

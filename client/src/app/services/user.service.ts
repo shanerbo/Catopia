@@ -25,6 +25,9 @@ export class UserService {
       if (user) {
         this.user = user;
         this.getLogInUserInfo();
+      } else {
+        this.logUserFollowerList = null;
+        this.logUserFollowingList = null;
       }
     });
   }

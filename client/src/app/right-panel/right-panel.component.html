@@ -11,17 +11,17 @@
         <a class="username" href="/user/{{user.id}}">{{user.userName}}</a>
         <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{user.bio}}</p>
       </div>
-      <div class="col follow-btn" *ngIf="us.logUserFollowerList; else guest">
-        <button type="button" (click)="switchFollowStatus(user.id)" class="btn btn-light"
+      <div class="col m-auto follow-btn" *ngIf="us.logUserFollowerList">
+        <button type="button" (click)="switchFollowStatus(user.id)" class="float-right btn btn-light"
           *ngIf="!us.logUserFollowingList.includes(user.id)&&us.user.id!=user.id">Follow</button>
-        <button type="button" (click)="switchFollowStatus(user.id)" class="btn btn-light"
-          *ngIf="us.logUserFollowerList.includes(user.id)&&us.logUserFollowingList.includes(user.id)">Mutual</button>
-        <button type="button" (click)="switchFollowStatus(user.id)" class="btn btn-light"
+        <button type="button" (click)="switchFollowStatus(user.id)" class="float-right btn btn-light mutual"
+          *ngIf="us.logUserFollowerList.includes(user.id)&&us.logUserFollowingList.includes(user.id)"><span>Mutual</span></button>
+        <button type="button" (click)="switchFollowStatus(user.id)" class="float-right btn btn-light"
           *ngIf="!us.logUserFollowerList.includes(user.id)&&us.logUserFollowingList.includes(user.id)">Unfollow</button>
       </div>
-      <ng-template #guest>
+      <!-- <ng-template #guest>
         <button type=" button" (click)="switchFollowStatus(user.id)" class="btn btn-light">Follow</button>
-      </ng-template>
+      </ng-template> -->
     </li>
   </ol>
 </div>

@@ -19,5 +19,5 @@ a:link,a:visited,a:hover,a:active{
   text-decoration: none;
 }
 a:hover{
-  font-weight: bold;
+  color:#b35f5fab !important;
 }
