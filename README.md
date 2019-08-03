@@ -31,13 +31,13 @@ cd into server folder, run:
 - User can update their info in Edit profile page, which is hyperlinked in the navbar.
 
 ## Main features:
-- Cat profile pages showing adoption status and photos
+- Cat profile pages showing cat info and photos
 - Twitter/Instagram-like photo/activities posting
-- Follower and following system between users 
-- Search engine for cats open for adoption
-> (bonus features)
-- Cat supplies store
-- Real-time chat
+- Follower and following system between users
+- Search system for cats and cat owners
+- Responsive site that runs well on mobile
+- Inifinite scroll is implemented so that posts are not all loaded at once
+- 
 
 ## Technologies proposed:
 - Back-end
