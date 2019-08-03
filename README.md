@@ -10,16 +10,18 @@ The website is a community for cat owners and lovers. Users can share their cats
 ### Setup
 - Install Nodejs and PostgreSQL
 - In /server create a `.env` file that follows the format of `.env.example`
-- For image upload to work, get a google cloud storage key file and rename it as `fluffy-secret-file.json`. For this you need a GCP account
+- For image upload to work, get a google cloud storage key file and rename it as `fluffy-secret-file.json` and place it in `/server` dir. For this you need a GCP account
 - Run ``` npm run build ``` in root dir
-#### vagrant setup
-- run vagrant up in /server
 
-### How to run it:
-- To run in dev mode:
+#### To run in dev mode:
 cd into server folder, run:
 ``` npm run start_all ```
 - Go to browser and open localhost:{PORT# your specified in .env or 8080}
+
+#### vagrant setup
+- Build the angular app into server by running ``` cd client&&npm run build ```
+- Run vagrant up in `/server`
+
 
 ## Main use cases
 - Not logged in user sees a list of cat photos on the home page. User can't click like or comment or use following/liked button in the left panel unless they log in

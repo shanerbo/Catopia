@@ -24,8 +24,12 @@ end
 
 execute 'npm_install' do
   cwd '/home/vagrant/project'
-  command 'npm install'
+  command 'sudo npm install'
   command 'sudo npm install -g sequelize-cli'
+end
+execute 'bcrypt' do
+  cwd '/home/vagrant/project'
+  command 'sudo npm install bcrypt'
 end
 
 cookbook_file "pg_hba.conf" do
@@ -33,13 +37,12 @@ cookbook_file "pg_hba.conf" do
 end
 
 execute 'postgresql_create' do
-  command 'echo "CREATE USER ottoh with PASSWORD \'7453\'; CREATE DATABASE cat; GRANT ALL PRIVILEGES ON DATABASE cat TO ottoh;" | sudo -u postgres psql'
+  command 'echo "CREATE USER final with PASSWORD \'1234\'; CREATE DATABASE cat; GRANT ALL PRIVILEGES ON DATABASE cat TO final;" | sudo -u postgres psql'
   ignore_failure true
 end
 
 execute "db_migrate" do 
-  command 'cd /home/vagrant/project && sequelize db:migrate'
-  command 'cd /home/vagrant/project && sequelize db:seed:all'
+  command 'cd /home/vagrant/project && sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all'
 end
 
 execute 'npm_start' do
