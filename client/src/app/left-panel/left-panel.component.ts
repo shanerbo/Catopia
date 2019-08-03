@@ -18,6 +18,12 @@ export class LeftPanelComponent implements OnInit {
   ngOnInit() {
     this.initFilters();
   }
+
+  collapse() {
+    console.log('clicked');
+    this.isCollapsed = true;
+  }
+
   initFilters() {
     this.filters = {
       gender: '',

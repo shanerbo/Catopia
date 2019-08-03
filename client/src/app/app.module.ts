@@ -28,6 +28,8 @@ import { AddCatModalComponent } from './add-cat-modal/add-cat-modal.component';
 import { SearchComponent } from './search/search.component';
 import { CatService } from './services/cat.service';
 import { UserService } from './services/user.service';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @NgModule({
   declarations: [
@@ -45,9 +47,11 @@ import { UserService } from './services/user.service';
     CatProfileComponent,
     CatPageComponent,
     AddCatModalComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
+    BrowserModule,
+    InfiniteScrollModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,

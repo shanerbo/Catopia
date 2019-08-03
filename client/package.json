@@ -27,6 +27,7 @@
     "angular2-flash-messages": "^3.0.1",
     "core-js": "^2.5.4",
     "moment": "^2.24.0",
+    "ngx-infinite-scroll": "^8.0.0",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
