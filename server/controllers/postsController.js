@@ -16,13 +16,11 @@ const postQuery = () => {
             model: db.Users,
             attributes: [['id', 'commentUserId'], ['userName', 'commentUserName'], ['email', 'commentUserEmail'], ['prof_url', 'commentUserProfUrl']]
           }
-        ],
-        order: [['createdAt', 'DESC']]
+        ]
       },
       {
         model: db.Cats,
         attributes: [['id', 'cat_id'], 'prof_url', 'name']
-        // require: true,
       },
       {
         model: db.Users,
@@ -35,7 +33,7 @@ const postQuery = () => {
         model: db.post_likes
       }
     ],
-    order: [['createdAt', 'DESC']]
+    order: [['createdAt', 'DESC'], [db.Comments, 'createdAt', 'DESC'], [db.post_media, 'id', 'DESC']]
   }
 }
 

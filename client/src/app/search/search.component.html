@@ -15,12 +15,12 @@
   </div>
   <div class="row">
     <ng-template #nothingBlock>
-      <h3>No related user was found</h3>
+      <p>No related user was found</p>
     </ng-template>
   </div>
 
   <div class="row">
-    <h1 class="row">Found Cats:</h1>
+    <h1>Found Cats:</h1>
   </div>
   <div *ngIf="catResult&&catResult.length>0; else nothingBlock" class="row">
     <div class="card m-2" style="width: 18rem; height: 24rem;" *ngFor="let cat of catResult">
@@ -35,7 +35,7 @@
   </div>
   <div class="row">
     <ng-template #nothingBlock>
-      <h3>No related cat was found</h3>
+      <p>No related cat was found</p>
     </ng-template>
   </div>
 </div>

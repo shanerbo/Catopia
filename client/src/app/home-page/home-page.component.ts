@@ -19,9 +19,10 @@ export class HomePageComponent implements OnInit {
   public url: string;
   public logUserId: any;
   private filters: CatFilter;
+  freshFlag = false;
   postsArray = [];
-  loadedPosts = 1;
-  loadMore = 1;
+  loadedPosts = 2;
+  loadMore = 2;
   throttle = 300;
   scrollDistance = 1;
   scrollUpDistance = 2;
@@ -47,8 +48,25 @@ export class HomePageComponent implements OnInit {
     this.fetchRecommendUsers();
   }
 
+  refreshLoadedPosts() {
+    if (this.freshFlag === true) {
+      for (let i = 0; i < this.postsArray.length; ++i) {
+        this.postsArray[i] = this.posts[i];
+      }
+      console.log('POSTS REFRESHED!');
+    } else {
+      this.appendItems(0, this.loadMore);
+      console.log('POSTS INIT!!');
+      this.freshFlag = true;
+    }
+  }
+
   addItems(startIndex, endIndex, _method) {
     for (let i = 0; i < this.loadMore; ++i) {
+      if (!this.posts[startIndex + i]) {
+        break;
+      }
+      console.log('added!!!!!');
       this.postsArray.push(this.posts[startIndex + i]);
     }
   }
@@ -107,7 +125,7 @@ export class HomePageComponent implements OnInit {
     return this.us.getUserLikedPost().then((posts) => {
       console.log('Fetched liked post', posts);
       this.posts = posts;
-      this.appendItems(0, this.loadMore);
+      this.refreshLoadedPosts();
       return this.posts;
     });
   }
@@ -116,22 +134,20 @@ export class HomePageComponent implements OnInit {
     this.ps.getAllPosts(this.filters).then((posts) => {
       console.log('Fetched all posts', posts);
       this.posts = posts;
-      this.appendItems(0, this.loadMore);
+      this.refreshLoadedPosts();
     });
   }
   fetchFollowingPhotos(): Promise<Post[]> {
     return this.ps.getFollowingPhotos(this.filters).then((posts: Post[]) => {
       console.log('Fetched all following users\' posts', posts);
       this.posts = posts;
-      this.appendItems(0, this.loadMore);
+      this.refreshLoadedPosts();
       return posts;
     });
   }
   fetchRecommendUsers() {
     this.us.getRecommendUsers().then((users) => {
       this.users = users;
-
-      this.logUserId = 1;
     });
   }
 

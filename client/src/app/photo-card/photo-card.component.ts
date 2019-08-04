@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
 import { Post, Comment } from '../interfaces/post';
 import { LoginService } from '../services/login.service';
 import * as moment from 'moment';
 import { PhotoService } from '../services/photo.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -10,20 +11,35 @@ import { PhotoService } from '../services/photo.service';
   templateUrl: './photo-card.component.html',
   styleUrls: ['./photo-card.component.scss']
 })
-export class PhotoCardComponent implements OnInit {
+export class PhotoCardComponent implements OnInit, OnChanges {
+
+  constructor(
+    private ps: PhotoService,
+    private us: UserService,
+    private ls: LoginService
+  ) { }
   @Output() likePostEvent = new EventEmitter<string>();
   @Input() post: Post;
   @Output() commentEvent = new EventEmitter<string>();
   public moment = moment;
   public comment: string;
+  public userId: number;
+  public likeList: any;
+  public liked = false;
 
-  constructor(
-    private ps: PhotoService,
-    private ls: LoginService
-  ) { }
+  ngOnChanges() {
+    this.likeList = this.post.post_likes;
+    this.liked = false;
+  }
 
   ngOnInit() {
     // console.log(this.post);
+    this.userId = this.us.user.id;
+    this.likeList.forEach(element => {
+      if (element.user_id === this.userId) {
+        this.liked = true;
+      }
+    });
   }
 
   likePost() {
@@ -32,6 +48,7 @@ export class PhotoCardComponent implements OnInit {
       this.likePostEvent.next('success');
     });
   }
+
   postComment(event) {
     this.ps.postComment({
       content: this.comment,
