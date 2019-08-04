@@ -70,7 +70,7 @@ exports.signup = [
           res.json({ token });
         }).catch((err) => {
           console.log(err);
-          next(err);
+          res.status(400).send(["Signup fail. Try another email"]);
         });
     }
   }];

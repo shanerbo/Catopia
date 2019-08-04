@@ -25,7 +25,15 @@
                 <input type="password" [(ngModel)]="signinPassword" class="form-control" name="loginPassword"
                   placeholder="Password" autocomplete="false" required>
               </div>
-              <button type="submit" class="btn btn-primary">Log In</button>
+              <div class="form-group">
+                <input type="password" minlength="6" [(ngModel)]="signupPassword" class="form-control"
+                  name="signupPassword" required placeholder="Password" autocomplete="false">
+              </div>
+              <div class="form-group">
+                <input type="password" minlength="6" class="form-control" [(ngModel)]="signupConfirmPassword"
+                  name="signupConfirmPassword" required placeholder="Confirm your password" autocomplete="false">
+              </div>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
             </form>
 
             <!-- signup form -->

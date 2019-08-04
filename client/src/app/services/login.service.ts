@@ -46,9 +46,8 @@ export class LoginService {
         console.log('signup success, saved info', this.getUserInfo());
         this.router.navigateByUrl('/');
       }, (err: HttpErrorResponse) => {
-        console.log(err.error); // TODO: make this a flash message
+        console.log(err); // TODO: make this a flash message
         if (err.error) {
-
           err.error.forEach(msg => {
             this.showErrMsg(msg);
           });
