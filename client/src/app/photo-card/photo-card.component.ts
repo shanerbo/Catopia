@@ -26,6 +26,8 @@ export class PhotoCardComponent implements OnInit, OnChanges {
   public userId: number;
   public likeList: any;
   public liked = false;
+  public disableComment = false;
+  public commentText = 'Comment';
 
   ngOnChanges() {
     this.likeList = this.post.post_likes;
@@ -50,11 +52,15 @@ export class PhotoCardComponent implements OnInit, OnChanges {
   }
 
   postComment(event) {
+    this.disableComment = true;
+    this.commentText = 'Commenting';
     this.ps.postComment({
       content: this.comment,
       post_id: this.post.id
     }).then((result) => {
       console.log(result);
+      this.disableComment = false;
+      this.commentText = 'Comment';
       this.commentEvent.next('success');
     });
   }
