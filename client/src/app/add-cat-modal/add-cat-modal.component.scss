@@ -1,4 +1,11 @@
 @import "../global.scss";
+.image-row{
+  border-style: dotted;
+  border-color: $themeColor;
+  border-width:3px;
+  margin:15px;
+}
+
 #photos {
     width: 0.1px;
     height: 0.1px;
@@ -8,7 +15,7 @@
     z-index: -1;
   }
   .name{
-    width:40%;
+    width:20%;
   }
   .color{
     width:40%;
@@ -19,11 +26,86 @@
   #spay{
     margin-right:10px;
   }
-  .age{
-    padding-left:10px;
-      width:40%;
+  .input-date{
+    max-width:10%
+  }
+ .name-row{
+   width:50%;
+   .name-input{
+     margin-left:5px;
+     width:40%;
+     border:none;
+      border-bottom: 3px solid $themeColor;  
+   }
+ }
+ .first-row{
+   margin-left:30px;
+ }
+  .age-row{
+    width:60%;
+    
+    #age{
+      margin-left:5px;
+      margin-right:5px;
+      padding-bottom:2px;
+      padding-left:5px;
+      padding-right:0px;
+      max-width:20%;
+      border: none;
+      border-bottom: 3px solid $themeColor;  
+    }
+    #select-date{
+      margin-left:10px;
+      max-width:30%;
+    }
+  }
+  .color{
+    width:100%;
+  }
+  .second-row{
+    width:100%;
+    margin-left:30px;
+    .color-row{
+      width:50%;
+      
+      .color-input{
+      margin-left:5px;
+      width:70%;
+      border:none;
+      border-bottom: 3px solid $themeColor;
+
+      }
+    }
+  
+  }
+  .spay-row{
+    margin:15px;
+    width:100%;
+    #spay2{
+      margin-left:10px;
+      width:300px;
+    }
+    #spay3{
+      width:300px;
+    }
+  }
+  .gender-row{
+    margin:15px;
+    width:100%;
+    #gender{
+      margin-left:5px;
+      width:300px;
+    }
   }
   .fa-plus-circle:before {
     content: "\f055";
     color:$themeColor;
   }
+  .btn-light{
+    margin-left:15px;
+    color: #b35f5f3b;
+    font-weight:bold;
+}
+.btn-light:hover{
+    background-color: #f7f3f3f8;
+}
