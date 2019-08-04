@@ -11,10 +11,10 @@ module.exports = {
     port: process.env.DB_PORT
   },
   test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.TEST_DB_NAME,
-    host: "127.0.0.1",
+    username: process.env.DB_DEPLOY_USERNAME,
+    password: process.env.DB_DEPLOY_PWD,
+    database: process.env.DB_NAME,
+    host: process.env.DB_IP,
     dialect: "postgres",
     operatorsAliases: false
   },
@@ -22,7 +22,7 @@ module.exports = {
     username: process.env.DB_DEPLOY_USERNAME,
     password: process.env.DB_DEPLOY_PWD,
     database: process.env.DB_NAME,
-    host: process.env.DB_IPADDRESS,
+    host: process.env.DB_PATH,
     dialect: "postgres",
     operatorsAliases: false
   }
