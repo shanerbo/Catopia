@@ -18,21 +18,21 @@
       <div class="row Number">
         <div class="col information">
           <div class="row color">
-            <a id="color-tab" style="color:rgba(5, 5, 5, 0.432);">Color: </a>
-            <a id="color-value" style="color:rgba(5, 5, 5, 0.432);">{{catInfo?.color}}</a>
+            <p id="color-tab" style="color:rgba(5, 5, 5, 0.432);">Color: </p>
+            <p id="color-value" style="color:rgba(5, 5, 5, 0.432);">{{catInfo?.color}}</p>
           </div>
           <div class="row spay">
-            <a id="spay-tab" style="color:rgba(5, 5, 5, 0.432);">Spay: </a>
+            <p id="spay-tab" style="color:rgba(5, 5, 5, 0.432);">Spay: </p>
             <div *ngIf="catInfo?.spay">
-              <a id="spay-value" style="color:rgba(5, 5, 5, 0.432);">Yes</a>
+              <p id="spay-value" style="color:rgba(5, 5, 5, 0.432);">Yes</p>
             </div>
             <div *ngIf="!catInfo?.spay">
-              <a id="spay-value" style="color:rgba(5, 5, 5, 0.432);">No</a>
+              <p id="spay-value" style="color:rgba(5, 5, 5, 0.432);">No</p>
             </div>
           </div>
           <div class="row gender">
-            <a id="gender-tab" style="color:rgba(5, 5, 5, 0.432);">Gender: </a>
-            <a id="gender-value" style="color:rgba(5, 5, 5, 0.432);">{{catInfo?.gender}}</a>
+            <p id="gender-tab" style="color:rgba(5, 5, 5, 0.432);">Gender: </p>
+            <p id="gender-value" style="color:rgba(5, 5, 5, 0.432);">{{catInfo?.gender}}</p>
           </div>
         </div>
       </div>
@@ -46,11 +46,14 @@
     </div>
     <li class="row user">
       <div class="col profile-pic">
-        <img src="{{ownerInfo?.prof_url}}" alt="Avatar">
+        <a [routerLink]="'/user/'+ownerInfo?.id">
+          <img src="{{ownerInfo?.prof_url}}" alt="Avatar">
+        </a>
       </div>
       <div class="col user-info">
-        <a [routerLink]="'/user/'+ownerInfo?.id" class="username">{{ownerInfo?.userName}}</a>
-        <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{ownerInfo?.bio}}</p>
+        <a [routerLink]="'/user/'+ownerInfo?.id" class="username">{{ownerInfo?.userName}}
+          <p class="userbio" style="color:rgba(5, 5, 5, 0.432);">{{ownerInfo?.bio}}</p>
+        </a>
       </div>
     </li>
   </ol>
