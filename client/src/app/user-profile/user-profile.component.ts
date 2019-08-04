@@ -77,8 +77,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.addItems(startIndex, endIndex, 'unshift');
   }
 
-  onScrollDown(ev) {
-    console.log('scrolled down!!', ev);
+  onScrollDown() {
+    console.log('scrolled down!!');
     // add another 20 items
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
@@ -87,8 +87,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.direction = 'down';
     }
   }
-  onUp(ev) {
-    console.log('scrolled up!', ev);
+  onUp() {
+    console.log('scrolled up!');
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
     if (this.loadedPosts <= this.posts.length) {
