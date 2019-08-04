@@ -54,5 +54,21 @@
             .btn-light:hover{
                 background-color: #f7f3f3f8;
             }
+            .mutual{
+                color: #b35f5f3b;
+                font-weight:bold;
+            }
+            .mutual:hover span {
+                color: #b35f5f3b;
+                font-weight:bold; 
+                display:none
+            }
+            .mutual:hover:before {
+                content:"Unfollow"
+            }
+            .mutual:hover,.mutual:focus{
+                background-color: #f7f3f3f8;
+                border-style:none;
+            }
     }
 }

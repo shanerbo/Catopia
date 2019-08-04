@@ -73,25 +73,30 @@
               
           }
           #following-tab{
+              color: rgba(5, 5, 5, 0.432) !important;
               padding-right:10px;
               margin-bottom:0px;
               font-weight:bold;
           }
           #following-num{
+            color: rgba(5, 5, 5, 0.432) !important;
               margin-bottom:0px;
           }
           #following-num:hover{
-              text-decoration: underline;
+            color: #b35f5f3b !important;
+          }
+          #follower-num:hover{
+            color: #b35f5f3b !important;
           }
           #follower-num{
               margin-bottom:0px;
+              color: rgba(5, 5, 5, 0.432) !important;
               
           }
-          #follower-num:hover{
-              text-decoration: underline;
-          }
+
           
           #follower-tab{
+            color: rgba(5, 5, 5, 0.432) !important;
               padding-right:10px;
               max-width:100%;
               font-weight:bold;
