@@ -153,10 +153,7 @@ export class HomePageComponent implements OnInit {
 
   postPhotos(post: FormData) {
     console.log(post);
-    this.ps.postPhoto(post).subscribe((result) => {
-      console.log('upload ', result);
-      // TODO: re-fetch all posts
-      this.fetchPosts();
-    });
+
+    this.fetchPosts();
   }
 }

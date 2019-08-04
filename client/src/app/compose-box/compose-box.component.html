@@ -61,9 +61,11 @@
         <div class="form-group row description input-group mb-3">
           <input class="form-control input-des" type="text" placeholder="What's up with this photo" name="description"
             [(ngModel)]="description" />
-          <div class="input-group-append"><button class="btn btn-primary" type="submit" id="submit-post">
-              Post <i class="fas fa-cat"></i>
-            </button></div>
+          <div class="input-group-append">
+            <button [disabled]="disableBtn" class="btn btn-primary" type="submit" id="submit-post">
+              {{buttonText}} <i class="fas fa-cat"></i>
+            </button>
+          </div>
 
 
         </div>
