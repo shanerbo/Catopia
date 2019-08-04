@@ -31,10 +31,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public followStatus = 'Follow';
   public loggedinUserInfo: any; // currentUserInfo
 
-
+  freshFlag = false;
   postsArray = [];
-  loadedPosts = 1;
-  loadMore = 1;
+  loadedPosts = 2;
+  loadMore = 2;
   throttle = 300;
   scrollDistance = 1;
   scrollUpDistance = 2;
@@ -47,6 +47,18 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) { }
 
+  refreshLoadedPosts() {
+    if (this.freshFlag === true) {
+      for (let i = 0; i < this.postsArray.length; ++i) {
+        this.postsArray[i] = this.posts[i];
+      }
+      console.log('POSTS REFRESHED!');
+    } else {
+      this.appendItems(0, this.loadMore);
+      console.log('POSTS INIT!!');
+      this.freshFlag = true;
+    }
+  }
   addItems(startIndex, endIndex, _method) {
     for (let i = 0; i < this.loadMore; ++i) {
       this.postsArray.push(this.posts[startIndex + i]);
@@ -107,7 +119,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   fetchUserPhotos(filters: CatFilter) {
     this.ps.getUserPosts(this.viewingUserId, filters).then((posts) => {
       this.posts = posts;
-      this.appendItems(0, this.loadMore);
+      this.refreshLoadedPosts();
     });
   }
 

@@ -32,6 +32,7 @@ export class PhotoCardComponent implements OnInit {
       this.likePostEvent.next('success');
     });
   }
+
   postComment(event) {
     this.ps.postComment({
       content: this.comment,
