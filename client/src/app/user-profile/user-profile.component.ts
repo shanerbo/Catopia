@@ -7,6 +7,7 @@ import { UserService } from '../services/user.service';
 import { Post } from '../interfaces/post';
 import { Subscription } from 'rxjs';
 import { CatFilter } from '../interfaces/cat';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 @Component({
@@ -44,7 +45,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private ls: LoginService,
     private ps: PhotoService,
     private us: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   refreshLoadedPosts() {
@@ -77,8 +78,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.addItems(startIndex, endIndex, 'unshift');
   }
 
-  onScrollDown(ev) {
-    console.log('scrolled down!!', ev);
+  onScrollDown() {
+    console.log('scrolled down!!');
     // add another 20 items
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
@@ -87,8 +88,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       this.direction = 'down';
     }
   }
-  onUp(ev) {
-    console.log('scrolled up!', ev);
+  onUp() {
+    console.log('scrolled up!');
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
     if (this.loadedPosts <= this.posts.length) {

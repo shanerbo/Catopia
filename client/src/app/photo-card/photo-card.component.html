@@ -78,7 +78,7 @@
     <input type="text" [(ngModel)]="comment" name="comment" class="form-control" placeholder="Add a comment..."
       aria-label="comment" aria-describedby="basic-addon2">
     <div class="input-group-append post">
-      <button class="btn post-btn" type="submit">Post</button>
+      <button class="btn btn-primary post-btn" type="submit" [disabled]="disableComment">{{commentText}}</button>
     </div>
   </form>
 </div>

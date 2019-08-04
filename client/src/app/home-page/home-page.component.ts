@@ -79,8 +79,8 @@ export class HomePageComponent implements OnInit {
     this.addItems(startIndex, endIndex, 'unshift');
   }
 
-  onScrollDown(ev) {
-    console.log('scrolled down!!', ev);
+  onScrollDown() {
+    console.log('scrolled down!!');
     // add another 20 items
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
@@ -89,8 +89,8 @@ export class HomePageComponent implements OnInit {
       this.direction = 'down';
     }
   }
-  onUp(ev) {
-    console.log('scrolled up!', ev);
+  onUp() {
+    console.log('scrolled up!');
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
     if (this.loadedPosts <= this.posts.length) {
@@ -153,10 +153,7 @@ export class HomePageComponent implements OnInit {
 
   postPhotos(post: FormData) {
     console.log(post);
-    this.ps.postPhoto(post).subscribe((result) => {
-      console.log('upload ', result);
-      // TODO: re-fetch all posts
-      this.fetchPosts();
-    });
+
+    this.fetchPosts();
   }
 }
