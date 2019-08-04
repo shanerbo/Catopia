@@ -33,7 +33,7 @@ const postQuery = () => {
         model: db.post_likes
       }
     ],
-    order: [['createdAt', 'DESC'], [db.Comments, 'createdAt', 'DESC']]
+    order: [['createdAt', 'DESC'], [db.Comments, 'createdAt', 'DESC'], [db.post_media, 'id', 'DESC']]
   }
 }
 
