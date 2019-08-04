@@ -16,23 +16,29 @@ module.exports = {
     let jiaranId = await userId("jiarany@sfu.ca");
     let ottoId = await userId("ohu@sfu.ca");
     let mcaId = await userId("mca176@sfu.ca");
+    let d1 = await userId("dummy1@sfu.ca");
+    let d2 = await userId("dummy2@sfu.ca");
+    let d3 = await userId("dummy3@sfu.ca");
+    let d4 = await userId("dummy4@sfu.ca");
+    let d5 = await userId("dummy5@sfu.ca");
+    let d6 = await userId("dummy6@sfu.ca");
     return queryInterface.bulkInsert('Cats',
       [
         {
           user_id: erbosId,
-          name: 'erboCat1',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%201.jpeg',
+          name: 'Ellis',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile1.jpg',
           createdAt: new Date(),
           updatedAt: new Date(),
           spay: false,
           color: "white",
           gender: "boy",
-          age: getCatAge(80)
+          age: getCatAge(100)
         },
         {
           user_id: erbosId,
-          name: 'erboCat2',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%202.jpeg',
+          name: 'Agnes',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile2.jpg',
           createdAt: new Date(),
           age: getCatAge(50),
           spay: true,
@@ -42,10 +48,10 @@ module.exports = {
         },
         {
           user_id: erbosId,
-          name: 'erboCat3',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%203.jpeg',
+          name: 'Marie',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile3.jpg',
           createdAt: new Date(),
-          age: getCatAge(80),
+          age: getCatAge(200),
           gender: "girl",
           spay: false,
           color: "red, wait what?",
@@ -53,10 +59,10 @@ module.exports = {
         },
         {
           user_id: jiaranId,
-          name: 'jiaranCat1',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%204.jpeg',
+          name: 'Bethany',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile4.jpg',
           createdAt: new Date(),
-          age: getCatAge(80),
+          age: getCatAge(300),
           gender: "girl",
           spay: true,
           color: "pink af omg",
@@ -64,8 +70,8 @@ module.exports = {
         },
         {
           user_id: jiaranId,
-          name: 'jiaranCat2',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%205.jpeg',
+          name: 'Hollie',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile5.jpg',
           createdAt: new Date(),
           age: getCatAge(80),
           gender: "boy",
@@ -74,11 +80,11 @@ module.exports = {
           updatedAt: new Date()
         },
         {
-          user_id: jiaranId,
-          name: 'jiaranCat3',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%206.jpeg',
+          user_id: ottoId,
+          name: 'Paige',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile6.jpg',
           createdAt: new Date(),
-          age: getCatAge(90),
+          age: getCatAge(500),
           gender: "boy",
           spay: false,
           color: "green",
@@ -86,8 +92,8 @@ module.exports = {
         },
         {
           user_id: ottoId,
-          name: 'ottoCat1',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%207.jpeg',
+          name: 'Kyla',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile7.jpg',
           createdAt: new Date(),
           age: getCatAge(580),
           gender: "boy",
@@ -97,8 +103,8 @@ module.exports = {
         },
         {
           user_id: ottoId,
-          name: 'ottoCat2',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%208.jpeg',
+          name: 'Harmony',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile8.jpg',
           age: getCatAge(890),
           createdAt: new Date(),
           gender: "girl",
@@ -108,30 +114,30 @@ module.exports = {
         },
         {
           user_id: ottoId,
-          name: 'ottoCat3',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%209.jpeg',
+          name: 'Tamara',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile9.jpg',
           createdAt: new Date(),
-          age: getCatAge(280),
+          age: getCatAge(234),
           gender: "boy",
           spay: true,
           color: "color of first love",
           updatedAt: new Date()
         },
         {
-          user_id: mcaId,
-          name: 'mcaCat1',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2010.jpeg',
+          user_id: ottoId,
+          name: 'Megan',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile10.jpg',
           createdAt: new Date(),
           gender: "boy",
           spay: true,
           color: "guess",
-          age: getCatAge(780),
+          age: getCatAge(655),
           updatedAt: new Date()
         },
         {
           user_id: mcaId,
-          name: 'canada goose',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2011.jpeg',
+          name: 'Nicky',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile11.jpg',
           createdAt: new Date(),
           age: getCatAge(380),
           gender: "girl",
@@ -141,14 +147,179 @@ module.exports = {
         },
         {
           user_id: mcaId,
-          name: 'Rigby',
-          prof_url: 'https://storage.googleapis.com/cat_prof/Cat%20-%2012.jpeg',
+          name: 'Nutmeg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile12.jpg',
           createdAt: new Date(),
           age: getCatAge(180),
           gender: "boy",
           spay: true,
           color: "totally black",
           updatedAt: new Date()
+        },
+        {
+          user_id: d1,
+          name: 'Licorice',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile13.jpg',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          spay: false,
+          color: "white",
+          gender: "boy",
+          age: getCatAge(400)
+        },
+        {
+          user_id: d2,
+          name: 'Alertpants',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile14.jpg',
+          createdAt: new Date(),
+          age: getCatAge(50),
+          spay: true,
+          gender: "boy",
+          color: "grey",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d2,
+          name: 'Tigger',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile15.jpg',
+          createdAt: new Date(),
+          age: getCatAge(200),
+          gender: "girl",
+          spay: false,
+          color: "red, wait what?",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d2,
+          name: 'Cleartoes',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile16.jpg',
+          createdAt: new Date(),
+          age: getCatAge(300),
+          gender: "girl",
+          spay: true,
+          color: "pink af omg",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d3,
+          name: 'Batwoman',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile17.jpg',
+          createdAt: new Date(),
+          age: getCatAge(80),
+          gender: "boy",
+          spay: false,
+          color: "rainbow",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d3,
+          name: 'Smart',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile18.jpg',
+          createdAt: new Date(),
+          age: getCatAge(500),
+          gender: "boy",
+          spay: false,
+          color: "green",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d3,
+          name: 'Watchful',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile19.jpg',
+          createdAt: new Date(),
+          age: getCatAge(580),
+          gender: "boy",
+          spay: true,
+          color: "no telling",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d3,
+          name: 'Nellie',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile20.jpg',
+          age: getCatAge(890),
+          createdAt: new Date(),
+          gender: "girl",
+          spay: true,
+          color: "color of true elegance",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d4,
+          name: 'Domino',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile21.jpg',
+          createdAt: new Date(),
+          age: getCatAge(234),
+          gender: "boy",
+          spay: true,
+          color: "color of first love",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d4,
+          name: 'Oreo',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile22.jpg',
+          createdAt: new Date(),
+          gender: "boy",
+          spay: true,
+          color: "guess",
+          age: getCatAge(655),
+          updatedAt: new Date()
+        },
+        {
+          user_id: d4,
+          name: 'Chess',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile23.jpg',
+          createdAt: new Date(),
+          age: getCatAge(380),
+          gender: "girl",
+          spay: true,
+          color: "kinda yellow",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d5,
+          name: 'Dice',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile24.jpg',
+          createdAt: new Date(),
+          age: getCatAge(180),
+          gender: "boy",
+          spay: true,
+          color: "totally black",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d5,
+          name: 'Sundae',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile25.jpg',
+          createdAt: new Date(),
+          age: getCatAge(380),
+          gender: "girl",
+          spay: true,
+          color: "kinda yellow",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d6,
+          name: 'Nicol',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile26.jpg',
+          createdAt: new Date(),
+          age: getCatAge(180),
+          gender: "boy",
+          spay: true,
+          color: "totally black",
+          updatedAt: new Date()
+        },
+        {
+          user_id: d6,
+          name: 'Puffin',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile27.jpg',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          spay: false,
+          color: "white",
+          gender: "boy",
+          age: getCatAge(400)
         }
       ]
     );
