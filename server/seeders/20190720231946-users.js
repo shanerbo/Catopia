@@ -9,7 +9,7 @@ module.exports = {
         userName: "Jean Schmitt",
         email: "erbos@sfu.ca",
         pwd: bcrypt.hashSync("pppppp", salt),
-        prof_url: "https://storage.googleapis.com/user_prof/user1.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user1.jpeg",
         bio: "There is nothing either good or bad, but thinking makes it so.",
         createdAt: new Date,
         updatedAt: new Date
@@ -18,7 +18,7 @@ module.exports = {
         userName: "Colette Roth",
         email: "jiarany@sfu.ca",
         pwd: bcrypt.hashSync("pppppp", salt),
-        prof_url: "https://storage.googleapis.com/user_prof/user2.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user2.jpeg",
         bio: "From women's eyes this doctrine I derive.",
         createdAt: new Date,
         updatedAt: new Date
@@ -26,7 +26,7 @@ module.exports = {
       {
         userName: "Matei Hibbert",
         email: "ohu@sfu.ca",
-        prof_url: "https://storage.googleapis.com/user_prof/user3.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user3.jpeg",
         pwd: bcrypt.hashSync("pppppp", salt),
         bio: "The wheel is come full circle: I am here.",
         createdAt: new Date,
@@ -39,7 +39,7 @@ module.exports = {
         bio: "Some rise by sin, and some by virtue fall.",
         createdAt: new Date,
         updatedAt: new Date,
-        prof_url: "https://storage.googleapis.com/user_prof/user4.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user4.jpeg",
       },
       {
         userName: "Ellie-Mae Connor",
@@ -48,7 +48,7 @@ module.exports = {
         bio: "I burn, I pine, I perish.",
         createdAt: new Date,
         updatedAt: new Date,
-        prof_url: "https://storage.googleapis.com/user_prof/user5.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user5.jpeg",
       },
       {
         userName: "Karan Khan",
@@ -57,7 +57,7 @@ module.exports = {
         bio: "This above all: to thine ownself be true.",
         createdAt: new Date,
         updatedAt: new Date,
-        prof_url: "https://storage.googleapis.com/user_prof/user6.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user6.jpeg",
       },
       {
         userName: "Vincenzo Glover",
@@ -66,7 +66,7 @@ module.exports = {
         bio: "When thou dost ask me blessing, I'll kneel down,",
         createdAt: new Date,
         updatedAt: new Date,
-        prof_url: "https://storage.googleapis.com/user_prof/user7.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user7.jpeg",
       },
       {
         userName: "Kajetan Reeves",
@@ -75,7 +75,7 @@ module.exports = {
         bio: "They have been at a great feast of languages, and stol'n the scraps.",
         createdAt: new Date,
         updatedAt: new Date,
-        prof_url: "https://storage.googleapis.com/user_prof/user8.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user8.jpeg",
       },
       {
         userName: "Reyansh Ahmed",
@@ -84,7 +84,7 @@ module.exports = {
         bio: "Sigh no more, ladies, sigh no more,Men were deceivers ever",
         createdAt: new Date,
         updatedAt: new Date,
-        prof_url: "https://storage.googleapis.com/user_prof/user9.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user9.jpeg",
       },
       {
         userName: "Niall Bernal",
@@ -93,7 +93,7 @@ module.exports = {
         bio: "I do love nothing in the world so well as you: is not that strange?",
         createdAt: new Date,
         updatedAt: new Date,
-        prof_url: "https://storage.googleapis.com/user_prof/user10.jpg",
+        prof_url: "https://storage.googleapis.com/user_prof/user10.jpeg",
       }
       ]);
   },

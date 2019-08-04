@@ -27,7 +27,7 @@ module.exports = {
         {
           user_id: erbosId,
           name: 'Ellis',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile1.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile1.jpeg',
           createdAt: new Date(),
           updatedAt: new Date(),
           spay: false,
@@ -38,7 +38,7 @@ module.exports = {
         {
           user_id: erbosId,
           name: 'Agnes',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile2.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile2.jpeg',
           createdAt: new Date(),
           age: getCatAge(50),
           spay: true,
@@ -49,7 +49,7 @@ module.exports = {
         {
           user_id: erbosId,
           name: 'Marie',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile3.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile3.jpeg',
           createdAt: new Date(),
           age: getCatAge(200),
           gender: "girl",
@@ -60,7 +60,7 @@ module.exports = {
         {
           user_id: jiaranId,
           name: 'Bethany',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile4.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile4.jpeg',
           createdAt: new Date(),
           age: getCatAge(300),
           gender: "girl",
@@ -71,7 +71,7 @@ module.exports = {
         {
           user_id: jiaranId,
           name: 'Hollie',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile5.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile5.jpeg',
           createdAt: new Date(),
           age: getCatAge(80),
           gender: "boy",
@@ -82,7 +82,7 @@ module.exports = {
         {
           user_id: ottoId,
           name: 'Paige',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile6.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile6.jpeg',
           createdAt: new Date(),
           age: getCatAge(500),
           gender: "boy",
@@ -93,7 +93,7 @@ module.exports = {
         {
           user_id: ottoId,
           name: 'Kyla',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile7.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile7.jpeg',
           createdAt: new Date(),
           age: getCatAge(580),
           gender: "boy",
@@ -104,7 +104,7 @@ module.exports = {
         {
           user_id: ottoId,
           name: 'Harmony',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile8.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile8.jpeg',
           age: getCatAge(890),
           createdAt: new Date(),
           gender: "girl",
@@ -115,7 +115,7 @@ module.exports = {
         {
           user_id: ottoId,
           name: 'Tamara',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile9.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile9.jpeg',
           createdAt: new Date(),
           age: getCatAge(234),
           gender: "boy",
@@ -126,7 +126,7 @@ module.exports = {
         {
           user_id: ottoId,
           name: 'Megan',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile10.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile10.jpeg',
           createdAt: new Date(),
           gender: "boy",
           spay: true,
@@ -137,7 +137,7 @@ module.exports = {
         {
           user_id: mcaId,
           name: 'Nicky',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile11.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile11.jpeg',
           createdAt: new Date(),
           age: getCatAge(380),
           gender: "girl",
@@ -148,7 +148,7 @@ module.exports = {
         {
           user_id: mcaId,
           name: 'Nutmeg',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile12.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile12.jpeg',
           createdAt: new Date(),
           age: getCatAge(180),
           gender: "boy",
@@ -159,7 +159,7 @@ module.exports = {
         {
           user_id: d1,
           name: 'Licorice',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile13.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile13.jpeg',
           createdAt: new Date(),
           updatedAt: new Date(),
           spay: false,
@@ -170,7 +170,7 @@ module.exports = {
         {
           user_id: d2,
           name: 'Alertpants',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile14.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile14.jpeg',
           createdAt: new Date(),
           age: getCatAge(50),
           spay: true,
@@ -181,7 +181,7 @@ module.exports = {
         {
           user_id: d2,
           name: 'Tigger',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile15.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile15.jpeg',
           createdAt: new Date(),
           age: getCatAge(200),
           gender: "girl",
@@ -192,7 +192,7 @@ module.exports = {
         {
           user_id: d2,
           name: 'Cleartoes',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile16.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile16.jpeg',
           createdAt: new Date(),
           age: getCatAge(300),
           gender: "girl",
@@ -203,7 +203,7 @@ module.exports = {
         {
           user_id: d3,
           name: 'Batwoman',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile17.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile17.jpeg',
           createdAt: new Date(),
           age: getCatAge(80),
           gender: "boy",
@@ -214,7 +214,7 @@ module.exports = {
         {
           user_id: d3,
           name: 'Smart',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile18.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile18.jpeg',
           createdAt: new Date(),
           age: getCatAge(500),
           gender: "boy",
@@ -225,7 +225,7 @@ module.exports = {
         {
           user_id: d3,
           name: 'Watchful',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile19.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile19.jpeg',
           createdAt: new Date(),
           age: getCatAge(580),
           gender: "boy",
@@ -236,7 +236,7 @@ module.exports = {
         {
           user_id: d3,
           name: 'Nellie',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile20.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile20.jpeg',
           age: getCatAge(890),
           createdAt: new Date(),
           gender: "girl",
@@ -247,7 +247,7 @@ module.exports = {
         {
           user_id: d4,
           name: 'Domino',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile21.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile21.jpeg',
           createdAt: new Date(),
           age: getCatAge(234),
           gender: "boy",
@@ -258,7 +258,7 @@ module.exports = {
         {
           user_id: d4,
           name: 'Oreo',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile22.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile22.jpeg',
           createdAt: new Date(),
           gender: "boy",
           spay: true,
@@ -269,7 +269,7 @@ module.exports = {
         {
           user_id: d4,
           name: 'Chess',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile23.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile23.jpeg',
           createdAt: new Date(),
           age: getCatAge(380),
           gender: "girl",
@@ -280,7 +280,7 @@ module.exports = {
         {
           user_id: d5,
           name: 'Dice',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile24.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile24.jpeg',
           createdAt: new Date(),
           age: getCatAge(180),
           gender: "boy",
@@ -291,7 +291,7 @@ module.exports = {
         {
           user_id: d5,
           name: 'Sundae',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile25.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile25.jpeg',
           createdAt: new Date(),
           age: getCatAge(380),
           gender: "girl",
@@ -302,7 +302,7 @@ module.exports = {
         {
           user_id: d6,
           name: 'Nicol',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile26.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile26.jpeg',
           createdAt: new Date(),
           age: getCatAge(180),
           gender: "boy",
@@ -313,7 +313,7 @@ module.exports = {
         {
           user_id: d6,
           name: 'Puffin',
-          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile27.jpg',
+          prof_url: 'https://storage.googleapis.com/cat_prof/cat_profile27.jpeg',
           createdAt: new Date(),
           updatedAt: new Date(),
           spay: false,
