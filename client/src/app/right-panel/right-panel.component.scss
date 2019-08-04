@@ -1,6 +1,6 @@
-
+@import "../global.scss";
 .right-panel{
-    border-color:#b35f5f3b;
+    border-color:$themeColor;
     border-style:solid;
     border-width:1px;
     margin-top:30px;
@@ -62,7 +62,7 @@
                     max-width:25%;
                 }
                 .btn-light{
-                    color: #b35f5f3b;
+                    color: $themeColor;
                     font-weight:bold;
                 }
                 .btn-light:hover,.btn-light:focus{
@@ -70,11 +70,11 @@
                     border-style:none;
                 }
                 .mutual{
-                    color: #b35f5f3b;
+                    color: $themeColor;
                     font-weight:bold;
                 }
                 .mutual:hover span {
-                    color: #b35f5f3b;
+                    color: $themeColor;
                     font-weight:bold; 
                     display:none}
                 .mutual:hover:before {

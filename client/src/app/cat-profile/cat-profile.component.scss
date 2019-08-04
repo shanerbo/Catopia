@@ -1,5 +1,6 @@
+@import "../global.scss";
 .cat-profile{
-    border-color:#b35f5f3b;
+    border-color:$themeColor;
     border-style:solid;
     border-width:1px;
     overflow-wrap: break-word;
@@ -92,7 +93,7 @@
         }
     }
     .user-list{
-        background-color:#b35f5f3b;
+        background-color:$themeColor;
         margin-bottom:0px;
         padding-left:40px;
         padding-top:10px;

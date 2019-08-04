@@ -51,8 +51,8 @@
           <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.bio}}</p>
         </div>
       </div>
-      <ol class="user-list" *ngFor="let cat of viewingUserInfo?.cat">
-        <li class="row user">
+      <ol class="user-list">
+        <li class="row user" *ngFor="let cat of viewingUserInfo?.cat">
           <div class="col profile-pic">
             <img src="{{cat?.prof_url}}" alt="Avatar">
           </div>
@@ -137,8 +137,8 @@
           <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.bio}}</p>
         </div>
       </div>
-      <ol class="user-list" *ngFor="let cat of viewingUserInfo?.cat">
-        <li class="row user">
+      <ol class="user-list">
+        <li class="row user" *ngFor="let cat of viewingUserInfo?.cat">
           <div class="col profile-pic">
             <img src="{{cat?.prof_url}}" alt="Avatar">
           </div>
