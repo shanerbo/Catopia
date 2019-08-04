@@ -19,7 +19,6 @@ module.exports = {
     let d5Posts = await findUserPostsByEmail("dummy5@sfu.ca");
     let d6Posts = await findUserPostsByEmail("dummy6@sfu.ca");
 
-
     let erbosPostId1 = erbosPosts[0].get('id');
     let erbosPostId2 = erbosPosts[1].get('id');
     let erbosPostId3 = erbosPosts[2].get('id');
