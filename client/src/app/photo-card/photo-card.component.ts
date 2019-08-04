@@ -29,16 +29,17 @@ export class PhotoCardComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.likeList = this.post.post_likes;
-  }
-
-  ngOnInit() {
-    // console.log(this.post);
-    this.userId = this.us.user.id;
     this.likeList.forEach(element => {
       if (element.user_id === this.userId) { } {
         this.liked = true;
       }
     });
+  }
+
+  ngOnInit() {
+    // console.log(this.post);
+    this.userId = this.us.user.id;
+
   }
 
   likePost() {
