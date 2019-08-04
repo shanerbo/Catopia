@@ -61,6 +61,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
   addItems(startIndex, endIndex, _method) {
     for (let i = 0; i < this.loadMore; ++i) {
+      if (!this.posts[startIndex + i]) {
+        break;
+      }
+      console.log('added!!!!!');
       this.postsArray.push(this.posts[startIndex + i]);
     }
   }
