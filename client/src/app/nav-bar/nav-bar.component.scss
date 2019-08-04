@@ -1,0 +1,13 @@
+@import '../global.scss';
+
+.navbar a{
+  color: $accentColor;
+  font-size: 1em;
+}
+
+.btn{
+  background-color: $themeColor;
+  border: none;
+  color: $accentColor;
+  border-radius: 50%;
+}
