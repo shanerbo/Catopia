@@ -1,56 +1,60 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <div class="card card-form">
-        <div class="card-body">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active" (click)="switchToLogin()">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked> Log In
-            </label>
-            <label class="btn btn-secondary" (click)="switchToSignup()">
-              <input type="radio" name="options" id="option2" autocomplete="off"> Sign Up
-            </label>
-          </div>
+<body>
 
-          <!-- login form -->
-          <form *ngIf="showLoginForm; else signupForm" class="pt-3" (ngSubmit)="onSigninSubmit()">
-            <div class="form-group">
-              <input type="email" [(ngModel)]="signinEmail" class="form-control" name="loginEmail" placeholder="Email"
-                required>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <div class="card card-form">
+          <div class="card-body">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active" (click)="switchToLogin()">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Log In
+              </label>
+              <label class="btn btn-secondary" (click)="switchToSignup()">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Sign Up
+              </label>
             </div>
-            <div class="form-group">
-              <input type="password" [(ngModel)]="signinPassword" class="form-control" name="loginPassword"
-                placeholder="Password" autocomplete="false" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Log In</button>
-          </form>
 
-          <!-- signup form -->
-          <ng-template #signupForm>
-            <form class="pt-3" (ngSubmit)="onSignupSubmit()">
+            <!-- login form -->
+            <form *ngIf="showLoginForm; else signupForm" class="pt-3" (ngSubmit)="onSigninSubmit()">
               <div class="form-group">
-                <input type="email" [(ngModel)]="signupEmail" class="form-control" name="signupEmail"
-                  placeholder="Email" required>
+                <input type="email" [(ngModel)]="signinEmail" class="form-control" name="loginEmail" placeholder="Email"
+                  required>
               </div>
               <div class="form-group">
-                <input type="text" [(ngModel)]="signupUsername" class="form-control" name="signupUsername"
-                  placeholder="Username" required>
+                <input type="password" minlength="6" [(ngModel)]="signinPassword" class="form-control"
+                  name="loginPassword" placeholder="Password" autocomplete="false" required>
               </div>
-              <div class="form-group">
-                <input type="password" [(ngModel)]="signupPassword" class="form-control" name="signupPassword" required
-                  placeholder="Password" autocomplete="false">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" [(ngModel)]="signupConfirmPassword"
-                  name="signupConfirmPassword" required placeholder="Confirm your password" autocomplete="false">
-              </div>
-              <button type="submit" class="btn btn-primary">Sign Up</button>
+              <button type="submit" class="btn btn-primary">Log In</button>
             </form>
-          </ng-template>
 
+            <!-- signup form -->
+            <ng-template #signupForm>
+              <form class="pt-3" (ngSubmit)="onSignupSubmit()">
+                <div class="form-group">
+                  <input type="email" [(ngModel)]="signupEmail" class="form-control" name="signupEmail"
+                    placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="signupUsername" class="form-control" name="signupUsername"
+                    placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                  <input type="password" minlength="6" [(ngModel)]="signupPassword" class="form-control"
+                    name="signupPassword" required placeholder="Password" autocomplete="false">
+                </div>
+                <div class="form-group">
+                  <input type="password" minlength="6" [(ngModel)]="signupConfirmPassword" class="form-control"
+                    name="signupConfirmPassword" required placeholder="Confirm your password" autocomplete="false">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+              </form>
+            </ng-template>
+
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+</body>
