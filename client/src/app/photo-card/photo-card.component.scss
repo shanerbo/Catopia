@@ -162,7 +162,14 @@ ngb-carousel{
   .func-btn:hover{
     color:#b35f5f3b;
   }
-
+#liked_post{
+    float:left;
+    background-color:none;
+    border: none;
+    color:#b35f5f3b;
+    font-size: 20px;
+    height: 10%
+}
 .mb-3{
     width:100%;
     margin:5px;

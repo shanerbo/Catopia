@@ -144,8 +144,6 @@ export class HomePageComponent implements OnInit {
   fetchRecommendUsers() {
     this.us.getRecommendUsers().then((users) => {
       this.users = users;
-
-      this.logUserId = 1;
     });
   }
 
