@@ -38,11 +38,11 @@
                   placeholder="Username" required>
               </div>
               <div class="form-group">
-                <input type="password" [(ngModel)]="signupPassword" class="form-control" name="signupPassword" required
-                  placeholder="Password" autocomplete="false">
+                <input type="password" minlength="6" [(ngModel)]="signupPassword" class="form-control"
+                  name="signupPassword" required placeholder="Password" autocomplete="false">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" [(ngModel)]="signupConfirmPassword"
+                <input type="password" minlength="6" class="form-control" [(ngModel)]="signupConfirmPassword"
                   name="signupConfirmPassword" required placeholder="Confirm your password" autocomplete="false">
               </div>
               <button type="submit" class="btn btn-primary">Sign Up</button>
