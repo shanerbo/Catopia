@@ -66,12 +66,9 @@
           id="liked_post"></i>
       </button>
       <ng-template #notliked>
-        <button class="btn func-btn" (click)="likePost()"><i class="fas fa-paw"></i>
-        </button>
-
+        <button class="btn func-btn" (click)="likePost()"><i class="fas fa-paw"></i></button>
       </ng-template>
       <p class="like-num" style="color:rgba(5, 5, 5, 0.432);">{{post.post_likes.length}}</p>
-
     </div>
   </div>
 
