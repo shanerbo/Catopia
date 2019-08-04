@@ -7,6 +7,7 @@ import { UserService } from '../services/user.service';
 import { Post } from '../interfaces/post';
 import { Subscription } from 'rxjs';
 import { CatFilter } from '../interfaces/cat';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 @Component({
@@ -44,7 +45,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private ls: LoginService,
     private ps: PhotoService,
     private us: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   refreshLoadedPosts() {
