@@ -27,7 +27,7 @@ body {
 }
 
 .selected{
-  border: $themeColor solid 5px;
+  border: $accentColor solid 5px;
 }
 
 .add-btn{
@@ -125,7 +125,7 @@ body {
   }
 
   .eachCat:hover{
-    border: $accentColor solid 5px;
+    border: $themeColor solid 5px;
   }
 
 
