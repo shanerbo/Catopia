@@ -11,7 +11,8 @@
       [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()"
       (scrolledUp)="onUp()">
       <div *ngFor="let post of postsArray">
-        <app-photo-card (likePostEvent)="fetchPosts($event)" (commentEvent)="fetchPosts($event)" [post]="post">
+        <app-photo-card (likePostEvent)="updateSinglePost($event)" (commentEvent)="updateSinglePost($event)"
+          [post]="post">
         </app-photo-card>
       </div>
     </div>

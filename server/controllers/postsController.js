@@ -80,7 +80,7 @@ exports.getOnePost = (req, res, next) => {
   query.where = { id: req.params.id };
   console.log("include:", query);
   db.Posts.findOne(query).then(result => {
-    console.log("after:", result);
+    console.log("after:", result.toJSON().post_likes);
     res.json(result);
   });
 };

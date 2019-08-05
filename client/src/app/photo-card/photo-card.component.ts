@@ -18,20 +18,28 @@ export class PhotoCardComponent implements OnInit, OnChanges {
     private us: UserService,
     private ls: LoginService
   ) { }
-  @Output() likePostEvent = new EventEmitter<string>();
   @Input() post: Post;
-  @Output() commentEvent = new EventEmitter<string>();
+  @Output() likePostEvent = new EventEmitter<number>();
+  @Output() commentEvent = new EventEmitter<number>();
   public moment = moment;
   public comment: string;
   public userId: number;
   public likeList: any;
   public liked = false;
   public disableComment = false;
+  public disableLike = false;
   public commentText = 'Comment';
 
   ngOnChanges() {
     this.likeList = this.post.post_likes;
+    this.userId = this.us.user.id;
     this.liked = false;
+    console.log(this.post);
+    this.likeList.forEach(element => {
+      if (element.user_id === this.userId) {
+        this.liked = true;
+      }
+    });
   }
 
   ngOnInit() {
@@ -47,9 +55,11 @@ export class PhotoCardComponent implements OnInit, OnChanges {
   }
 
   likePost() {
+    this.disableLike = true;
     this.ps.postLike(this.post.id).subscribe((result) => {
       console.log(result);
-      this.likePostEvent.next('success');
+      this.disableLike = false;
+      this.likePostEvent.next(this.post.id);
     });
   }
 
@@ -63,7 +73,7 @@ export class PhotoCardComponent implements OnInit, OnChanges {
       console.log(result);
       this.disableComment = false;
       this.commentText = 'Comment';
-      this.commentEvent.next('success');
+      this.commentEvent.next(this.post.id);
     });
   }
 }
