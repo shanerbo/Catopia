@@ -22,17 +22,8 @@ export class EditProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ls.currentUser.subscribe((user) => {
-      console.log('edit: ', user);
-      if (!user) {
-        this.router.navigateByUrl('/login');
-      } else {
-
-        this.currentUserInfo = user;
-        this.currentProfUrl = this.currentUserInfo.prof_url;
-      }
-    });
-
+    this.currentUserInfo = this.ls.getUserInfo();
+    this.currentProfUrl = this.currentUserInfo.prof_url;
   }
   handleFileInput(target) {
     const file = target.files[0];

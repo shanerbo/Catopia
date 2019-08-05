@@ -80,9 +80,6 @@ export class LoginService {
 
   private signInCurrentUser(): Promise<UserInfo> {
     const tokenVal = this.getToken();
-    if (!tokenVal) {
-      this.setUser(null);
-    }
     return this.http.get('/api/auth', { headers: { Authorization: `Bearer ${tokenVal}` } })
       .toPromise().then((data: TokenResponse) => {
         console.log(data);
