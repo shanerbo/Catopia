@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <form>
-          <div class="card-body row">
+          <div class="card-body image-row">
             <div *ngIf="!imgSrc; else img">
 
               <div class="input-file form-group col col-md-auto">
@@ -26,43 +26,48 @@
             </div>
             <ng-template #img>
               <img src="{{imgSrc}}" height="60" width="60" alt="">
-              <button (click)="removeImg()">X</button>
+              <button class="btn btn-light" (click)="removeImg()">Delete</button>
             </ng-template>
           </div>
           <div class="col">
-            <div class="row">
-              <div class="form-group name">
-                <label for="name" class="col-form-label"> Name:</label>
-                <input type="text" class="form-control" name="name" id="cat-name" [(ngModel)]="newCat.name">
+            <div class="row first-row">
+              <div class=" row form-group name-row">
+                <label for="name" class="col-form-label name"> Name:</label>
+                <input type="text" class="form-control name-input" name="name" id="cat-name" [(ngModel)]="newCat.name">
               </div>
-              <div class="form-group age">
-                <label for="age" class="col-form-label"> Age:</label>
+              <div class="row form-group age-row">
+                <label for="age" class="col-form-label age"> Age:</label>
                 <input type="text" class="form-control" name="age" id="age" [(ngModel)]="newCat.age">
-                <select name="time" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=time>
+                <select id="select-date" name="time" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=time>
                   <option value="day">days</option>
                   <option value="month">months</option>
                   <option value="year">years</option>
                 </select>
               </div>
-
             </div>
-            <div class="row">
+            <div class="row second-row">
+
               <div class=" form-group color">
-                <label for="color" class="col-form-label"> Color:</label>
-                <input type="text" class="form-control" name="color" id="color" [(ngModel)]="newCat.color">
+                <div class="row color-row">
+                  <label for="color" class="col-form-label" class="color-text"> Color:</label>
+                  <input type="text" class="form-control color-input" name="color" id="color"
+                    [(ngModel)]="newCat.color">
+                </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row spay-row">
               <label for="spay">Spay:</label>
-              <div class="dropdown">
-                <select name="spay" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=newCat.spay>
+              <div id="spay3" class="dropdown">
+                <select id="spay2" name="spay" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=newCat.spay>
                   <option value="true">Yes</option>
                   <option value="false">No</option>
                   <option value="">Not Sure</option>
                 </select>
               </div>
+            </div>
+            <div class="row gender-row">
               <label for="gender">Gender:</label>
-              <div class="dropdown">
+              <div id="gender" class="dropdown">
                 <select name="gender" class="w-50 custom-select custom-select-lg mb-3" [(ngModel)]=newCat.gender>
                   <option value=""></option>
                   <option value="Boy">Boy</option>

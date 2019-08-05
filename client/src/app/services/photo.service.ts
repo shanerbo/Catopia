@@ -19,6 +19,10 @@ export class PhotoService {
     return this.ls.authRequest('post', 'api/photo', {}, newPost);
   }
 
+  fetchSinglePhoto(post_id: number): Observable<Post> {
+    return this.http.get<Post>('api/photo/' + post_id);
+  }
+
   private getParams(filters: CatFilter): string {
     let params = '';
     if (filters) {
@@ -26,10 +30,10 @@ export class PhotoService {
       if (filters.gender !== '') {
         params += 'gender=' + filters.gender + '&';
       }
-      if (filters.kitten != null) {
+      if (filters.kitten !== null && filters.kitten !== '') {
         params += 'kitten=' + filters.kitten + '&';
       }
-      if (filters.spay != null) {
+      if (filters.spay !== null && filters.spay !== '') {
         params += 'spay=' + filters.spay;
       }
     }
@@ -44,6 +48,15 @@ export class PhotoService {
       throw error;
     });
   }
+  getUserLikedPost(filters: CatFilter): Promise<Post[]> {
+    return this.ls.authRequest('get', 'api/photo/like', {}, null).toPromise().then((posts: Post[]) => {
+      console.log(posts);
+      return posts;
+    }).catch((error) => {
+      throw error;
+    });
+  }
+
   getFollowingPhotos(filters: CatFilter): Promise<Post[]> {
     const params = this.getParams(filters);
     return this.ls.authRequest('get', 'api/photo/following' + params, {}, null).toPromise().then((posts: Post[]) => {

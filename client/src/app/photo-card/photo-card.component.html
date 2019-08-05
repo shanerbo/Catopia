@@ -15,13 +15,14 @@
       <div class="row" id="user">
         <div class="col profile-pic">
           <div>
-            <img src="{{post.User.postOwnerProfUrl}}" alt="Avatar">
+            <a class="username" [routerLink]="'/user/' + post.user_id"><img src="{{post.User.postOwnerProfUrl}}"
+                alt="Avatar"></a>
           </div>
         </div>
         <div class="col user-comment">
           <div class="row">
             <div>
-              <a class="username">{{post.User.postOwnerName}}</a>
+              <a class="username" [routerLink]="'/user/'+post.user_id">{{post.User.postOwnerName}}</a>
             </div>
             <div>
               <p class="date" style="color:rgba(5, 5, 5, 0.432);">{{moment(post.createdAt).fromNow()}}</p>
@@ -35,7 +36,7 @@
 
           <div class="overflow-auto">
             <div class="cat-pic">
-              <a routerLink="/" *ngFor="let cat of post.Cats">
+              <a *ngFor="let cat of post.Cats" [routerLink]="'/cat/'+cat.cat_id">
                 <img src="{{cat.prof_url}}" alt="Avatar">
               </a>
             </div>
@@ -46,7 +47,9 @@
         <div class="comment" *ngFor="let comment of post.Comments">
           <div class="row">
             <div class="col comment-prof">
-              <img src="{{comment.User.commentUserProfUrl}}" alt="Avatar">
+              <a class="username" [routerLink]="'/user/'+comment.User.commentUserId">
+                <img src="{{comment.User.commentUserProfUrl}}" alt="Avatar">
+              </a>
             </div>
             <div class="col reply-info">
               <a class="username"
@@ -66,7 +69,7 @@
           id="liked_post"></i>
       </button>
       <ng-template #notliked>
-        <button class="btn func-btn" (click)="likePost()"><i class="fas fa-paw"></i></button>
+        <button class="btn func-btn" [disabled]="disableLike" (click)="likePost()"><i class="fas fa-paw"></i></button>
       </ng-template>
       <p class="like-num" style="color:rgba(5, 5, 5, 0.432);">{{post.post_likes.length}}</p>
     </div>
@@ -78,7 +81,7 @@
     <input type="text" [(ngModel)]="comment" name="comment" class="form-control" placeholder="Add a comment..."
       aria-label="comment" aria-describedby="basic-addon2">
     <div class="input-group-append post">
-      <button class="btn post-btn" type="submit">Post</button>
+      <button class="btn btn-primary post-btn" type="submit" [disabled]="disableComment">{{commentText}}</button>
     </div>
   </form>
 </div>

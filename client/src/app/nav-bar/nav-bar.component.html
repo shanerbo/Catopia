@@ -13,22 +13,24 @@
     </form>
     <ul *ngIf="!user; else logoutBlock" class="navbar-nav navbar-right">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/login']">Login/Signup</a>
+        <a class="nav-link" [routerLink]="['/login']"><i class="fas fa-sign-in-alt fa-2x top-nav-btn"></i></a>
       </li>
     </ul>
     <ng-template #logoutBlock>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item">
-          <a id="edit-profile-btn" [routerLink]="['/user/edit']" class="nav-link">Edit Profile</a>
-        </li>
-        <li class="nav-item">
           <a id="avatar-btn" [routerLink]="['user',user.id]" class="nav-link">
-            <img class="nav-avatar mr-1" width="20" height="20" src="{{user.prof_url}}" alt="{{user.userName}}">
-            {{user.userName}}
+            <img class="nav-avatar mr-1" width="32" height="32" src="{{user.prof_url}}" alt="{{user.userName}}">
+            <!-- {{user.userName}} -->
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']" (click)="logout()">Log Out</a>
+          <a id="edit-profile-btn" [routerLink]="['/user/edit']" class="nav-link"><i
+              class="fas fa-user-edit fa-2x top-nav-btn"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/']" (click)="logout()"><i class="fas fa-sign-out-alt fa-2x top-nav-btn"
+              id="logout"></i></a>
         </li>
       </ul>
     </ng-template>

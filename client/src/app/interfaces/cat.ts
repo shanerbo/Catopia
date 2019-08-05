@@ -1,6 +1,6 @@
 export interface CatFilter {
-  spay?: boolean;
-  kitten?: boolean;
+  spay?: boolean | string;
+  kitten?: boolean | string;
   gender?: string;
 }
 

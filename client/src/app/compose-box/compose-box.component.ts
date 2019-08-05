@@ -6,6 +6,8 @@ import { Cat } from '../interfaces/cat';
 import { UserService } from '../services/user.service';
 import { Observable } from 'rxjs';
 import { CatService } from '../services/cat.service';
+import { PhotoService } from '../services/photo.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-compose-box',
@@ -22,9 +24,13 @@ export class ComposeBoxComponent implements OnInit {
   public catId = {};
   public description = '';
   public megaCurrentUser$: Observable<MegaUserInfo>;
+  public disableBtn = false;
+  public buttonText = 'Post';
 
   constructor(
-    private us: UserService
+    private ps: PhotoService,
+    private us: UserService,
+    private fs: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -67,6 +73,8 @@ export class ComposeBoxComponent implements OnInit {
   }
 
   submitForm(event) {
+    this.disableBtn = true;
+    this.buttonText = 'Posting';
     const formData = new FormData();
     if (!this.photosToUpload) {
       return;
@@ -83,8 +91,17 @@ export class ComposeBoxComponent implements OnInit {
     catIds.forEach((id, i) => {
       formData.append('cat' + i, id + '');
     });
-    this.post.next(formData);
-    this.resetForm();
+    this.ps.postPhoto(formData).subscribe((result) => {
+      console.log('upload ', result);
+      this.disableBtn = false;
+      this.post.next(formData);
+      this.resetForm();
+    }, (error) => {
+      this.fs.show('Something went wrong, Please try again', { cssClass: 'alert-warning' });
+      this.disableBtn = false;
+      this.buttonText = 'Post';
+      console.log(error);
+    });
   }
   resetForm() {
     this.photosToUpload = [];

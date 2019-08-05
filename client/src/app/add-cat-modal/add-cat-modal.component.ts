@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Cat } from '../interfaces/cat';
 import { Subscription } from 'rxjs';
 import { CatService } from '../services/cat.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -28,10 +30,13 @@ export class AddCatModalComponent implements OnInit {
   public time: string;
   private realAge: number;
   constructor(
-    private cs: CatService
+    private cs: CatService,
+    private fs: FlashMessagesService
   ) {
   }
-
+  showErrMsg(msg: string) {
+    this.fs.show(msg, { cssClass: 'alert-danger' });
+  }
   ngOnInit() {
   }
   handleFileInput(target) {
@@ -71,10 +76,20 @@ export class AddCatModalComponent implements OnInit {
     formData.append('color', this.newCat.color);
     formData.append('gender', this.newCat.gender);
     formData.append('name', this.newCat.name);
+    if (!this.catProfFile) {
+      this.showErrMsg('Please add Cat Profile Picture');
+      return;
+    }
     formData.append('file', this.catProfFile);
     this.cs.addCat(formData).subscribe((result) => {
       this.addCat.next('added');
       console.log(result);
+    }, (e: HttpErrorResponse) => {
+      if (e.error.length) {
+        e.error.forEach(element => {
+          this.showErrMsg(element.msg);
+        });
+      }
     });
   }
 }

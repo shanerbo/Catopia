@@ -1,6 +1,9 @@
-<div class="container">
+<div class="container-fluid pb-5">
   <div class="row">
-    <div class="col-md-6"></div>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-4 ruby_pic">
+    </div>
     <div class="col-md-6">
       <div class="card card-form">
         <div class="card-body">
@@ -20,8 +23,8 @@
                 required>
             </div>
             <div class="form-group">
-              <input type="password" [(ngModel)]="signinPassword" class="form-control" name="loginPassword"
-                placeholder="Password" autocomplete="false" required>
+              <input type="password" minlength="6" [(ngModel)]="signinPassword" class="form-control"
+                name="loginPassword" placeholder="Password" autocomplete="false" required>
             </div>
             <button type="submit" class="btn btn-primary">Log In</button>
           </form>
@@ -38,11 +41,11 @@
                   placeholder="Username" required>
               </div>
               <div class="form-group">
-                <input type="password" [(ngModel)]="signupPassword" class="form-control" name="signupPassword" required
-                  placeholder="Password" autocomplete="false">
+                <input type="password" minlength="6" [(ngModel)]="signupPassword" class="form-control"
+                  name="signupPassword" required placeholder="Password" autocomplete="false">
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" [(ngModel)]="signupConfirmPassword"
+                <input type="password" minlength="6" [(ngModel)]="signupConfirmPassword" class="form-control"
                   name="signupConfirmPassword" required placeholder="Confirm your password" autocomplete="false">
               </div>
               <button type="submit" class="btn btn-primary">Sign Up</button>

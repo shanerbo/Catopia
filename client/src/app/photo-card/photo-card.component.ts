@@ -18,44 +18,64 @@ export class PhotoCardComponent implements OnInit, OnChanges {
     private us: UserService,
     private ls: LoginService
   ) { }
-  @Output() likePostEvent = new EventEmitter<string>();
   @Input() post: Post;
-  @Output() commentEvent = new EventEmitter<string>();
+  @Output() likePostEvent = new EventEmitter<number>();
+  @Output() commentEvent = new EventEmitter<number>();
   public moment = moment;
   public comment: string;
   public userId: number;
   public likeList: any;
   public liked = false;
+  public disableComment = false;
+  public disableLike = false;
+  public commentText = 'Comment';
 
   ngOnChanges() {
-    this.likeList = this.post.post_likes;
-    this.liked = false;
+    if (this.post && this.us.user) {
+      this.likeList = this.post.post_likes;
+      this.userId = this.us.user.id;
+      this.liked = false;
+      console.log(this.post);
+      this.likeList.forEach(element => {
+        if (element.user_id === this.userId) {
+          this.liked = true;
+        }
+      });
+    }
   }
 
   ngOnInit() {
     // console.log(this.post);
-    this.userId = this.us.user.id;
-    this.likeList.forEach(element => {
-      if (element.user_id === this.userId) {
-        this.liked = true;
-      }
-    });
+    if (this.us.user) {
+      this.userId = this.us.user.id;
+      this.likeList.forEach(element => {
+        if (element.user_id === this.userId) {
+          this.liked = true;
+        }
+      });
+    }
   }
 
   likePost() {
+    this.disableLike = true;
     this.ps.postLike(this.post.id).subscribe((result) => {
       console.log(result);
-      this.likePostEvent.next('success');
+      this.disableLike = false;
+      this.likePostEvent.next(this.post.id);
     });
   }
 
   postComment(event) {
+    this.disableComment = true;
+    this.commentText = 'Commenting';
     this.ps.postComment({
       content: this.comment,
       post_id: this.post.id
     }).then((result) => {
       console.log(result);
-      this.commentEvent.next('success');
+      this.disableComment = false;
+      this.commentText = 'Comment';
+      this.commentEvent.next(this.post.id);
     });
   }
 }

@@ -21,3 +21,26 @@ a:link,a:visited,a:hover,a:active{
 a:hover{
   color:#b35f5fab !important;
 }
+
+.btn-outline-success{
+  color: #8AA194;
+  border-color: #8AA194;
+}
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #8AA194;
+  border-color: #8AA194;
+}
+
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem #8AA194;
+}
+.btn-outline-success:not(:disabled):not(.disabled):active, .show>.btn-outline-success.dropdown-toggle {
+  color: #fff;
+  background-color: #8AA194;
+  border-color: #8AA194;
+}
+.root {
+  --success: #8AA194;
+
+}

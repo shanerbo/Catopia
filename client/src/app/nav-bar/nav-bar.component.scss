@@ -1,3 +1,11 @@
+@import "../global.scss";
 #logo{
 	height: 50px;
+}
+.top-nav-btn{
+	color: $accentColor;
+	font-size: 1.8em;
+}
+#logout{
+	font-size: 2em;
 }

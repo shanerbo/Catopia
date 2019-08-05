@@ -31,17 +31,13 @@
           </div>
           <div class="row Number">
             <div class="col follow">
-              <div class="row following">
-                <a id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </a>
-                <a (click)="switchFollowing()" id="following-num" data-toggle="modal" data-target="#following"
-                  style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </a>
+              <div class="row following" (click)="switchFollowing()" data-toggle="modal" data-target="#following">
+                <p id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </p>
+                <p id="following-num" style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </p>
               </div>
-              <div class="row follower">
-                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">
-                  Follower: </p>
-                <p id="follower-num" data-toggle="modal" data-target="#following" (click)="switchFollower()"
-                  style="color:rgba(5, 5, 5, 0.432);">
-                  {{followerList?.length}} </p>
+              <div class="row follower" data-toggle="modal" data-target="#following" (click)="switchFollower()">
+                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">Follower: </p>
+                <p id="follower-num" style="color:rgba(5, 5, 5, 0.432);"> {{followerList?.length}} </p>
               </div>
             </div>
           </div>
@@ -51,8 +47,8 @@
           <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.bio}}</p>
         </div>
       </div>
-      <ol class="user-list" *ngFor="let cat of viewingUserInfo?.cat">
-        <li class="row user">
+      <ol class="user-list">
+        <li class="row user" *ngFor="let cat of viewingUserInfo?.cat">
           <div class="col profile-pic">
             <img src="{{cat?.prof_url}}" alt="Avatar">
           </div>
@@ -78,7 +74,7 @@
     <div infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
       [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()" (scrolledUp)="onUp()">
       <div *ngFor="let post of postsArray">
-        <app-photo-card (likePostEvent)="fetchUserPhotos($event)" (commentEvent)="fetchUserPhotos($event)"
+        <app-photo-card (likePostEvent)="updateSinglePost($event)" (commentEvent)="updateSinglePost($event)"
           [post]="post">
         </app-photo-card>
       </div>
@@ -117,17 +113,13 @@
           </div>
           <div class="row Number">
             <div class="col follow">
-              <div class="row following">
-                <a id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </a>
-                <a (click)="switchFollowing()" id="following-num" data-toggle="modal" data-target="#following"
-                  style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </a>
+              <div class="row following" (click)="switchFollowing()" data-toggle="modal" data-target="#following">
+                <p id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </p>
+                <p id="following-num" style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </p>
               </div>
-              <div class="row follower">
-                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">
-                  Follower: </p>
-                <p id="follower-num" data-toggle="modal" data-target="#following" (click)="switchFollower()"
-                  style="color:rgba(5, 5, 5, 0.432);">
-                  {{followerList?.length}} </p>
+              <div class="row follower" data-toggle="modal" data-target="#following" (click)="switchFollower()">
+                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);"> Follower: </p>
+                <p id="follower-num" style="color:rgba(5, 5, 5, 0.432);">{{followerList?.length}} </p>
               </div>
             </div>
           </div>
@@ -137,8 +129,8 @@
           <p style="color:rgba(5, 5, 5, 0.432);">{{viewingUserInfo?.bio}}</p>
         </div>
       </div>
-      <ol class="user-list" *ngFor="let cat of viewingUserInfo?.cat">
-        <li class="row user">
+      <ol class="user-list">
+        <li class="row user" *ngFor="let cat of viewingUserInfo?.cat">
           <div class="col profile-pic">
             <img src="{{cat?.prof_url}}" alt="Avatar">
           </div>

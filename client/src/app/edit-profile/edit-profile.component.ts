@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserInfo } from '../interfaces/user-info';
 
 @Component({
@@ -17,7 +17,7 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private ls: LoginService,
     private us: UserService,
-    private router: Router
+    private router: Router,
 
   ) { }
 

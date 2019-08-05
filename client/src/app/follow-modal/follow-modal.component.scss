@@ -1,3 +1,4 @@
+@import "../global.scss";
 .fade{
     .modal-body{
         max-height:30pc;}
@@ -48,11 +49,27 @@
                 max-width:25%;
             }
             .btn-light{
-                color: #b35f5f3b;
+                color: $themeColor;
                 font-weight:bold;
             }
             .btn-light:hover{
                 background-color: #f7f3f3f8;
+            }
+            .mutual{
+                color: $themeColor;
+                font-weight:bold;
+            }
+            .mutual:hover span {
+                color: $themeColor;
+                font-weight:bold; 
+                display:none
+            }
+            .mutual:hover:before {
+                content:"Unfollow"
+            }
+            .mutual:hover,.mutual:focus{
+                background-color: #f7f3f3f8;
+                border-style:none;
             }
     }
 }

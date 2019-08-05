@@ -66,8 +66,7 @@ function getPostQueryWithParams(params) {
     delete params.kitten;
     console.log("processed kitten query", params);
     //---------------------------------------------
-
-    if (Object.keys(params) > 0) {
+    if (Object.keys(params).length > 0) {
       query.include[1].where = params;
     }
   }
@@ -75,6 +74,16 @@ function getPostQueryWithParams(params) {
 }
 
 // ------------------------------------------------------
+exports.getOnePost = (req, res, next) => {
+  const query = postQuery();
+  query.where = { id: req.params.id };
+  console.log("include:", query);
+  db.Posts.findOne(query).then(result => {
+    console.log("after:", result.toJSON().post_likes);
+    res.json(result);
+  });
+};
+
 exports.getCatPosts = [
   async (req, res, next) => {
     const cat_id = req.params.id;
@@ -205,6 +214,7 @@ exports.commentOnPhoto = [
 
 exports.getAllPosts = (req, res, next) => {
   const query = getPostQueryWithParams(req.query);
+  console.log(req.query)
   // const query = postQuery();
   console.log("include:", query);
   db.Posts.findAll(query).then(result => {
