@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserInfo } from '../interfaces/user-info';
 
 @Component({
@@ -17,13 +17,22 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private ls: LoginService,
     private us: UserService,
-    private router: Router
+    private router: Router,
 
   ) { }
 
   ngOnInit() {
-    this.currentUserInfo = this.ls.getUserInfo();
-    this.currentProfUrl = this.currentUserInfo.prof_url;
+    this.ls.currentUser.subscribe((user) => {
+      console.log('edit: ', user);
+      if (!user) {
+        this.router.navigateByUrl('/login');
+      } else {
+
+        this.currentUserInfo = user;
+        this.currentProfUrl = this.currentUserInfo.prof_url;
+      }
+    });
+
   }
   handleFileInput(target) {
     const file = target.files[0];

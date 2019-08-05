@@ -10,12 +10,16 @@
           <div class="editUserForm">
             <form class="pt-3">
               <div class=" form-row">
-                <div>
-                  <div class="input-file form-group col col-md-auto">
+                <div class="card-body image-row" id="upload-body" >
+                  <div class="input-file form-group col col-md-12">
                     <label for="photos"><img src="{{currentProfUrl}}" width=60 height=60 alt="">
-                      <input class="form-control" accept=".png,.gif,.jpeg,.jpg" type="file" name="photos" id="photos"
-                        [(ngModel)]="file" (change)="handleFileInput($event.target)" />
+                      <input class="d-none form-control" accept=".png,.gif,.jpeg,.jpg" type="file" name="photos" id="photos" [(ngModel)]="file" (change)="handleFileInput($event.target)" />
                     </label>
+                    <div class="input-file-intro col">
+                        <label for="photos">
+                          <h4>Update your profile pic here!</h4>
+                        </label>
+                      </div>
                   </div>
                 </div>
               </div>
