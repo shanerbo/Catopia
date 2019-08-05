@@ -25,8 +25,13 @@ end
 execute 'npm_install' do
   cwd '/home/vagrant/project'
   command 'sudo npm install'
+end
+
+execute 'npm_install' do
+  cwd '/home/vagrant/project'
   command 'sudo npm install -g sequelize-cli'
 end
+
 execute 'bcrypt' do
   cwd '/home/vagrant/project'
   command 'sudo npm install bcrypt'
