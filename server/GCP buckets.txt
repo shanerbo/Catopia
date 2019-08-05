@@ -2,5 +2,6 @@ cat_prof
 user_posts
 user_prof
 
+export PATH=/Library/PostgreSQL/9.6/bin:$PATH
 connect to googleSQL psql "sslmode=disable dbname=cat user=admin hostaddr=34.83.161.255"
 if you want to do migration, connect db to cloud user ipv4 address(you get grant access from gcp console); then change host address in config.js

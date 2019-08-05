@@ -66,8 +66,7 @@ function getPostQueryWithParams(params) {
     delete params.kitten;
     console.log("processed kitten query", params);
     //---------------------------------------------
-
-    if (Object.keys(params) > 0) {
+    if (Object.keys(params).length > 0) {
       query.include[1].where = params;
     }
   }
@@ -215,6 +214,7 @@ exports.commentOnPhoto = [
 
 exports.getAllPosts = (req, res, next) => {
   const query = getPostQueryWithParams(req.query);
+  console.log(req.query)
   // const query = postQuery();
   console.log("include:", query);
   db.Posts.findAll(query).then(result => {

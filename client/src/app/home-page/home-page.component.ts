@@ -22,7 +22,7 @@ export class HomePageComponent implements OnInit {
   freshFlag = false;
   postsArray = [];
   loadedPosts = 2;
-  loadMore = 2;
+  loadMore = 1;
   throttle = 300;
   scrollDistance = 1;
   scrollUpDistance = 2;
@@ -55,7 +55,7 @@ export class HomePageComponent implements OnInit {
       }
       console.log('POSTS REFRESHED!');
     } else {
-      this.appendItems(0, this.loadMore);
+      this.appendItems(0, this.loadedPosts);
       console.log('POSTS INIT!!');
       this.freshFlag = true;
     }
@@ -79,7 +79,7 @@ export class HomePageComponent implements OnInit {
   }
 
   addItems(startIndex, endIndex, _method) {
-    for (let i = 0; i < this.loadMore; ++i) {
+    for (let i = 0; i < endIndex; ++i) {
       if (!this.posts[startIndex + i]) {
         break;
       }
@@ -102,7 +102,7 @@ export class HomePageComponent implements OnInit {
     const start = this.loadedPosts;
     this.loadedPosts += this.loadMore;
     if (this.loadedPosts <= this.posts.length) {
-      this.prependItems(start, this.loadedPosts);
+      this.prependItems(start, this.loadMore);
       this.direction = 'down';
     }
   }
@@ -139,7 +139,7 @@ export class HomePageComponent implements OnInit {
   }
 
   fetchLikedPost(): Promise<Post[]> {
-    return this.us.getUserLikedPost().then((posts) => {
+    return this.ps.getUserLikedPost(this.filters).then((posts) => {
       console.log('Fetched liked post', posts);
       this.posts = posts;
       this.refreshLoadedPosts();

@@ -1,4 +1,81 @@
-<div class="nav-sidebar-inner-scroll">
+<!-- this is shown only on small screen -->
+<div class="d-md-none d-block">
+  <nav class="navbar-expand-lg navbar-light bg-light">
+    <div class="row">
+
+      <a class="nav-link accentFont col" [routerLink]="['/']"><i class="fas fa-home fa-2x"></i>
+        <!-- <span class="badge badge-primary badge-pill">14</span> -->
+      </a>
+      <a class="nav-link accentFont col" [routerLink]="['/following']">
+        <i class="fas fa-users fa-2x"></i>
+      </a>
+      <a class="nav-link accentFont col" [routerLink]="['/liked']">
+        <i class="fas fa-heart fa-2x"></i>
+      </a>
+      <a class="nav-link accentFont col">
+        <i class="fas fa-sync-alt fa-2x" (click)="refreshPosts()"></i>
+      </a>
+      <a class=" nav-link accentFont col" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-filter fa-2x"></i>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <label for="gender" class="accentFont">Gender</label>
+          <select [(ngModel)]="filters.gender" name="catFilter" class="form-control" id="gender">
+            <option value="">
+            </option>
+            <option value="boy">
+              Boy
+            </option>
+            <option value="girl">
+              Gril
+            </option>
+          </select>
+        </li>
+        <li>
+          <label for="spay" class="accentFont">Spay</label>
+          <select [(ngModel)]="filters.spay" name="catFilter" class="form-control" id="spay">
+            <option value="">
+            </option>
+            <option value="true">
+              Spayed
+            </option>
+            <option value="false">
+              Not Spayed
+            </option>
+          </select>
+        </li>
+        <li>
+          <label for="kitten" class="accentFont">Kitten</label>
+          <select [(ngModel)]="filters.kitten" name="catFilter" class="form-control" id="kitten">
+            <option value="">
+            </option>
+            <option value="true">
+              Kitten(&lt;1 year old)
+            </option>
+            <option value="false">
+              Cat above 1 year old
+            </option>
+          </select>
+        </li>
+      </ul>
+      <button type="submit" (click)="applyFilters()" class="btn btn-primary float-right mt-2">Apply</button>
+      <button (click)="clear()" class="btn btn-primary float-right mt-2">Clear Filter</button>
+    </div>
+
+    <!-- <div><button id="sidebar-btn" type="button" class="navbar-toggler btn btn-lg btn-block" (click)="toggleSideBar()">
+        <span><i class="fas fa-2x accentFont"
+            [ngClass]="{ 'fa-chevron-circle-right': isCollapsed, 'fa-chevron-circle-left': !isCollapsed}"></i></span>
+      </button></div> -->
+
+  </nav>
+</div>
+
+<!-- this is shown on md+ screen -->
+<div class="nav-sidebar-inner-scroll d-md-block d-none">
   <nav id="sidebar" [ngClass]="{ hidden: isCollapsed }">
     <ul class="navbar-nav list-unstyled components">
       <li class="nav-item" [ngClass]="{ hidden: isCollapsed }">
@@ -82,6 +159,7 @@
 
   </nav>
 </div>
-
-<div id="overlay" [ngClass]="{ 'd-none': isCollapsed}" (click)="collapse()">
+<div class="d-md-block d-none w-100 h-100">
+  <div id="overlay" [ngClass]="{ 'd-none': isCollapsed}" (click)="collapse()">
+  </div>
 </div>
