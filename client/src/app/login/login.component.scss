@@ -1,10 +1,15 @@
-body{
-    background-color:black;
-}
+@import "../global.scss";
+
 .container-fluid{
-    background-color:black;
+    background-color:$themeColor;
     height:100%;
 }
 .card-form{
     margin-top:50px;
+}
+
+.ruby_pic {
+    background-image: url('../../assets/ruby_on_rails.png');
+    background-size: 19em;
+    background-repeat: no-repeat;
 }
