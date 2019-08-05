@@ -75,6 +75,16 @@ function getPostQueryWithParams(params) {
 }
 
 // ------------------------------------------------------
+exports.getOnePost = (req, res, next) => {
+  const query = postQuery();
+  query.where = { id: req.params.id };
+  console.log("include:", query);
+  db.Posts.findOne(query).then(result => {
+    console.log("after:", result.toJSON().post_likes);
+    res.json(result);
+  });
+};
+
 exports.getCatPosts = [
   async (req, res, next) => {
     const cat_id = req.params.id;
