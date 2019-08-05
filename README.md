@@ -1,5 +1,5 @@
 # CMPT470 Final Project: Cat social media(https://www.catopia.ca)
-The website is a community for cat owners and lovers. Users can share their cats’ photos and browse other people’s. Cat owners can interact with other cat owners and maybe find friends through their lovely pets. Not cat owners can get strong doses of cute cat photos and maybe find a cat to adopt. If time permits, we can implement an e-commerce sub-site selling cat supplies for some revenue.
+The website is a community for cat owners and lovers. Users can share their cats’ photos and browse other people’s. Cat owners can interact with other cat owners and maybe find friends through their lovely pets. Non cat owners can get strong doses of cute cat photos and maybe find a cat to adopt. If time permits, we can implement an e-commerce sub-site selling cat supplies for some revenue.
 
 # Contributors
 - Zhixuan(Otto) Hu 301290598
@@ -8,12 +8,13 @@ The website is a community for cat owners and lovers. Users can share their cats
 - Ming Chen 301329342
 
 ## Setup
-Go to https://www.catopia.ca 
+Be lazy and don't setup, just go to https://www.catopia.ca 
 > Or
 - Install Nodejs and PostgreSQL
 - Run ``` npm run build ``` in root dir
-- Create a database in psql
+- Create a database for the project in psql, remember the name and password info
 - In `/server` create a `.env` file that follows the format of `.env.example`. Put the credentials of the newly created database in the file.
+- Might need to install sequelize cli globally separately by `npm i sequelize-cli -g`
 - In `/server` run `sequelize db:migrate` to create the tables in db. Run `sequelize db:seed:all` to populate db with some dummy data
 - For image upload to work, you need a GCP service account. Get a GCP service key file, rename it to `fluffy-secret-file.json` and place it in `/server` dir. 
 
@@ -26,7 +27,9 @@ Go to https://www.catopia.ca
 #### To deploy in vagrant 
 ##### The vagrant tag version already has a .env file and a google cloud key file setup. You can simply: 
 - Build the angular app into server by running ``` cd client&&npm i&&npm run build ```
-- Run vagrant up in `/server`
+- Run `vagrant up` in `/server`
+- Run `vagrant provision`
+- Go to `localhost:8080`
 
 ### Logins to try
 - username: ohu@sfu.ca, password: pppppp
