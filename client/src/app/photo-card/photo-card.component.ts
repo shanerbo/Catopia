@@ -30,8 +30,10 @@ export class PhotoCardComponent implements OnInit, OnChanges {
   public commentText = 'Comment';
 
   ngOnChanges() {
-    this.likeList = this.post.post_likes;
-    this.liked = false;
+    if (this.post) {
+      this.likeList = this.post.post_likes;
+      this.liked = false;
+    }
   }
 
   ngOnInit() {

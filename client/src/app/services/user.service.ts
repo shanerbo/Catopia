@@ -62,14 +62,7 @@ export class UserService {
       throw error;
     });
   }
-  getUserLikedPost(): Promise<Post[]> {
-    return this.ls.authRequest('get', 'api/photo/like', {}, null).toPromise().then((posts: Post[]) => {
-      console.log(posts);
-      return posts;
-    }).catch((error) => {
-      throw error;
-    });
-  }
+
   update(updatedUser: FormData): Observable<any> {
     return this.ls.authRequest('post', '/api/user/edit', {}, updatedUser);
   }

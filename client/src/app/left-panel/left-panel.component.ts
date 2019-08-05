@@ -39,6 +39,7 @@ export class LeftPanelComponent implements OnInit {
     this.isCollapsed = false;
   }
   applyFilters(): void {
+    console.log(this.filters);
     this.filterSubmit.next(this.filters);
   }
 
