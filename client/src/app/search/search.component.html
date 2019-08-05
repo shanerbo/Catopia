@@ -28,7 +28,9 @@
       +cat.prof_url+ ')', 'background-size': 'cover' }"></div>
       <div class="card-body">
         <h5 class="card-title" style="overflow:hidden; white-space: nowrap;text-overflow:ellipsis;">{{cat.name}}</h5>
-        <p class="card-text">Owner: {{cat.owner}}</p>
+        <a [routerLink]="'/user/'+cat.user_id">
+          <p class="card-text">Owner: {{cat.User.userName}}</p>
+        </a>
         <a [routerLink]="'/cat/'+cat.id" class="btn btn-primary">Go to Profile page</a>
       </div>
     </div>

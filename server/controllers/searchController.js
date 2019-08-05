@@ -34,7 +34,13 @@ exports.searchForUserOrCat = async (req, res, next) => {
           [Op.like]: keyword
         }
       }
-    }
+    },
+    include: [
+      {
+        model: db.Users,
+        attributes: ['userName']
+      }
+    ]
   });
   let searchResult = { foundUsers, foundCats };
   res.json(searchResult);
