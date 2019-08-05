@@ -24,6 +24,9 @@ The website is a community for cat owners and lovers. Users can share their cats
 - Build the angular app into server by running ``` cd client&&npm run build ```
 - Run vagrant up in `/server`
 
+### Logins to try
+- username: ohu@sfu.ca, password: pppppp
+- username: erbos@sfu.ca, password: pppppp
 
 ## Main use cases
 - Not logged in user sees a list of cat photos on the home page. User can't click like or comment or use following/liked button in the left panel unless they log in

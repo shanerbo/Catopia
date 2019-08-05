@@ -33,6 +33,7 @@ export interface Post {
   updatedAt: string;
   Cats?: Cat[];
   User?: UserInfo;
+  user_id?: number;
   Comments?: Comment[];
   post_likes?: any;
 
