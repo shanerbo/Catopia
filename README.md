@@ -1,4 +1,4 @@
-# CMPT470 Final Project: Cat social media
+# CMPT470 Final Project: Cat social media(https://www.catopia.ca)
 The website is a community for cat owners and lovers. Users can share their cats’ photos and browse other people’s. Cat owners can interact with other cat owners and maybe find friends through their lovely pets. Not cat owners can get strong doses of cute cat photos and maybe find a cat to adopt. If time permits, we can implement an e-commerce sub-site selling cat supplies for some revenue.
 
 # Contributors
@@ -8,6 +8,8 @@ The website is a community for cat owners and lovers. Users can share their cats
 - Ming Chen 301329342
 
 ## Setup
+Go to https://www.catopia.ca 
+> Or
 - Install Nodejs and PostgreSQL
 - Create a database in psql
 - In `/server` create a `.env` file that follows the format of `.env.example`. Put the credentials of the newly created database in the file.
@@ -21,7 +23,8 @@ The website is a community for cat owners and lovers. Users can share their cats
 - Go to browser and open localhost:{PORT# your specified in .env or 8080}
 
 #### To deploy in vagrant 
-- Build the angular app into server by running ``` cd client&&npm run build ```
+##### The vagrant tag version already has a .env file and a google cloud key file setup. You can simply: 
+- Build the angular app into server by running ``` cd client&&npm i&&npm run build ```
 - Run vagrant up in `/server`
 
 ### Logins to try
