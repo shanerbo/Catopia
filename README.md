@@ -11,11 +11,12 @@ The website is a community for cat owners and lovers. Users can share their cats
 Go to https://www.catopia.ca 
 > Or
 - Install Nodejs and PostgreSQL
+- Run ``` npm run build ``` in root dir
 - Create a database in psql
 - In `/server` create a `.env` file that follows the format of `.env.example`. Put the credentials of the newly created database in the file.
 - In `/server` run `sequelize db:migrate` to create the tables in db. Run `sequelize db:seed:all` to populate db with some dummy data
 - For image upload to work, you need a GCP service account. Get a GCP service key file, rename it to `fluffy-secret-file.json` and place it in `/server` dir. 
-- Run ``` npm run build ``` in root dir
+
 > Then...
 #### To run in dev mode:
 - cd into server folder, run:
