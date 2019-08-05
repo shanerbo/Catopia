@@ -31,17 +31,13 @@
           </div>
           <div class="row Number">
             <div class="col follow">
-              <div class="row following">
-                <a id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </a>
-                <a (click)="switchFollowing()" id="following-num" data-toggle="modal" data-target="#following"
-                  style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </a>
+              <div class="row following" (click)="switchFollowing()" data-toggle="modal" data-target="#following">
+                <p id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </p>
+                <p id="following-num" style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </p>
               </div>
-              <div class="row follower">
-                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">
-                  Follower: </p>
-                <p id="follower-num" data-toggle="modal" data-target="#following" (click)="switchFollower()"
-                  style="color:rgba(5, 5, 5, 0.432);">
-                  {{followerList?.length}} </p>
+              <div class="row follower" data-toggle="modal" data-target="#following" (click)="switchFollower()">
+                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">Follower: </p>
+                <p id="follower-num" style="color:rgba(5, 5, 5, 0.432);"> {{followerList?.length}} </p>
               </div>
             </div>
           </div>
@@ -117,17 +113,13 @@
           </div>
           <div class="row Number">
             <div class="col follow">
-              <div class="row following">
+              <div class="row following" (click)="switchFollowing()" data-toggle="modal" data-target="#following">
                 <p id="following-tab" style="color:rgba(5, 5, 5, 0.432);">Following: </p>
-                <a (click)="switchFollowing()" id="following-num" data-toggle="modal" data-target="#following"
-                  style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </a>
+                <p id="following-num" style="color:rgba(5, 5, 5, 0.432);">{{followingList?.length}} </p>
               </div>
-              <div class="row follower">
-                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);">
-                  Follower: </p>
-                <a id="follower-num" data-toggle="modal" data-target="#following" (click)="switchFollower()"
-                  style="color:rgba(5, 5, 5, 0.432);">
-                  {{followerList?.length}} </a>
+              <div class="row follower" data-toggle="modal" data-target="#following" (click)="switchFollower()">
+                <p id="follower-tab" style="color:rgba(5, 5, 5, 0.432);"> Follower: </p>
+                <p id="follower-num" style="color:rgba(5, 5, 5, 0.432);">{{followerList?.length}} </p>
               </div>
             </div>
           </div>

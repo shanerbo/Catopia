@@ -72,7 +72,7 @@
           padding-top:1px;
           .follow{
               margin-bottom:0px;
-              
+              cursor: pointer;
           }
           #following-tab{
               color: $greyColor !important;
@@ -88,6 +88,12 @@
             color: $themeColor !important;
           }
           #follower-num:hover{
+            color: $themeColor !important;
+          }
+          #following-tab:hover{
+            color: $themeColor !important;
+          }
+          #follower-tab:hover{
             color: $themeColor !important;
           }
           #follower-num{
