@@ -19,6 +19,10 @@ export class PhotoService {
     return this.ls.authRequest('post', 'api/photo', {}, newPost);
   }
 
+  fetchSinglePhoto(post_id: number): Observable<Post> {
+    return this.http.get<Post>('api/photo/' + post_id);
+  }
+
   private getParams(filters: CatFilter): string {
     let params = '';
     if (filters) {

@@ -128,6 +128,22 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     });
   }
 
+  updateSinglePost(post_id) {
+    setTimeout(() => {
+
+      this.ps.fetchSinglePhoto(post_id).subscribe((post: Post) => {
+        console.log('fetched:', post);
+        this.posts = this.posts.map((p) => {
+          if (p.id === post.id) {
+            return post;
+          } else {
+            return p;
+          }
+        });
+        this.refreshLoadedPosts();
+      });
+    }, 500);
+  }
   fetchUserInfo(): Promise<any> {
     return this.us.getUserAllInfo(this.viewingUserId).then((userInfo) => {
       this.followerList = userInfo.follower;
