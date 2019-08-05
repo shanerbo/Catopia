@@ -12,12 +12,17 @@
   font-weight: bold;
  
 }
-
 label{
   font-weight: bold;
   color: $accentColor;
 }
 
-input{
-  
+#upload-body {
+  border-bottom-width: 20px;
+  border-color: #e9cccc;
+  border-style: solid;
+  border-style: dotted;
+  border-color: #e9cccc;
+  border-width: 3px;
+  margin: 15px;
 }
