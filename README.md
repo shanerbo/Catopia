@@ -81,3 +81,5 @@ The website is a community for cat owners and lovers. Users can share their cats
 - Chat feature
 - Better recommendation algorithm
 - Create a photo gallary component for cat profile page.
+- Add image crop function. So that the images shown on page don't jump up and down
+- Fetch posts progressively instead of fetching all at once, which is very unscalable. As users post more the site gets slower and slower.
