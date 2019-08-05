@@ -4,7 +4,7 @@ const passport = require('passport');
 const upload = require('multer')();
 
 const { sanitizeBody, body, validationResult } = require('express-validator');
-const defaultCatProfUrl = "https://storage.googleapis.com/cat_prof/Cat%20-%201.jpeg"
+const defaultCatProfUrl = "https://cars-gmbh.de/public/public/bower_components/material-design-iconic-font/svg/2.2/12%20-%20social/github.svg"
 function getCatAge(daysAgo) {
   const catAge = new Date();
   catAge.setTime(catAge.getTime() - daysAgo * 24 * 60 * 60 * 1000);

@@ -47,7 +47,7 @@ ngb-carousel{
     // height:100%;
 .comment-list{
     overflow-y:scroll;
-    height:10pc;
+    max-height:10pc;
     .comment{
         padding-top:10px;
         padding-left:45px;
@@ -97,12 +97,16 @@ ngb-carousel{
             margin-left:10px;
             margin-top:10px;
             padding:0px;
-            position: relative;
-            overflow: hidden;
+            margin-bottom:5px;
             max-width: 80px;
             max-height: 80px;
-            border-radius: 50%;
+            
             img{
+                border-radius: 50%;
+                max-width: 80px;
+                max-height: 80px;
+                min-width: 80px;
+                min-height: 80px;
                 width: 100%;
                 height: auto;
             }

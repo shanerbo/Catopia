@@ -76,6 +76,10 @@ export class AddCatModalComponent implements OnInit {
     formData.append('color', this.newCat.color);
     formData.append('gender', this.newCat.gender);
     formData.append('name', this.newCat.name);
+    if (!this.catProfFile) {
+      this.showErrMsg('Please add Cat Profile Picture');
+      return;
+    }
     formData.append('file', this.catProfFile);
     this.cs.addCat(formData).subscribe((result) => {
       this.addCat.next('added');
