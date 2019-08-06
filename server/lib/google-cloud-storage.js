@@ -2,10 +2,13 @@ const { Storage } = require('@google-cloud/storage');
 const path = require('path');
 const GOOGLE_CLOUD_PROJECT_ID = 'fluffy-247100';
 const GOOGLE_CLOUD_KEYFILE = '../server/fluffy-secret-file.json';
-const storage = new Storage({
-  projectId: GOOGLE_CLOUD_PROJECT_ID,
-  keyFilename: GOOGLE_CLOUD_KEYFILE,
-});
+const storage = new Storage(
+  {
+    // projectId: GOOGLE_CLOUD_PROJECT_ID,
+    // keyFilename: GOOGLE_CLOUD_KEYFILE,
+    // since we deploy into Google App Engine GOOGLE_CLOUD_KEYFILE is no longer needed
+  }
+);
 function getPublicUrl(bucketName, fileName) {
   return `https://storage.googleapis.com/${bucketName}/${fileName}`;
 }
