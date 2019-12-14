@@ -2,6 +2,4 @@
 *.log
 **/build*
 **/dist
-**/.env
-**/fluffy-*.json
 **/.vagrant
